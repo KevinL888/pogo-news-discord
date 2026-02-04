@@ -3,13 +3,18 @@ import os
 import re
 import sys
 import time
-from datetime import datetime, timezone
+import io
 import xml.etree.ElementTree as ET
+from datetime import datetime, timezone
 from difflib import SequenceMatcher
-from typing import List, Dict, Optional, Tuple
+from typing import List, Dict, Optional, Tuple, Any
 
 import requests
 from bs4 import BeautifulSoup
+
+# ============================================================
+# Config
+# ============================================================
 
 BASE_SITE = "https://pokemongo.com"
 NEWS_URL = f"{BASE_SITE}/news"
@@ -18,20 +23,28 @@ STATE_FILE = "state.json"
 WEBHOOK_URL = os.environ.get("DISCORD_WEBHOOK_URL")
 FB_RSS_URL = os.environ.get("G47IX_FB_RSS_URL")
 
-OFFICIAL_CANDIDATES_LIMIT = 60
-MAX_OFFICIAL_POSTS_PER_RUN = 3
-MAX_FB_POSTS_PER_RUN = 5
+OFFICIAL_CANDIDATES_LIMIT = int(os.environ.get("OFFICIAL_CANDIDATES_LIMIT", "60"))
+MAX_OFFICIAL_POSTS_PER_RUN = int(os.environ.get("MAX_OFFICIAL_POSTS_PER_RUN", "3"))
+MAX_FB_POSTS_PER_RUN = int(os.environ.get("MAX_FB_POSTS_PER_RUN", "5"))
+MATCH_THRESHOLD = float(os.environ.get("MATCH_THRESHOLD", "0.38"))
+SLEEP_BETWEEN_POSTS_SEC = float(os.environ.get("SLEEP_BETWEEN_POSTS_SEC", "1.2"))
 
-# Lowering slightly helps your RSS.app feed titles that include lots of bonus bullet text.
-MATCH_THRESHOLD = 0.38
+# If true, we do NOT mark unmatched FB posts as seen (useful while tuning matching)
+DEBUG_KEEP_UNMATCHED_FB = os.environ.get("DEBUG_KEEP_UNMATCHED_FB", "0") == "1"
 
-SLEEP_BETWEEN_POSTS_SEC = 1.2
+# OCR fallback (disabled by default)
+ENABLE_OCR_FALLBACK = os.environ.get("ENABLE_OCR_FALLBACK", "0") == "1"
+OCR_MAX_CHARS = int(os.environ.get("OCR_MAX_CHARS", "1500"))  # safety clamp
+
+# Debug matching output
+DEBUG_MATCH_TOP_N = int(os.environ.get("DEBUG_MATCH_TOP_N", "3"))
 
 
-# -----------------------------
+# ============================================================
 # State helpers
-# -----------------------------
-def load_state() -> Dict:
+# ============================================================
+
+def load_state() -> Dict[str, Any]:
     if os.path.exists(STATE_FILE):
         with open(STATE_FILE, "r", encoding="utf-8") as f:
             data = json.load(f)
@@ -41,6 +54,7 @@ def load_state() -> Dict:
         data.setdefault("posted_infographics", [])
         data.setdefault("bootstrapped", False)
 
+        # keep bounded
         data["seen_urls"] = data["seen_urls"][-800:]
         data["seen_fb_posts"] = data["seen_fb_posts"][-800:]
         data["posted_infographics"] = data["posted_infographics"][-800:]
@@ -49,14 +63,15 @@ def load_state() -> Dict:
     return {"seen_urls": [], "seen_fb_posts": [], "posted_infographics": [], "bootstrapped": False}
 
 
-def save_state(state: Dict):
+def save_state(state: Dict[str, Any]) -> None:
     with open(STATE_FILE, "w", encoding="utf-8") as f:
         json.dump(state, f, indent=2, ensure_ascii=False)
 
 
-# -----------------------------
+# ============================================================
 # HTTP helpers
-# -----------------------------
+# ============================================================
+
 def fetch(url: str) -> str:
     headers = {
         "User-Agent": "Mozilla/5.0 (DiscordWebhookBot; +https://github.com)",
@@ -73,22 +88,24 @@ def absolute_url(href: str) -> str:
     return BASE_SITE + href
 
 
-# -----------------------------
+# ============================================================
 # Official news scraping
-# -----------------------------
+# ============================================================
+
 def get_latest_news_links(limit: int = OFFICIAL_CANDIDATES_LIMIT) -> List[str]:
     html = fetch(NEWS_URL)
     soup = BeautifulSoup(html, "html.parser")
 
-    links = []
+    links: List[str] = []
     for a in soup.find_all("a", href=True):
         href = a["href"]
         if "/news/" in href and not href.endswith("/news/"):
             if re.search(r"^/news/[^?#]+", href):
                 links.append(absolute_url(href.split("#")[0].split("?")[0]))
 
+    # de-dupe preserve order
     seen = set()
-    ordered = []
+    ordered: List[str] = []
     for u in links:
         if u not in seen:
             seen.add(u)
@@ -97,11 +114,11 @@ def get_latest_news_links(limit: int = OFFICIAL_CANDIDATES_LIMIT) -> List[str]:
     return ordered[:limit]
 
 
-def parse_article_metadata(article_url: str) -> Dict:
+def parse_article_metadata(article_url: str) -> Dict[str, Any]:
     html = fetch(article_url)
     soup = BeautifulSoup(html, "html.parser")
 
-    def meta(prop=None, name=None):
+    def meta(prop: Optional[str] = None, name: Optional[str] = None) -> Optional[str]:
         if prop:
             tag = soup.find("meta", attrs={"property": prop})
         else:
@@ -130,10 +147,11 @@ def parse_article_metadata(article_url: str) -> Dict:
     }
 
 
-# -----------------------------
+# ============================================================
 # Discord posting (429-safe)
-# -----------------------------
-def discord_post(payload: Dict, max_retries: int = 5):
+# ============================================================
+
+def discord_post(payload: Dict[str, Any], max_retries: int = 5) -> None:
     if not WEBHOOK_URL:
         print("Missing DISCORD_WEBHOOK_URL env var.", file=sys.stderr)
         sys.exit(1)
@@ -168,8 +186,8 @@ def discord_post(payload: Dict, max_retries: int = 5):
     raise RuntimeError("Discord webhook failed after retries (rate-limited or error).")
 
 
-def post_official(meta: Dict):
-    embed = {
+def post_official(meta: Dict[str, Any]) -> None:
+    embed: Dict[str, Any] = {
         "title": meta["title"],
         "url": meta["url"],
         "description": meta["description"],
@@ -183,11 +201,11 @@ def post_official(meta: Dict):
     time.sleep(SLEEP_BETWEEN_POSTS_SEC)
 
 
-def post_infographic(official_meta: Dict, fb_post: Dict):
+def post_infographic(official_meta: Dict[str, Any], fb_post: Dict[str, Any]) -> None:
     img = fb_post.get("image_url")
     fb_link = fb_post.get("link")
 
-    embed = {
+    embed: Dict[str, Any] = {
         "title": "Infographic (G47IX)",
         "description": f"Matched to: **{official_meta.get('title','Pokémon GO News')}**\nSource: {fb_link}",
         "url": official_meta.get("url"),
@@ -200,17 +218,18 @@ def post_infographic(official_meta: Dict, fb_post: Dict):
     time.sleep(SLEEP_BETWEEN_POSTS_SEC)
 
 
-# -----------------------------
+# ============================================================
 # Facebook RSS parsing
-# -----------------------------
-def get_facebook_posts() -> List[Dict]:
+# ============================================================
+
+def get_facebook_posts() -> List[Dict[str, Any]]:
     if not FB_RSS_URL:
         return []
 
     xml_text = fetch(FB_RSS_URL)
     root = ET.fromstring(xml_text)
 
-    items = []
+    items: List[Dict[str, Any]] = []
     for item in root.findall(".//item"):
         title = (item.findtext("title") or "").strip()
         link = (item.findtext("link") or "").strip()
@@ -241,18 +260,34 @@ def get_facebook_posts() -> List[Dict]:
     return items[:30]
 
 
-def is_infographic_post(post: Dict) -> bool:
+def is_infographic_post(post: Dict[str, Any]) -> bool:
     return bool(post.get("image_url"))
 
 
-# -----------------------------
-# Matching logic (improved for noisy FB titles)
-# -----------------------------
+# ============================================================
+# Matching logic
+# ============================================================
+
 STOPWORDS = {
     "the", "a", "an", "and", "or", "to", "in", "on", "for", "with", "of", "at", "by",
     "is", "are", "be", "will", "from", "into", "during", "event", "events",
     "pokemon", "pokémon", "go", "pokemongo", "pokemongo’s", "its", "it", "this", "that",
 }
+
+KEYWORD_BONUS = [
+    "lunar", "valentine", "raid", "shadow", "mega", "community", "pass",
+    "spotlight", "go", "tour", "fest", "research", "battle",
+]
+
+PHRASE_BONUS = [
+    "lunar new year",
+    "valentine",
+    "community day",
+    "raid day",
+    "go pass",
+    "spotlight hour",
+]
+
 
 def normalize_text(s: str) -> str:
     s = s or ""
@@ -266,7 +301,7 @@ def normalize_text(s: str) -> str:
 
 def tokens(s: str) -> List[str]:
     s = normalize_text(s)
-    out = []
+    out: List[str] = []
     for t in s.split():
         if len(t) <= 2:
             continue
@@ -302,17 +337,15 @@ def extract_official_url_from_text(text: str) -> Optional[str]:
     return None
 
 
-def clean_fb_phrase(post: Dict) -> str:
+def clean_fb_phrase(post: Dict[str, Any]) -> str:
     """
     RSS.app titles often look like:
       'Lunar New Year in Pokémon GO #PokemonGO 🐉 Increased chance ...'
-    We want just:
+    We want:
       'Lunar New Year in Pokémon GO'
     """
-    raw = (post.get("title") or "") + " " + (post.get("description") or "")
-    raw = raw.strip()
+    raw = ((post.get("title") or "") + " " + (post.get("description") or "")).strip()
 
-    # cut at common "noise" markers
     cut_markers = [
         " Increased ", " increased ",
         "If you're lucky", "if you're lucky",
@@ -324,13 +357,12 @@ def clean_fb_phrase(post: Dict) -> str:
         if idx != -1:
             best = best[:idx].strip()
 
-    # remove hashtag segments
     best = re.sub(r"#\w+", " ", best).strip()
     best = re.sub(r"\s+", " ", best).strip()
     return best
 
 
-def combined_match_score(fb_clean: str, fb_full: str, off_meta: Dict) -> Tuple[float, Dict]:
+def combined_match_score(fb_clean: str, fb_full: str, off_meta: Dict[str, Any]) -> Tuple[float, Dict[str, Any]]:
     off_title = off_meta.get("title", "")
     off_desc = off_meta.get("description", "")
     off_url = off_meta.get("url", "")
@@ -339,25 +371,112 @@ def combined_match_score(fb_clean: str, fb_full: str, off_meta: Dict) -> Tuple[f
     off_toks = tokens(off_title + " " + off_desc)
 
     tok_score = jaccard(fb_toks, off_toks)
-
     sim = SequenceMatcher(None, normalize_text(fb_clean), normalize_text(off_title)).ratio()
 
     slug_toks = slug_keywords(off_url)
     slug_score = jaccard(tokens(fb_clean), slug_toks)
 
+    # Weighted score (tuned for noisy RSS.app titles)
     score = (0.55 * tok_score) + (0.35 * sim) + (0.10 * slug_score)
 
-    # Bonus if strong keyword overlap exists (helps Lunar New Year vs Celebrate Lunar New Year...)
+    # Keyword overlap bonus
     fb_set = set(fb_toks)
     off_set = set(off_toks)
-    for kw in ["lunar", "valentine", "raid", "shadow", "mega", "community", "pass", "orici", "oricorio", "flamigo"]:
+    for kw in KEYWORD_BONUS:
         if kw in fb_set and kw in off_set:
+            score += 0.06
+
+    # Phrase overlap bonus (helps "Lunar New Year" vs long official titles)
+    fb_norm_full = normalize_text(fb_full)
+    off_norm_full = normalize_text(off_title + " " + off_desc)
+    for phrase in PHRASE_BONUS:
+        if phrase in fb_norm_full and phrase in off_norm_full:
             score += 0.08
 
-    return min(score, 1.0), {"tok": tok_score, "sim": sim, "slug": slug_score, "fb_clean": fb_clean}
+    score = min(score, 1.0)
+
+    return score, {
+        "tok": tok_score,
+        "sim": sim,
+        "slug": slug_score,
+        "fb_clean": fb_clean,
+        "fb_full_norm": fb_norm_full[:200],
+        "off_title_norm": normalize_text(off_title)[:200],
+    }
 
 
-def match_fb_to_official(fb_post: Dict, official_metas: List[Dict]) -> Optional[Tuple[Dict, float, Dict]]:
+def debug_print_top_matches(fb_post: Dict[str, Any], official_metas: List[Dict[str, Any]], top_n: int = 3) -> None:
+    fb_clean = clean_fb_phrase(fb_post)
+    fb_full = f"{fb_post.get('title','')} {fb_post.get('description','')}".strip()
+
+    scored: List[Tuple[float, Dict[str, Any], Dict[str, Any]]] = []
+    for meta in official_metas:
+        s, dbg = combined_match_score(fb_clean, fb_full, meta)
+        scored.append((s, meta, dbg))
+
+    scored.sort(key=lambda x: x[0], reverse=True)
+    top = scored[:max(1, top_n)]
+
+    print(f"[MATCH-DEBUG] Top {len(top)} candidates for fb_clean='{fb_clean}':")
+    for rank, (s, meta, dbg) in enumerate(top, start=1):
+        print(
+            f"  #{rank} score={s:.2f} | tok={dbg['tok']:.2f} sim={dbg['sim']:.2f} slug={dbg['slug']:.2f} "
+            f"| OFFICIAL='{meta.get('title','')}' | {meta.get('url','')}"
+        )
+
+
+# ============================================================
+# OCR fallback (optional / disabled by default)
+# ============================================================
+
+def ocr_extract_text_from_image_url(image_url: str) -> Optional[str]:
+    """
+    Optional OCR fallback.
+    - Disabled unless ENABLE_OCR_FALLBACK=1
+    - Attempts pytesseract if installed, otherwise returns None.
+
+    To enable Tesseract OCR in GitHub Actions, you'd need to:
+      - apt-get install tesseract-ocr (Linux runner)
+      - pip install pytesseract pillow
+      - set ENABLE_OCR_FALLBACK=1
+    """
+    if not ENABLE_OCR_FALLBACK:
+        return None
+    if not image_url:
+        return None
+
+    try:
+        from PIL import Image  # type: ignore
+        import pytesseract  # type: ignore
+    except Exception:
+        print("[OCR] ENABLE_OCR_FALLBACK=1 but pytesseract/Pillow not installed. Skipping OCR.")
+        return None
+
+    try:
+        headers = {
+            "User-Agent": "Mozilla/5.0 (DiscordWebhookBot; +https://github.com)",
+            "Accept-Language": "en-US,en;q=0.9",
+        }
+        r = requests.get(image_url, headers=headers, timeout=30)
+        r.raise_for_status()
+
+        img = Image.open(io.BytesIO(r.content))
+        text = pytesseract.image_to_string(img) or ""
+        text = text.strip()
+
+        if not text:
+            return None
+
+        # clamp size
+        text = re.sub(r"\s+", " ", text)
+        return text[:OCR_MAX_CHARS]
+    except Exception as ex:
+        print(f"[OCR] Failed to OCR image. Error: {ex}")
+        return None
+
+
+def match_fb_to_official(fb_post: Dict[str, Any], official_metas: List[Dict[str, Any]]) -> Optional[Tuple[Dict[str, Any], float, Dict[str, Any]]]:
+    # 1) direct official URL in FB content
     direct = (
         extract_official_url_from_text(fb_post.get("title", "")) or
         extract_official_url_from_text(fb_post.get("description", ""))
@@ -377,7 +496,7 @@ def match_fb_to_official(fb_post: Dict, official_metas: List[Dict]) -> Optional[
 
     best_meta = None
     best_score = 0.0
-    best_debug = None
+    best_debug: Optional[Dict[str, Any]] = None
 
     for meta in official_metas:
         s, dbg = combined_match_score(fb_clean, fb_full, meta)
@@ -391,23 +510,48 @@ def match_fb_to_official(fb_post: Dict, official_metas: List[Dict]) -> Optional[
         best_debug["reason"] = "scored"
         return best_meta, best_score, best_debug
 
-    # Helpful debug print for why it failed
-    if best_debug:
-        print(f"[MATCH-DEBUG] Best score={best_score:.2f} (threshold={MATCH_THRESHOLD:.2f}) | fb_clean='{best_debug.get('fb_clean')}'")
-        print(f"[MATCH-DEBUG] components tok={best_debug.get('tok'):.2f} sim={best_debug.get('sim'):.2f} slug={best_debug.get('slug'):.2f}")
+    # 2) OCR fallback (only if enabled)
+    ocr_text = ocr_extract_text_from_image_url(fb_post.get("image_url", ""))
+    if ocr_text:
+        # Re-score using OCR text as part of FB content
+        fb_full_ocr = f"{fb_full} {ocr_text}".strip()
+        fb_clean_ocr = clean_fb_phrase({"title": fb_clean, "description": ocr_text})
+
+        best_meta2 = None
+        best_score2 = 0.0
+        best_debug2: Optional[Dict[str, Any]] = None
+
+        for meta in official_metas:
+            s, dbg = combined_match_score(fb_clean_ocr, fb_full_ocr, meta)
+            if s > best_score2:
+                best_score2 = s
+                best_meta2 = meta
+                best_debug2 = dbg
+
+        if best_meta2 and best_score2 >= MATCH_THRESHOLD:
+            best_debug2 = best_debug2 or {}
+            best_debug2["reason"] = "ocr_scored"
+            best_debug2["ocr_excerpt"] = ocr_text[:250]
+            return best_meta2, best_score2, best_debug2
+
+    # Debug output for tuning
+    if DEBUG_MATCH_TOP_N > 0:
+        debug_print_top_matches(fb_post, official_metas, top_n=DEBUG_MATCH_TOP_N)
 
     return None
 
 
-# -----------------------------
+# ============================================================
 # Main
-# -----------------------------
-def main():
+# ============================================================
+
+def main() -> None:
     state = load_state()
 
     official_urls = get_latest_news_links(OFFICIAL_CANDIDATES_LIMIT)
 
-    official_metas = []
+    # Build official metadata cache (once)
+    official_metas: List[Dict[str, Any]] = []
     for u in official_urls:
         try:
             official_metas.append(parse_article_metadata(u))
@@ -416,6 +560,7 @@ def main():
 
     fb_posts = get_facebook_posts() if FB_RSS_URL else []
 
+    # Bootstrap: first run should not spam the channel
     if not state.get("bootstrapped", False):
         print("[BOOTSTRAP] First run detected. Recording latest items as seen (no posting).")
         state["seen_urls"] = list(dict.fromkeys(official_urls))[:OFFICIAL_CANDIDATES_LIMIT]
@@ -430,11 +575,14 @@ def main():
     seen_fb = set(state.get("seen_fb_posts", []))
     posted_infographics = set(state.get("posted_infographics", []))
 
-    # Post new official (bounded)
+    # -----------------------------
+    # Part A: post NEW official posts (bounded)
+    # -----------------------------
     new_official = [u for u in official_urls if u not in seen_official]
     if not new_official:
         print("No new official posts.")
     else:
+        # oldest first, bounded
         new_official = list(reversed(new_official))[:MAX_OFFICIAL_POSTS_PER_RUN]
         for url in new_official:
             meta = next((m for m in official_metas if m.get("url") == url), None) or parse_article_metadata(url)
@@ -442,7 +590,9 @@ def main():
             post_official(meta)
             state["seen_urls"] = (state["seen_urls"] + [url])[-800:]
 
-    # FB infographics (matched only)
+    # -----------------------------
+    # Part B: FB infographics -> only post if matched (bounded)
+    # -----------------------------
     if not FB_RSS_URL:
         print("[FB] No G47IX_FB_RSS_URL set; skipping Facebook feed.")
         save_state(state)
@@ -463,6 +613,7 @@ def main():
         save_state(state)
         return
 
+    # oldest first, bounded
     new_fb = list(reversed(new_fb))[:MAX_FB_POSTS_PER_RUN]
 
     for fb_post in new_fb:
@@ -473,19 +624,26 @@ def main():
         match = match_fb_to_official(fb_post, official_metas)
         if not match:
             print(f"[FB] No official match found (threshold={MATCH_THRESHOLD:.2f}). Skipping.")
-            state["seen_fb_posts"] = (state["seen_fb_posts"] + [fb_link])[-800:]
+            if not DEBUG_KEEP_UNMATCHED_FB:
+                state["seen_fb_posts"] = (state["seen_fb_posts"] + [fb_link])[-800:]
+            else:
+                print("[FB] DEBUG_KEEP_UNMATCHED_FB=1, leaving FB post un-seen for retry/tuning.")
             continue
 
         official_meta, score, dbg = match
         official_url = official_meta.get("url")
-        print(f"[FB] Matched! score={score:.2f} | OFFICIAL='{official_meta.get('title')}' | fb_clean='{dbg.get('fb_clean','')}'")
+
+        print(
+            f"[FB] Matched! score={score:.2f} reason={dbg.get('reason')} "
+            f"| OFFICIAL='{official_meta.get('title')}' | fb_clean='{dbg.get('fb_clean','')}'"
+        )
 
         if official_url in posted_infographics:
             print("[FB] Already posted infographic for that official article. Skipping.")
             state["seen_fb_posts"] = (state["seen_fb_posts"] + [fb_link])[-800:]
             continue
 
-        # ensure official posted first
+        # Ensure official posted first (so infographic shows “under it”)
         if official_url not in set(state.get("seen_urls", [])):
             try:
                 print(f"[FB] Official not seen yet; posting official first: {official_url}")
@@ -496,6 +654,7 @@ def main():
                 state["seen_fb_posts"] = (state["seen_fb_posts"] + [fb_link])[-800:]
                 continue
 
+        # Post infographic
         try:
             print(f"[FB] Posting infographic under official: {official_url}")
             post_infographic(official_meta, fb_post)
