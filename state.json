@@ -1,8 +1,6 @@
 {
-  "seen_urls": [
-
-  ],
-  "seen_fb_posts": [
-
-  ]
+  "seen_urls": [],
+  "seen_fb_posts": [],
+  "posted_infographics": [],
+  "bootstrapped": false
 }

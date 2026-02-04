@@ -2,6 +2,7 @@ import json
 import os
 import re
 import sys
+import time
 from datetime import datetime, timezone
 import xml.etree.ElementTree as ET
 from difflib import SequenceMatcher
@@ -17,16 +18,24 @@ WEBHOOK_URL = os.environ.get("DISCORD_WEBHOOK_URL")
 FB_RSS_URL = os.environ.get("G47IX_FB_RSS_URL")
 
 # How many official articles to consider for matching (higher = better match, slightly more work)
-OFFICIAL_CANDIDATES_LIMIT = 50
+OFFICIAL_CANDIDATES_LIMIT = int(os.environ.get("OFFICIAL_CANDIDATES_LIMIT", "50"))
 
 # Matching threshold (0..1). Higher = stricter (less false positives), lower = more matches.
-MATCH_THRESHOLD = 0.55
+MATCH_THRESHOLD = float(os.environ.get("MATCH_THRESHOLD", "0.55"))
+
+# Safety: limit how many OFFICIAL posts we will send in a single run (prevents backfill spam + 429s)
+MAX_OFFICIAL_POSTS_PER_RUN = int(os.environ.get("MAX_OFFICIAL_POSTS_PER_RUN", "3"))
+
+# First-run safety: if state is empty, seed this many newest official URLs as "seen" and DO NOT POST
+BOOTSTRAP_SEEN_COUNT = int(os.environ.get("BOOTSTRAP_SEEN_COUNT", "20"))
+
+# Discord rate-limit handling
+DISCORD_MAX_RETRIES = int(os.environ.get("DISCORD_MAX_RETRIES", "5"))
 
 
 # -----------------------------
 # State helpers
 # -----------------------------
-
 def load_state():
     if os.path.exists(STATE_FILE):
         with open(STATE_FILE, "r", encoding="utf-8") as f:
@@ -35,7 +44,8 @@ def load_state():
         # Backward-compatible defaults
         data.setdefault("seen_urls", [])
         data.setdefault("seen_fb_posts", [])
-        data.setdefault("posted_infographics", [])  # store official URLs we've already attached an infographic to
+        data.setdefault("posted_infographics", [])
+        data.setdefault("bootstrapped", False)
 
         # Keep these from growing forever
         data["seen_urls"] = data["seen_urls"][-500:]
@@ -44,7 +54,12 @@ def load_state():
 
         return data
 
-    return {"seen_urls": [], "seen_fb_posts": [], "posted_infographics": []}
+    return {
+        "seen_urls": [],
+        "seen_fb_posts": [],
+        "posted_infographics": [],
+        "bootstrapped": False,
+    }
 
 
 def save_state(state):
@@ -55,7 +70,6 @@ def save_state(state):
 # -----------------------------
 # HTTP helpers
 # -----------------------------
-
 def absolute_url(href: str) -> str:
     if href.startswith("http"):
         return href
@@ -75,7 +89,6 @@ def fetch(url: str) -> str:
 # -----------------------------
 # Official news scraping
 # -----------------------------
-
 def get_latest_news_links(limit: int = OFFICIAL_CANDIDATES_LIMIT) -> List[str]:
     html = fetch(NEWS_URL)
     soup = BeautifulSoup(html, "html.parser")
@@ -132,16 +145,42 @@ def parse_article_metadata(article_url: str) -> Dict:
 
 
 # -----------------------------
-# Discord posting
+# Discord posting (with 429 handling)
 # -----------------------------
-
 def discord_post(payload: Dict):
     if not WEBHOOK_URL:
         print("Missing DISCORD_WEBHOOK_URL env var.", file=sys.stderr)
         sys.exit(1)
 
-    r = requests.post(WEBHOOK_URL, json=payload, timeout=30)
-    r.raise_for_status()
+    for attempt in range(1, DISCORD_MAX_RETRIES + 1):
+        r = requests.post(WEBHOOK_URL, json=payload, timeout=30)
+
+        # OK
+        if 200 <= r.status_code < 300:
+            return
+
+        # Rate limited
+        if r.status_code == 429:
+            try:
+                data = r.json()
+                retry_after = float(data.get("retry_after", 1.5))
+            except Exception:
+                retry_after = 2.0
+
+            # Add a small buffer
+            sleep_s = min(retry_after + 0.25, 15.0)
+            print(f"[DISCORD] 429 rate limited. Sleeping {sleep_s:.2f}s (attempt {attempt}/{DISCORD_MAX_RETRIES})")
+            time.sleep(sleep_s)
+            continue
+
+        # Other error
+        try:
+            r.raise_for_status()
+        except Exception as ex:
+            print(f"[DISCORD] Error posting webhook: {r.status_code} {r.text}")
+            raise ex
+
+    raise RuntimeError("[DISCORD] Failed to post after retries due to rate limiting.")
 
 
 def post_official(article_url: str, meta: Dict):
@@ -164,13 +203,9 @@ def post_official(article_url: str, meta: Dict):
 
 
 def post_infographic(official_url: str, official_title: str, fb_post: Dict):
-    # Put the infographic "under" the official post by sending another message right after.
-    # (Webhooks can’t reliably “reply to a specific message” without extra complexity.)
     img = fb_post.get("image_url")
     link = fb_post.get("link")
-    title = (fb_post.get("title") or "G47IX infographic").strip()
 
-    # Keep it clean: small header + image embed
     embed = {
         "title": "Infographic (G47IX)",
         "description": f"Matched to: **{official_title}**\nSource: {link}" if link else f"Matched to: **{official_title}**",
@@ -186,7 +221,6 @@ def post_infographic(official_url: str, official_title: str, fb_post: Dict):
 # -----------------------------
 # Facebook RSS (RSS.app) parsing
 # -----------------------------
-
 def get_facebook_posts() -> List[Dict]:
     """
     Reads the RSS feed from RSS.app for the G47IX Facebook page.
@@ -239,16 +273,11 @@ def is_infographic_post(post: Dict) -> bool:
 # -----------------------------
 # Matching logic (no OCR yet)
 # -----------------------------
-
 def normalize_text(s: str) -> str:
     s = s or ""
-    # Remove URLs
-    s = re.sub(r"https?://\S+", " ", s)
-    # Remove hashtags (keep the word)
-    s = s.replace("#", " ")
-    # Remove non-word-ish chars (keep letters/numbers/spaces)
-    s = re.sub(r"[^a-zA-Z0-9\s]", " ", s)
-    # Collapse whitespace
+    s = re.sub(r"https?://\S+", " ", s)      # remove URLs
+    s = s.replace("#", " ")                  # keep hashtag words
+    s = re.sub(r"[^a-zA-Z0-9\s]", " ", s)    # strip punctuation/emojis
     s = re.sub(r"\s+", " ", s).strip().lower()
     return s
 
@@ -263,9 +292,6 @@ def extract_official_url_from_text(text: str) -> Optional[str]:
 
 
 def best_title_match(fb_text: str, official_metas: List[Dict]) -> Optional[Tuple[Dict, float]]:
-    """
-    Returns (best_meta, score) or None if below threshold.
-    """
     fb_norm = normalize_text(fb_text)
     if not fb_norm:
         return None
@@ -278,10 +304,9 @@ def best_title_match(fb_text: str, official_metas: List[Dict]) -> Optional[Tuple
         if not off_norm:
             continue
 
-        # Similarity score
         score = SequenceMatcher(None, fb_norm, off_norm).ratio()
 
-        # Bonus if one contains the other (helps for "Lunar New Year in Pokémon GO" vs "Celebrate the Lunar New Year...")
+        # Bonus if one contains the other
         if fb_norm in off_norm or off_norm in fb_norm:
             score += 0.15
 
@@ -297,29 +322,24 @@ def best_title_match(fb_text: str, official_metas: List[Dict]) -> Optional[Tuple
 
 def match_fb_to_official(fb_post: Dict, official_metas: List[Dict]) -> Optional[Dict]:
     """
-    Returns the matched official meta or None.
-    Matching priority:
-      1) Direct official URL in FB title/description
-      2) Title similarity
-    OCR will be added later as fallback.
+    Returns matched official meta or None.
+    Priority:
+      1) direct official URL present in FB title/description
+      2) title similarity
     """
-    # 1) Direct official URL found in FB content?
     direct = (
         extract_official_url_from_text(fb_post.get("title", "")) or
         extract_official_url_from_text(fb_post.get("description", ""))
     )
     if direct:
-        # If our scraped list has that exact URL, use it.
         for meta in official_metas:
             if meta.get("url") == direct:
                 return meta
-        # Even if it's not in the list, we can still treat it as official and fetch metadata on demand
         try:
             return parse_article_metadata(direct)
         except Exception:
             pass
 
-    # 2) Title similarity
     fb_title = fb_post.get("title", "")
     match = best_title_match(fb_title, official_metas)
     if match:
@@ -333,12 +353,21 @@ def match_fb_to_official(fb_post: Dict, official_metas: List[Dict]) -> Optional[
 # -----------------------------
 # Main
 # -----------------------------
-
 def main():
     state = load_state()
 
-    # Build official candidates + metadata cache (only once per run)
     official_urls = get_latest_news_links(OFFICIAL_CANDIDATES_LIMIT)
+
+    # BOOTSTRAP protection: prevents posting old stuff if state was wiped
+    if not state.get("bootstrapped", False) and len(state.get("seen_urls", [])) == 0:
+        seed = official_urls[:BOOTSTRAP_SEEN_COUNT]
+        state["seen_urls"] = seed[-500:]
+        state["bootstrapped"] = True
+        save_state(state)
+        print(f"[BOOTSTRAP] Seeded {len(seed)} official URLs as seen. No posting this run.")
+        return
+
+    # Build official metadata cache (once per run)
     official_metas = []
     for u in official_urls:
         try:
@@ -351,15 +380,20 @@ def main():
     posted_infographics = set(state.get("posted_infographics", []))
 
     # -------------------------------------------------
-    # Part A: Post new OFFICIAL news posts (as before)
+    # Part A: Post new OFFICIAL posts (rate-safe + capped)
     # -------------------------------------------------
     new_official_urls = [u for u in official_urls if u not in seen_official]
 
     if not new_official_urls:
         print("No new official posts.")
     else:
-        # Older first
-        for url in reversed(new_official_urls):
+        # Only take the newest N (prevent spam)
+        to_post = list(reversed(new_official_urls))  # older-first
+        if len(to_post) > MAX_OFFICIAL_POSTS_PER_RUN:
+            # Keep the newest N, still post them in chronological order
+            to_post = to_post[-MAX_OFFICIAL_POSTS_PER_RUN:]
+
+        for url in to_post:
             meta = next((m for m in official_metas if m.get("url") == url), None)
             if not meta:
                 meta = parse_article_metadata(url)
@@ -392,26 +426,23 @@ def main():
         save_state(state)
         return
 
-    # Older first so it posts in a nice order
+    # Older first
     for fb_post in reversed(new_fb_posts):
         fb_link = fb_post.get("link")
         fb_title = fb_post.get("title", "")
 
         print(f"[FB] New candidate: {fb_title} -> {fb_link}")
 
-        # Try to match to official
         matched_official = match_fb_to_official(fb_post, official_metas)
 
         if not matched_official:
             print(f"[FB] No official match found. Skipping post: {fb_title}")
-            # We STILL mark the FB post as seen so it doesn't spam-retry forever
             state["seen_fb_posts"] = (state["seen_fb_posts"] + [fb_link])[-500:]
             continue
 
         official_url = matched_official.get("url")
         official_title = matched_official.get("title", "Pokémon GO News")
 
-        # Only post an infographic once per official article
         if official_url in posted_infographics:
             print(f"[FB] Already posted infographic for official: {official_url}. Skipping.")
             state["seen_fb_posts"] = (state["seen_fb_posts"] + [fb_link])[-500:]
@@ -428,7 +459,7 @@ def main():
                 state["seen_fb_posts"] = (state["seen_fb_posts"] + [fb_link])[-500:]
                 continue
 
-        # Post infographic under it
+        # Post infographic
         try:
             print(f"[FB] Posting infographic under official: {official_title} -> {official_url}")
             post_infographic(official_url, official_title, fb_post)
@@ -436,7 +467,6 @@ def main():
         except Exception as ex:
             print(f"[FB] Failed to post infographic. Error: {ex}")
 
-        # Mark FB post seen regardless
         state["seen_fb_posts"] = (state["seen_fb_posts"] + [fb_link])[-500:]
 
     save_state(state)
