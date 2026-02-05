@@ -28,6 +28,11 @@ MAX_OFFICIAL_POSTS_PER_RUN = int(os.environ.get("MAX_OFFICIAL_POSTS_PER_RUN", "1
 MAX_FB_POSTS_PER_RUN = int(os.environ.get("MAX_FB_POSTS_PER_RUN", "15"))
 MATCH_THRESHOLD = float(os.environ.get("MATCH_THRESHOLD", "0.38"))
 SLEEP_BETWEEN_POSTS_SEC = float(os.environ.get("SLEEP_BETWEEN_POSTS_SEC", "1.2"))
+DEBUG_DUMP_FB = os.environ.get("DEBUG_DUMP_FB", "0") == "1"
+DEBUG_DUMP_OFFICIAL = os.environ.get("DEBUG_DUMP_OFFICIAL", "0") == "1"
+DEBUG_DUMP_COMPARE = os.environ.get("DEBUG_DUMP_COMPARE", "0") == "1"
+DEBUG_TEXT_CLAMP = int(os.environ.get("DEBUG_TEXT_CLAMP", "240"))
+
 
 # If true, we do NOT mark unmatched FB posts as seen (useful while tuning matching)
 DEBUG_KEEP_UNMATCHED_FB = os.environ.get("DEBUG_KEEP_UNMATCHED_FB", "0") == "1"
@@ -409,6 +414,19 @@ def debug_print_top_matches(fb_post: Dict[str, Any], official_metas: List[Dict[s
     fb_clean = clean_fb_phrase(fb_post)
     fb_full = f"{fb_post.get('title','')} {fb_post.get('description','')}".strip()
 
+    fb_clean_tokens = tokens(fb_clean)
+    fb_full_tokens = tokens(fb_full)
+
+    print("[MATCH-DEBUG] ----------------------------------------")
+    print(f"[MATCH-DEBUG] FB link: {fb_post.get('link')}")
+    print(f"[MATCH-DEBUG] FB raw title: {clamp(fb_post.get('title',''), DEBUG_TEXT_CLAMP)}")
+    print(f"[MATCH-DEBUG] FB raw desc : {clamp(fb_post.get('description',''), DEBUG_TEXT_CLAMP)}")
+    print(f"[MATCH-DEBUG] FB image    : {fb_post.get('image_url')}")
+    print(f"[MATCH-DEBUG] FB clean    : {clamp(fb_clean, DEBUG_TEXT_CLAMP)}")
+    print(f"[MATCH-DEBUG] FB full     : {clamp(fb_full, DEBUG_TEXT_CLAMP)}")
+    print(f"[MATCH-DEBUG] FB clean toks({len(fb_clean_tokens)}): {fb_clean_tokens[:30]}")
+    print(f"[MATCH-DEBUG] FB full  toks({len(fb_full_tokens)}): {fb_full_tokens[:30]}")
+
     scored: List[Tuple[float, Dict[str, Any], Dict[str, Any]]] = []
     for meta in official_metas:
         s, dbg = combined_match_score(fb_clean, fb_full, meta)
@@ -417,12 +435,20 @@ def debug_print_top_matches(fb_post: Dict[str, Any], official_metas: List[Dict[s
     scored.sort(key=lambda x: x[0], reverse=True)
     top = scored[:max(1, top_n)]
 
-    print(f"[MATCH-DEBUG] Top {len(top)} candidates for fb_clean='{fb_clean}':")
+    print(f"[MATCH-DEBUG] Top {len(top)} official candidates (threshold={MATCH_THRESHOLD:.2f}):")
     for rank, (s, meta, dbg) in enumerate(top, start=1):
+        off_title = meta.get("title", "")
+        off_desc = meta.get("description", "")
+        off_toks = tokens(off_title + " " + off_desc)
+
         print(
-            f"  #{rank} score={s:.2f} | tok={dbg['tok']:.2f} sim={dbg['sim']:.2f} slug={dbg['slug']:.2f} "
-            f"| OFFICIAL='{meta.get('title','')}' | {meta.get('url','')}"
+            f"  #{rank} score={s:.3f} tok={dbg['tok']:.3f} sim={dbg['sim']:.3f} slug={dbg['slug']:.3f}"
         )
+        print(f"      OFF url  : {meta.get('url')}")
+        print(f"      OFF title: {clamp(off_title, DEBUG_TEXT_CLAMP)}")
+        print(f"      OFF desc : {clamp(off_desc, DEBUG_TEXT_CLAMP)}")
+        print(f"      OFF toks({len(off_toks)}): {off_toks[:30]}")
+
 
 
 # ============================================================
@@ -539,6 +565,32 @@ def match_fb_to_official(fb_post: Dict[str, Any], official_metas: List[Dict[str,
         debug_print_top_matches(fb_post, official_metas, top_n=DEBUG_MATCH_TOP_N)
 
     return None
+
+def clamp(s: str, n: int = 240) -> str:
+    s = (s or "").replace("\n", " ").replace("\r", " ")
+    s = re.sub(r"\s+", " ", s).strip()
+    if len(s) <= n:
+        return s
+    return s[: n - 3] + "..."
+
+
+def dump_fb_posts(posts: List[Dict[str, Any]], limit: int = 10) -> None:
+    print(f"[DEBUG] FB feed items (showing {min(limit, len(posts))}/{len(posts)}):")
+    for i, p in enumerate(posts[:limit], start=1):
+        print(f"  [FB#{i}] link={p.get('link')}")
+        print(f"        title={clamp(p.get('title',''), DEBUG_TEXT_CLAMP)}")
+        print(f"        desc ={clamp(p.get('description',''), DEBUG_TEXT_CLAMP)}")
+        print(f"        img  ={p.get('image_url')}")
+
+
+def dump_official_metas(metas: List[Dict[str, Any]], limit: int = 10) -> None:
+    print(f"[DEBUG] Official metas (showing {min(limit, len(metas))}/{len(metas)}):")
+    for i, m in enumerate(metas[:limit], start=1):
+        print(f"  [OFF#{i}] url={m.get('url')}")
+        print(f"         title={clamp(m.get('title',''), DEBUG_TEXT_CLAMP)}")
+        print(f"         desc ={clamp(m.get('description',''), DEBUG_TEXT_CLAMP)}")
+        print(f"         pub  ={m.get('published')}")
+        print(f"         img  ={m.get('image')}")
 
 
 # ============================================================
