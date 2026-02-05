@@ -32,9 +32,10 @@ def clean_env_url(val: Optional[str]) -> Optional[str]:
 WEBHOOK_URL = clean_env_url(os.environ.get("DISCORD_WEBHOOK_URL"))
 FB_RSS_URL = clean_env_url(os.environ.get("G47IX_FB_RSS_URL"))
 
-OFFICIAL_CANDIDATES_LIMIT = int(os.environ.get("OFFICIAL_CANDIDATES_LIMIT", "60"))
-MAX_OFFICIAL_POSTS_PER_RUN = int(os.environ.get("MAX_OFFICIAL_POSTS_PER_RUN", "15"))
-MAX_FB_POSTS_PER_RUN = int(os.environ.get("MAX_FB_POSTS_PER_RUN", "15"))
+OFFICIAL_CANDIDATES_LIMIT = int(os.environ.get("OFFICIAL_CANDIDATES_LIMIT", "150"))
+MAX_OFFICIAL_POSTS_PER_RUN = int(os.environ.get("MAX_OFFICIAL_POSTS_PER_RUN", "50"))
+MAX_FB_POSTS_PER_RUN = int(os.environ.get("MAX_FB_POSTS_PER_RUN", "80"))
+FB_FETCH_LIMIT = int(os.environ.get("FB_FETCH_LIMIT", "200"))
 MATCH_THRESHOLD = float(os.environ.get("MATCH_THRESHOLD", "0.38"))
 SLEEP_BETWEEN_POSTS_SEC = float(os.environ.get("SLEEP_BETWEEN_POSTS_SEC", "1.2"))
 DEBUG_DUMP_FB = os.environ.get("DEBUG_DUMP_FB", "0") == "1"
@@ -271,7 +272,11 @@ def get_facebook_posts() -> List[Dict[str, Any]]:
             }
         )
 
-    return items[:30]
+    if DEBUG_DUMP_FB:
+    dump_fb_posts(items, limit=15)
+
+    return items[:FB_FETCH_LIMIT]
+
 
 
 def is_infographic_post(post: Dict[str, Any]) -> bool:
