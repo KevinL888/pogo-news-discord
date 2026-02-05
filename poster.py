@@ -20,6 +20,15 @@ BASE_SITE = "https://pokemongo.com"
 NEWS_URL = f"{BASE_SITE}/news"
 STATE_FILE = "state.json"
 
+def clean_env_url(val: Optional[str]) -> Optional[str]:
+    if not val:
+        return None
+    # remove whitespace/newlines that GitHub Secrets sometimes include
+    val = val.strip()
+    # guard against accidental embedded whitespace
+    val = re.sub(r"\s+", "", val)
+    return val or None
+
 WEBHOOK_URL = clean_env_url(os.environ.get("DISCORD_WEBHOOK_URL"))
 FB_RSS_URL = clean_env_url(os.environ.get("G47IX_FB_RSS_URL"))
 
@@ -38,16 +47,6 @@ OCR_MAX_CHARS = int(os.environ.get("OCR_MAX_CHARS", "1500"))  # safety clamp
 
 # Debug matching output
 DEBUG_MATCH_TOP_N = int(os.environ.get("DEBUG_MATCH_TOP_N", "3"))
-
-
-def clean_env_url(val: Optional[str]) -> Optional[str]:
-    if not val:
-        return None
-    # remove whitespace/newlines that GitHub Secrets sometimes include
-    val = val.strip()
-    # guard against accidental embedded whitespace
-    val = re.sub(r"\s+", "", val)
-    return val or None
 
 # ============================================================
 # State helpers
