@@ -273,7 +273,7 @@ def get_facebook_posts() -> List[Dict[str, Any]]:
         )
 
     if DEBUG_DUMP_FB:
-    dump_fb_posts(items, limit=15)
+        dump_fb_posts(items, limit=15)
 
     return items[:FB_FETCH_LIMIT]
 
