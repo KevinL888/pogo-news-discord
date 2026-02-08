@@ -338,6 +338,40 @@ PHRASE_BONUS = [
 ]
 
 
+# ============================================================
+# Pokémon name extraction
+# ============================================================
+
+def extract_pokemon_names_from_text(text: str) -> List[str]:
+    """
+    Extract candidate Pokémon names from text.
+    Strategy:
+    - tokens >= 4 chars
+    - not stopwords
+    - not purely numeric
+    - lowercase normalized
+    """
+    toks = tokens(text)
+    return list(set(t for t in toks if len(t) >= 4))
+
+
+def extract_official_pokemon_names(meta: Dict[str, Any]) -> List[str]:
+    """
+    Pull Pokémon names from:
+    - article title
+    - article description
+    - article slug
+    """
+    names: List[str] = []
+
+    names += extract_pokemon_names_from_text(meta.get("title", ""))
+    names += extract_pokemon_names_from_text(meta.get("description", ""))
+    names += slug_keywords(meta.get("url", ""))
+
+    # De-dupe
+    return list(set(names))
+
+
 def normalize_text(s: str) -> str:
     s = s or ""
     s = re.sub(r"https?://\S+", " ", s)
@@ -434,6 +468,20 @@ def combined_match_score(fb_clean: str, fb_full: str, off_meta: Dict[str, Any]) 
     for kw in KEYWORD_BONUS:
         if kw in fb_set and kw in off_set:
             score += 0.06
+
+
+    # ------------------------------------------------------------
+    # Pokémon name overlap bonus (high confidence signal)
+    # ------------------------------------------------------------
+    fb_pokemon = extract_pokemon_names_from_text(fb_clean)
+    off_pokemon = extract_official_pokemon_names(off_meta)
+
+    matched_pokemon = set(fb_pokemon) & set(off_pokemon)
+
+    if matched_pokemon:
+        # Strong but capped bonus
+        score += min(0.20, 0.08 * len(matched_pokemon))
+
 
     # Phrase overlap bonus (helps "Lunar New Year" vs long official titles)
     fb_norm_full = normalize_text(fb_full)
