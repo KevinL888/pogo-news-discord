@@ -29,7 +29,10 @@ def clean_env_url(val: Optional[str]) -> Optional[str]:
     val = re.sub(r"\s+", "", val)
     return val or None
 
-WEBHOOK_URL = clean_env_url(os.environ.get("DISCORD_WEBHOOK_URL"))
+DISCORD_BOT_TOKEN = os.environ.get("DISCORD_BOT_TOKEN")
+DISCORD_FORUM_CHANNEL_ID = os.environ.get("DISCORD_FORUM_CHANNEL_ID")
+
+DISCORD_API_BASE = "https://discord.com/api/v10"
 FB_RSS_URL = clean_env_url(os.environ.get("G47IX_FB_RSS_URL"))
 
 OFFICIAL_CANDIDATES_LIMIT = int(os.environ.get("OFFICIAL_CANDIDATES_LIMIT", "60"))
@@ -60,15 +63,22 @@ def load_state() -> Dict[str, Any]:
         data.setdefault("seen_urls", [])
         data.setdefault("seen_fb_posts", [])
         data.setdefault("posted_infographics", [])
+        data.setdefault("threads", {})
         data.setdefault("bootstrapped", False)
-
         # keep bounded
         data["seen_urls"] = data["seen_urls"][-800:]
         data["seen_fb_posts"] = data["seen_fb_posts"][-800:]
         data["posted_infographics"] = data["posted_infographics"][-800:]
         return data
 
-    return {"seen_urls": [], "seen_fb_posts": [], "posted_infographics": [], "bootstrapped": False}
+    return {
+        "seen_urls": [],
+        "seen_fb_posts": [],
+        "posted_infographics": [],
+        "threads": {},
+        "bootstrapped": False
+}
+
 
 
 def save_state(state: Dict[str, Any]) -> None:
@@ -159,71 +169,102 @@ def parse_article_metadata(article_url: str) -> Dict[str, Any]:
 # Discord posting (429-safe)
 # ============================================================
 
-def discord_post(payload: Dict[str, Any], max_retries: int = 5) -> None:
-    if not WEBHOOK_URL:
-        print("Missing DISCORD_WEBHOOK_URL env var.", file=sys.stderr)
-        sys.exit(1)
-
-    for _ in range(max_retries):
-        r = requests.post(WEBHOOK_URL, json=payload, timeout=30)
-
-        if r.status_code == 429:
-            retry_after = None
-            try:
-                data = r.json()
-                retry_after = data.get("retry_after")
-            except Exception:
-                pass
-
-            if retry_after is None:
-                retry_after = r.headers.get("Retry-After")
-
-            try:
-                wait = float(retry_after)
-            except Exception:
-                wait = 2.5
-
-            wait = max(wait, 1.0)
-            print(f"[DISCORD] Rate limited (429). Waiting {wait:.2f}s then retrying...")
-            time.sleep(wait)
-            continue
-
-        r.raise_for_status()
+def post_official(meta: Dict[str, Any], state: Dict[str, Any]) -> None:
+    # If thread already exists, do nothing
+    if meta["url"] in state.get("threads", {}):
         return
 
-    raise RuntimeError("Discord webhook failed after retries (rate-limited or error).")
-
-
-def post_official(meta: Dict[str, Any]) -> None:
     embed: Dict[str, Any] = {
         "title": meta["title"],
         "url": meta["url"],
         "description": meta["description"],
-        "footer": {"text": f"Pokémon GO • {meta['published']}" if meta.get("published") else "Pokémon GO"},
+        "footer": {
+            "text": f"Pokémon GO • {meta['published']}" if meta.get("published") else "Pokémon GO"
+        },
     }
+
     if meta.get("image"):
         embed["image"] = {"url": meta["image"]}
 
-    payload = {"username": "Pokémon GO News", "embeds": [embed]}
-    discord_post(payload)
+    payload = {
+        "name": meta["title"][:100],
+        "message": {
+            "embeds": [embed]
+        }
+    }
+
+    data = discord_api(
+        "POST",
+        f"/channels/{DISCORD_FORUM_CHANNEL_ID}/threads",
+        payload
+    )
+
+    thread_id = data["id"]
+
+    state.setdefault("threads", {})
+    state["threads"][meta["url"]] = {
+        "thread_id": thread_id,
+        "infographic_posted": False,
+    }
+
     time.sleep(SLEEP_BETWEEN_POSTS_SEC)
 
 
-def post_infographic(official_meta: Dict[str, Any], fb_post: Dict[str, Any]) -> None:
-    img = fb_post.get("image_url")
-    fb_link = fb_post.get("link")
+
+def post_infographic(official_meta: Dict[str, Any], fb_post: Dict[str, Any], state: Dict[str, Any]) -> None:
+    threads = state.get("threads", {})
+    thread = threads.get(official_meta["url"])
+
+    if not thread:
+        print("[WARN] Tried to post infographic but thread does not exist.")
+        return
+
+    if thread.get("infographic_posted"):
+        return
 
     embed: Dict[str, Any] = {
         "title": "Infographic (G47IX)",
-        "description": f"Matched to: **{official_meta.get('title','Pokémon GO News')}**\nSource: {fb_link}",
+        "description": (
+            f"Matched to: **{official_meta.get('title','Pokémon GO News')}**\n"
+            f"Source: {fb_post.get('link')}"
+        ),
         "url": official_meta.get("url"),
     }
-    if img:
-        embed["image"] = {"url": img}
 
-    payload = {"username": "Pokémon GO News", "embeds": [embed]}
-    discord_post(payload)
+    if fb_post.get("image_url"):
+        embed["image"] = {"url": fb_post["image_url"]}
+
+    discord_api(
+        "POST",
+        f"/channels/{thread['thread_id']}/messages",
+        {"embeds": [embed]}
+    )
+
+    thread["infographic_posted"] = True
     time.sleep(SLEEP_BETWEEN_POSTS_SEC)
+
+
+
+def discord_api(method: str, path: str, payload: Optional[Dict[str, Any]] = None, max_retries: int = 5) -> Dict[str, Any]:
+    url = f"{DISCORD_API_BASE}{path}"
+    headers = {
+        "Authorization": f"Bot {DISCORD_BOT_TOKEN}",
+        "Content-Type": "application/json",
+    }
+
+    for _ in range(max_retries):
+        r = requests.request(method, url, headers=headers, json=payload, timeout=30)
+
+        if r.status_code == 429:
+            retry_after = float(r.json().get("retry_after", 2.0))
+            time.sleep(max(retry_after, 1.0))
+            continue
+
+        r.raise_for_status()
+        return r.json() if r.text else {}
+
+    raise RuntimeError("Discord API failed after retries")
+    
 
 
 # ============================================================
@@ -581,7 +622,6 @@ def main() -> None:
 
     seen_official = set(state.get("seen_urls", []))
     seen_fb = set(state.get("seen_fb_posts", []))
-    posted_infographics = set(state.get("posted_infographics", []))
 
     # -----------------------------
     # Part A: post NEW official posts (bounded)
@@ -595,7 +635,7 @@ def main() -> None:
         for url in new_official:
             meta = next((m for m in official_metas if m.get("url") == url), None) or parse_article_metadata(url)
             print(f"[OFFICIAL] Posting: {meta['title']} -> {url}")
-            post_official(meta)
+            post_official(meta, state)
             state["seen_urls"] = (state["seen_urls"] + [url])[-800:]
 
     # -----------------------------
@@ -646,16 +686,11 @@ def main() -> None:
             f"| OFFICIAL='{official_meta.get('title')}' | fb_clean='{dbg.get('fb_clean','')}'"
         )
 
-        if official_url in posted_infographics:
-            print("[FB] Already posted infographic for that official article. Skipping.")
-            state["seen_fb_posts"] = (state["seen_fb_posts"] + [fb_link])[-800:]
-            continue
-
         # Ensure official posted first (so infographic shows “under it”)
         if official_url not in set(state.get("seen_urls", [])):
             try:
                 print(f"[FB] Official not seen yet; posting official first: {official_url}")
-                post_official(official_meta)
+                post_official(official_meta, state)
                 state["seen_urls"] = (state["seen_urls"] + [official_url])[-800:]
             except Exception as ex:
                 print(f"[FB] Failed to post official; skipping infographic. Error: {ex}")
@@ -665,8 +700,7 @@ def main() -> None:
         # Post infographic
         try:
             print(f"[FB] Posting infographic under official: {official_url}")
-            post_infographic(official_meta, fb_post)
-            state["posted_infographics"] = (state["posted_infographics"] + [official_url])[-800:]
+            post_infographic(official_meta, fb_post, state)
         except Exception as ex:
             print(f"[FB] Failed to post infographic. Error: {ex}")
 
