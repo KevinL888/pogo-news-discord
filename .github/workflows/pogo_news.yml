@@ -26,7 +26,8 @@ jobs:
 
       - name: Run poster
         env:
-          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
+          DISCORD_FORUM_CHANNEL_ID: ${{ secrets.DISCORD_FORUM_CHANNEL_ID }}
           G47IX_FB_RSS_URL: ${{ secrets.G47IX_FB_RSS_URL }}
         run: |
           python poster.py
