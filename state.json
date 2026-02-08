@@ -31,6 +31,18 @@
     "https://pokemongo.com/news/gigantamax-meowth-max-battle-day-2026": {
       "thread_id": "1469959821574013032",
       "infographic_posted": true
+    },
+    "https://pokemongo.com/news/gigantamax-garbodor-max-battle-day": {
+      "thread_id": "1469962138368868366",
+      "infographic_posted": false
+    },
+    "https://pokemongo.com/news/into-the-wild-2025": {
+      "thread_id": "1469962144865845359",
+      "infographic_posted": false
+    },
+    "https://pokemongo.com/news/enchanted-hollow-2025": {
+      "thread_id": "1469962151333597195",
+      "infographic_posted": false
     }
   },
   "seen_urls": [
@@ -41,7 +53,10 @@
     "https://pokemongo.com/news/go-pass-halloween-2025",
     "https://pokemongo.com/news/halloween-part-2-2025",
     "https://pokemongo.com/news/lunar-new-year-event-2026",
-    "https://pokemongo.com/news/gigantamax-meowth-max-battle-day-2026"
+    "https://pokemongo.com/news/gigantamax-meowth-max-battle-day-2026",
+    "https://pokemongo.com/news/gigantamax-garbodor-max-battle-day",
+    "https://pokemongo.com/news/into-the-wild-2025",
+    "https://pokemongo.com/news/enchanted-hollow-2025"
   ],
   "seen_fb_posts": [
     "https://www.facebook.com/g47ix/posts/pfbid0oCrVQn1Chb7nKKK9p2fvcQS2jYGXDtPoY5pfJVjbY4RYGV9rv7MNShj6Wja2y5Ybl",
