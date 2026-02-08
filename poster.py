@@ -36,8 +36,8 @@ DISCORD_API_BASE = "https://discord.com/api/v10"
 FB_RSS_URL = clean_env_url(os.environ.get("G47IX_FB_RSS_URL"))
 
 OFFICIAL_CANDIDATES_LIMIT = int(os.environ.get("OFFICIAL_CANDIDATES_LIMIT", "60"))
-MAX_OFFICIAL_POSTS_PER_RUN = int(os.environ.get("MAX_OFFICIAL_POSTS_PER_RUN", "3"))
-MAX_FB_POSTS_PER_RUN = int(os.environ.get("MAX_FB_POSTS_PER_RUN", "5"))
+MAX_OFFICIAL_POSTS_PER_RUN = int(os.environ.get("MAX_OFFICIAL_POSTS_PER_RUN", "70"))
+MAX_FB_POSTS_PER_RUN = int(os.environ.get("MAX_FB_POSTS_PER_RUN", "50"))
 MATCH_THRESHOLD = float(os.environ.get("MATCH_THRESHOLD", "0.38"))
 SLEEP_BETWEEN_POSTS_SEC = float(os.environ.get("SLEEP_BETWEEN_POSTS_SEC", "1.2"))
 
