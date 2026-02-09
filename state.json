@@ -239,6 +239,10 @@
     "https://pokemongo.com/news/gigantamax-meowth-max-battle-day-2026": {
       "thread_id": "1469970406600474624",
       "infographic_posted": true
+    },
+    "https://pokemongo.com/news/whats-your-favorite-2026": {
+      "thread_id": "1470270317841616908",
+      "infographic_posted": false
     }
   },
   "seen_urls": [
@@ -301,7 +305,8 @@
     "https://pokemongo.com/news/go-tour-kalos-community-meetups",
     "https://pokemongo.com/news/lunar-new-year-event-2026",
     "https://pokemongo.com/news/enamorus-therian-raid-day-2026",
-    "https://pokemongo.com/news/gigantamax-meowth-max-battle-day-2026"
+    "https://pokemongo.com/news/gigantamax-meowth-max-battle-day-2026",
+    "https://pokemongo.com/news/whats-your-favorite-2026"
   ],
   "seen_fb_posts": [
     "https://www.facebook.com/g47ix/posts/pfbid0oCrVQn1Chb7nKKK9p2fvcQS2jYGXDtPoY5pfJVjbY4RYGV9rv7MNShj6Wja2y5Ybl",
@@ -311,7 +316,8 @@
     "https://www.facebook.com/g47ix/posts/pfbid07TY9nfJbkEtu799h4nqAQyVXkttc6EZmyNo13E7XSmqAwqtjcsPafjzYbAkaMdfql",
     "https://www.facebook.com/g47ix/posts/pfbid0qDASy65P6HTnTUiAqc2reaBTrdiZBADsqvZuLYjvHjEQzpuatZ5CHx6s1cfSf656l",
     "https://www.facebook.com/g47ix/posts/pfbid0kju6BxLR9MdjZ6dcZSgzTDkxtEazX6YerjTifEpFfrFEqR792yUBAkG2o8vRrSNQl",
-    "https://www.facebook.com/g47ix/posts/pfbid0o5YDwNdohL3pQ4KTZtzbQuW3wL1fJwAPm8yf5R9F8vRXimzyr1K318uC7DyAWp5hl"
+    "https://www.facebook.com/g47ix/posts/pfbid0o5YDwNdohL3pQ4KTZtzbQuW3wL1fJwAPm8yf5R9F8vRXimzyr1K318uC7DyAWp5hl",
+    "https://www.facebook.com/g47ix/posts/pfbid0KLz3UkRXRSNx6fH7zfDrqqdjLmZQBGacEWhkkyHMa5qpmNutx5Trtk6u5DQWZvMEl"
   ],
   "posted_infographics": [],
   "bootstrapped": true
