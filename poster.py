@@ -342,17 +342,37 @@ PHRASE_BONUS = [
 # Pokémon name extraction
 # ============================================================
 
+# Words that are NOT Pokémon but frequently appear
+NON_POKEMON_WORDS = {
+    "raid", "raids", "raidday", "day", "event", "unlock", "ultra",
+    "shadow", "mega", "community", "festival", "battle",
+    "research", "spotlight", "pass", "bonus", "debut",
+    "shiny", "local", "time", "weekend", "boost",
+}
+
+
 def extract_pokemon_names_from_text(text: str) -> List[str]:
     """
-    Extract candidate Pokémon names from text.
-    Strategy:
-    - tokens >= 4 chars
-    - not stopwords
-    - not purely numeric
-    - lowercase normalized
+    Extract likely Pokémon names.
+
+    Rules:
+    - token length >= 4
+    - not stopword
+    - not numeric
+    - not in NON_POKEMON_WORDS
     """
     toks = tokens(text)
-    return list(set(t for t in toks if len(t) >= 4))
+    candidates = []
+
+    for t in toks:
+        if len(t) < 4:
+            continue
+        if t in NON_POKEMON_WORDS:
+            continue
+        candidates.append(t)
+
+    return list(set(candidates))
+
 
 
 def extract_official_pokemon_names(meta: Dict[str, Any]) -> List[str]:
