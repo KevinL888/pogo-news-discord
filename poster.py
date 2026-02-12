@@ -479,38 +479,64 @@ def combined_match_score(fb_clean: str, fb_full: str, off_meta: Dict[str, Any]) 
     slug_toks = slug_keywords(off_url)
     slug_score = jaccard(tokens(fb_clean), slug_toks)
 
-    # Weighted score (tuned for noisy RSS.app titles)
+    # Base weighted score
     score = (0.55 * tok_score) + (0.35 * sim) + (0.10 * slug_score)
 
-    # Keyword overlap bonus
     fb_set = set(fb_toks)
     off_set = set(off_toks)
+
+    # ------------------------------------------------------------
+    # Keyword overlap bonus
+    # ------------------------------------------------------------
     for kw in KEYWORD_BONUS:
         if kw in fb_set and kw in off_set:
             score += 0.06
 
-
     # ------------------------------------------------------------
-    # Pokémon name overlap bonus (high confidence signal)
+    # Pokémon name logic (prevents Lilligant -> Kyurem)
     # ------------------------------------------------------------
     fb_pokemon = extract_pokemon_names_from_text(fb_clean)
     off_pokemon = extract_official_pokemon_names(off_meta)
 
     matched_pokemon = set(fb_pokemon) & set(off_pokemon)
 
-    if matched_pokemon:
-        # Strong but capped bonus
-        score += min(0.20, 0.08 * len(matched_pokemon))
+    if fb_pokemon and off_pokemon:
+        if matched_pokemon:
+            score += min(0.25, 0.10 * len(matched_pokemon))
+        else:
+            score -= 0.20  # strong negative if Pokémon differ
 
+    # ------------------------------------------------------------
+    # Strong long-event-name boost (EUIC fix)
+    # ------------------------------------------------------------
+    fb_norm = normalize_text(fb_clean)
+    off_norm = normalize_text(off_title)
 
-    # Phrase overlap bonus (helps "Lunar New Year" vs long official titles)
+    # If long overlapping phrase exists, strong boost
+    if len(fb_norm) > 30:
+        if fb_norm[:40] in off_norm or off_norm[:40] in fb_norm:
+            score += 0.15
+
+    # ------------------------------------------------------------
+    # Same year boost (helps annual events)
+    # ------------------------------------------------------------
+    fb_year = re.search(r"\b(20\d{2})\b", fb_norm)
+    off_year = re.search(r"\b(20\d{2})\b", off_norm)
+
+    if fb_year and off_year and fb_year.group(1) == off_year.group(1):
+        score += 0.05
+
+    # ------------------------------------------------------------
+    # Phrase bonus
+    # ------------------------------------------------------------
     fb_norm_full = normalize_text(fb_full)
     off_norm_full = normalize_text(off_title + " " + off_desc)
+
     for phrase in PHRASE_BONUS:
         if phrase in fb_norm_full and phrase in off_norm_full:
             score += 0.08
 
-    score = min(score, 1.0)
+    score = max(0.0, min(score, 1.0))
 
     return score, {
         "tok": tok_score,
@@ -518,7 +544,7 @@ def combined_match_score(fb_clean: str, fb_full: str, off_meta: Dict[str, Any]) 
         "slug": slug_score,
         "fb_clean": fb_clean,
         "fb_full_norm": fb_norm_full[:200],
-        "off_title_norm": normalize_text(off_title)[:200],
+        "off_title_norm": off_norm[:200],
     }
 
 
