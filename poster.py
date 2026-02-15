@@ -30,7 +30,12 @@ def clean_env_url(val: Optional[str]) -> Optional[str]:
     return val or None
 
 DISCORD_BOT_TOKEN = os.environ.get("DISCORD_BOT_TOKEN")
-DISCORD_FORUM_CHANNEL_ID = os.environ.get("DISCORD_FORUM_CHANNEL_ID")
+DISCORD_FORUM_CHANNEL_IDS = [
+    cid.strip()
+    for cid in os.environ.get("DISCORD_FORUM_CHANNEL_IDS", "").split(",")
+    if cid.strip()
+]
+
 
 DISCORD_API_BASE = "https://discord.com/api/v10"
 FB_RSS_URL = clean_env_url(os.environ.get("G47IX_FB_RSS_URL"))
@@ -170,78 +175,85 @@ def parse_article_metadata(article_url: str) -> Dict[str, Any]:
 # ============================================================
 
 def post_official(meta: Dict[str, Any], state: Dict[str, Any]) -> None:
-    # If thread already exists, do nothing
-    if meta["url"] in state.get("threads", {}):
-        return
-
-    embed: Dict[str, Any] = {
-        "title": meta["title"],
-        "url": meta["url"],
-        "description": meta["description"],
-        "footer": {
-            "text": f"Pokémon GO • {meta['published']}" if meta.get("published") else "Pokémon GO"
-        },
-    }
-
-    if meta.get("image"):
-        embed["image"] = {"url": meta["image"]}
-
-    payload = {
-        "name": meta["title"][:100],
-        "message": {
-            "embeds": [embed]
-        }
-    }
-
-    data = discord_api(
-        "POST",
-        f"/channels/{DISCORD_FORUM_CHANNEL_ID}/threads",
-        payload
-    )
-
-    thread_id = data["id"]
-
     state.setdefault("threads", {})
-    state["threads"][meta["url"]] = {
-        "thread_id": thread_id,
-        "infographic_posted": False,
-    }
+    state["threads"].setdefault(meta["url"], {"channels": {}})
 
-    time.sleep(SLEEP_BETWEEN_POSTS_SEC)
+    for forum_id in DISCORD_FORUM_CHANNEL_IDS:
+
+        # Skip if already posted in this forum
+        if forum_id in state["threads"][meta["url"]]["channels"]:
+            continue
+
+        embed = {
+            "title": meta["title"],
+            "url": meta["url"],
+            "description": meta["description"],
+            "footer": {
+                "text": f"Pokémon GO • {meta['published']}" if meta.get("published") else "Pokémon GO"
+            },
+        }
+
+        if meta.get("image"):
+            embed["image"] = {"url": meta["image"]}
+
+        payload = {
+            "name": meta["title"][:100],
+            "message": {"embeds": [embed]},
+        }
+
+        data = discord_api(
+            "POST",
+            f"/channels/{forum_id}/threads",
+            payload
+        )
+
+        thread_id = data["id"]
+
+        state["threads"][meta["url"]]["channels"][forum_id] = {
+            "thread_id": thread_id,
+            "infographic_posted": False,
+        }
+
+        time.sleep(SLEEP_BETWEEN_POSTS_SEC)
+
 
 
 
 def post_infographic(official_meta: Dict[str, Any], fb_post: Dict[str, Any], state: Dict[str, Any]) -> None:
-    threads = state.get("threads", {})
-    thread = threads.get(official_meta["url"])
+    url = official_meta["url"]
+    thread_info = state.get("threads", {}).get(url)
 
-    if not thread:
-        print("[WARN] Tried to post infographic but thread does not exist.")
+    if not thread_info:
+        print("[WARN] No threads found for this official post.")
         return
 
-    if thread.get("infographic_posted"):
-        return
+    for forum_id, data in thread_info["channels"].items():
 
-    embed: Dict[str, Any] = {
-        "title": "Infographic (G47IX)",
-        "description": (
-            f"Matched to: **{official_meta.get('title','Pokémon GO News')}**\n"
-            f"Source: {fb_post.get('link')}"
-        ),
-        "url": official_meta.get("url"),
-    }
+        if data.get("infographic_posted"):
+            continue
 
-    if fb_post.get("image_url"):
-        embed["image"] = {"url": fb_post["image_url"]}
+        embed = {
+            "title": "Infographic (G47IX)",
+            "description": (
+                f"Matched to: **{official_meta.get('title','Pokémon GO News')}**\n"
+                f"Source: {fb_post.get('link')}"
+            ),
+            "url": official_meta.get("url"),
+        }
 
-    discord_api(
-        "POST",
-        f"/channels/{thread['thread_id']}/messages",
-        {"embeds": [embed]}
-    )
+        if fb_post.get("image_url"):
+            embed["image"] = {"url": fb_post["image_url"]}
 
-    thread["infographic_posted"] = True
-    time.sleep(SLEEP_BETWEEN_POSTS_SEC)
+        discord_api(
+            "POST",
+            f"/channels/{data['thread_id']}/messages",
+            {"embeds": [embed]},
+        )
+
+        data["infographic_posted"] = True
+
+        time.sleep(SLEEP_BETWEEN_POSTS_SEC)
+
 
 
 

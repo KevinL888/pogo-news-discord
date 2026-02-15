@@ -1,32 +1,60 @@
 {
   "threads": {
     "https://pokemongo.com/news/lunar-new-year-event-2026": {
-      "thread_id": "1469970394352980173",
-      "infographic_posted": true
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1469970394352980173",
+          "infographic_posted": true
+        }
+      }
     },
     "https://pokemongo.com/news/enamorus-therian-raid-day-2026": {
-      "thread_id": "1469970400338251809",
-      "infographic_posted": false
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1469970400338251809",
+          "infographic_posted": false
+        }
+      }
     },
     "https://pokemongo.com/news/gigantamax-meowth-max-battle-day-2026": {
-      "thread_id": "1469970406600474624",
-      "infographic_posted": true
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1469970406600474624",
+          "infographic_posted": true
+        }
+      }
     },
     "https://pokemongo.com/news/whats-your-favorite-2026": {
-      "thread_id": "1470270317841616908",
-      "infographic_posted": false
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1470270317841616908",
+          "infographic_posted": false
+        }
+      }
     },
     "https://pokemongo.com/news/community-celebrations-go-tour-2026": {
-      "thread_id": "1470896478955241613",
-      "infographic_posted": false
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1470896478955241613",
+          "infographic_posted": false
+        }
+      }
     },
     "https://pokemongo.com/news/go-tour-global-2026-australia": {
-      "thread_id": "1471317492348489902",
-      "infographic_posted": false
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1471317492348489902",
+          "infographic_posted": false
+        }
+      }
     },
     "https://pokemongo.com/news/euic-2026": {
-      "thread_id": "1471508208374907031",
-      "infographic_posted": true
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1471508208374907031",
+          "infographic_posted": true
+        }
+      }
     }
   },
   "seen_urls": [
