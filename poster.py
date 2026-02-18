@@ -175,10 +175,14 @@ def parse_article_metadata(article_url: str) -> Dict[str, Any]:
 # ============================================================
 
 def post_official(meta: Dict[str, Any], state: Dict[str, Any]) -> None:
+
     state.setdefault("threads", {})
-    state["threads"].setdefault(meta["url"], {"channels": {}})
 
     for forum_id in DISCORD_FORUM_CHANNEL_IDS:
+
+        # Ensure url entry exists lazily
+        if meta["url"] not in state["threads"]:
+            state["threads"][meta["url"]] = {"channels": {}}
 
         # Skip if already posted in this forum
         if forum_id in state["threads"][meta["url"]]["channels"]:
@@ -201,22 +205,24 @@ def post_official(meta: Dict[str, Any], state: Dict[str, Any]) -> None:
             "message": {"embeds": [embed]},
         }
 
-        data = discord_api(
-            "POST",
-            f"/channels/{forum_id}/threads",
-            payload
-        )
+        try:
+            data = discord_api(
+                "POST",
+                f"/channels/{forum_id}/threads",
+                payload
+            )
 
-        thread_id = data["id"]
+            thread_id = data["id"]
 
-        state["threads"][meta["url"]]["channels"][forum_id] = {
-            "thread_id": thread_id,
-            "infographic_posted": False,
-        }
+            state["threads"][meta["url"]]["channels"][forum_id] = {
+                "thread_id": thread_id,
+                "infographic_posted": False,
+            }
 
-        time.sleep(SLEEP_BETWEEN_POSTS_SEC)
+            time.sleep(SLEEP_BETWEEN_POSTS_SEC)
 
-
+        except Exception as ex:
+            print(f"[ERROR] Failed creating thread in forum {forum_id}: {ex}")
 
 
 def post_infographic(official_meta: Dict[str, Any], fb_post: Dict[str, Any], state: Dict[str, Any]) -> None:
