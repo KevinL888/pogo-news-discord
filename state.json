@@ -55,6 +55,30 @@
           "infographic_posted": true
         }
       }
+    },
+    "https://pokemongo.com/news/pvp-updates2026": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1473654665957871823",
+          "infographic_posted": false
+        },
+        "1472476091108163888": {
+          "thread_id": "1473654672760897717",
+          "infographic_posted": false
+        }
+      }
+    },
+    "https://pokemongo.com/news/get-ready-for-gotour-kalos": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1473654678574338192",
+          "infographic_posted": false
+        },
+        "1472476091108163888": {
+          "thread_id": "1473654685121511496",
+          "infographic_posted": false
+        }
+      }
     }
   },
   "seen_urls": [
@@ -121,7 +145,9 @@
     "https://pokemongo.com/news/whats-your-favorite-2026",
     "https://pokemongo.com/news/community-celebrations-go-tour-2026",
     "https://pokemongo.com/news/go-tour-global-2026-australia",
-    "https://pokemongo.com/news/euic-2026"
+    "https://pokemongo.com/news/euic-2026",
+    "https://pokemongo.com/news/pvp-updates2026",
+    "https://pokemongo.com/news/get-ready-for-gotour-kalos"
   ],
   "seen_fb_posts": [
     "https://www.facebook.com/g47ix/posts/pfbid0oCrVQn1Chb7nKKK9p2fvcQS2jYGXDtPoY5pfJVjbY4RYGV9rv7MNShj6Wja2y5Ybl",
