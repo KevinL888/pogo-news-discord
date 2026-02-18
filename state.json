@@ -58,6 +58,9 @@
     },
     "https://pokemongo.com/news/pvp-updates2026": {
       "channels": {}
+    },
+    "https://pokemongo.com/news/get-ready-for-gotour-kalos": {
+      "channels": {}
     }
   },
   "seen_urls": [
@@ -125,7 +128,8 @@
     "https://pokemongo.com/news/community-celebrations-go-tour-2026",
     "https://pokemongo.com/news/go-tour-global-2026-australia",
     "https://pokemongo.com/news/euic-2026",
-    "https://pokemongo.com/news/pvp-updates2026"
+    "https://pokemongo.com/news/pvp-updates2026",
+    "https://pokemongo.com/news/get-ready-for-gotour-kalos"
   ],
   "seen_fb_posts": [
     "https://www.facebook.com/g47ix/posts/pfbid0oCrVQn1Chb7nKKK9p2fvcQS2jYGXDtPoY5pfJVjbY4RYGV9rv7MNShj6Wja2y5Ybl",
