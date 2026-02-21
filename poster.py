@@ -510,7 +510,7 @@ def combined_match_score(fb_clean: str, fb_full: str, off_meta: Dict[str, Any]) 
     # Strong context boosts (Mega specific)
     # ------------------------------------------------------------
     if "mega" in fb_set and "mega" in off_set:
-        score += 0.12
+        score += 0.20
 
     if "raid" in fb_set and "raid" in off_set:
         score += 0.08
