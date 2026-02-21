@@ -512,10 +512,26 @@ def combined_match_score(fb_clean: str, fb_full: str, off_meta: Dict[str, Any]) 
     slug_score = jaccard(tokens(fb_clean), slug_toks)
 
     # Base weighted score
-    score = (0.55 * tok_score) + (0.35 * sim) + (0.10 * slug_score)
-
+    score = (0.45 * tok_score) + (0.40 * sim) + (0.15 * slug_score)
     fb_set = set(fb_toks)
     off_set = set(off_toks)
+
+    # ------------------------------------------------------------
+    # Core topic alignment boost
+    # ------------------------------------------------------------
+
+    mega_cluster = {"mega", "raid", "raids", "evolution", "shield", "shields", "level", "charges"}
+
+    fb_mega_hits = sum(1 for t in mega_cluster if t in fb_set)
+    off_mega_hits = sum(1 for t in mega_cluster if t in off_set)
+
+    # Strong positive if both clearly talk about Mega mechanics
+    if fb_mega_hits >= 2 and off_mega_hits >= 2:
+        score += 0.30
+
+    # Strong penalty if FB is Mega-focused but official barely mentions it
+    if fb_mega_hits >= 2 and off_mega_hits == 0:
+        score -= 0.35
 
     # ------------------------------------------------------------
     # Strong context boosts (Mega specific)
