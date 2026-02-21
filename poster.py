@@ -690,16 +690,21 @@ def ocr_extract_text_from_image_url(image_url: str) -> Optional[str]:
         return None
 
 
-def match_fb_to_official(fb_post: Dict[str, Any], official_metas: List[Dict[str, Any]]) -> Optional[Tuple[Dict[str, Any], float, Dict[str, Any]]]:
-    # 1) direct official URL in FB content
+def match_fb_to_official(fb_post: Dict[str, Any],official_metas: List[Dict[str, Any]]) -> Optional[Tuple[Dict[str, Any], float, Dict[str, Any]]]:
+
+    # ------------------------------------------------------------
+    # 1) Direct official URL in FB content
+    # ------------------------------------------------------------
     direct = (
         extract_official_url_from_text(fb_post.get("title", "")) or
         extract_official_url_from_text(fb_post.get("description", ""))
     )
+
     if direct:
         for meta in official_metas:
             if meta.get("url") == direct:
                 return meta, 1.0, {"reason": "direct_url"}
+
         try:
             meta = parse_article_metadata(direct)
             return meta, 1.0, {"reason": "direct_url_fetched"}
@@ -709,11 +714,41 @@ def match_fb_to_official(fb_post: Dict[str, Any], official_metas: List[Dict[str,
     fb_clean = clean_fb_phrase(fb_post)
     fb_full = f"{fb_post.get('title','')} {fb_post.get('description','')}".strip()
 
+    # ------------------------------------------------------------
+    # 2) Topic Gating (Prevents cross-topic bleed)
+    # ------------------------------------------------------------
+
+    fb_tokens = set(tokens(fb_clean))
+
+    mega_cluster = {"mega", "evolution", "shield", "shields", "charges", "level"}
+
+    fb_mega_hits = sum(1 for t in mega_cluster if t in fb_tokens)
+
+    filtered_metas = official_metas
+
+    # If FB is clearly Mega-focused, restrict candidates
+    if fb_mega_hits >= 2:
+        temp = []
+        for meta in official_metas:
+            off_tokens = set(tokens(meta.get("title","") + " " + meta.get("body","")))
+            off_mega_hits = sum(1 for t in mega_cluster if t in off_tokens)
+
+            if off_mega_hits >= 2:
+                temp.append(meta)
+
+        # Only apply filtering if we found reasonable candidates
+        if temp:
+            filtered_metas = temp
+
+    # ------------------------------------------------------------
+    # 3) Normal scoring
+    # ------------------------------------------------------------
+
     best_meta = None
     best_score = 0.0
     best_debug: Optional[Dict[str, Any]] = None
 
-    for meta in official_metas:
+    for meta in filtered_metas:
         s, dbg = combined_match_score(fb_clean, fb_full, meta)
 
         # Prefer newer articles when scores are very close
@@ -735,10 +770,13 @@ def match_fb_to_official(fb_post: Dict[str, Any], official_metas: List[Dict[str,
         best_debug["reason"] = "scored"
         return best_meta, best_score, best_debug
 
-    # 2) OCR fallback (only if enabled)
+    # ------------------------------------------------------------
+    # 4) OCR fallback (unchanged)
+    # ------------------------------------------------------------
+
     ocr_text = ocr_extract_text_from_image_url(fb_post.get("image_url", ""))
+
     if ocr_text:
-        # Re-score using OCR text as part of FB content
         fb_full_ocr = f"{fb_full} {ocr_text}".strip()
         fb_clean_ocr = clean_fb_phrase({"title": fb_clean, "description": ocr_text})
 
@@ -746,7 +784,7 @@ def match_fb_to_official(fb_post: Dict[str, Any], official_metas: List[Dict[str,
         best_score2 = 0.0
         best_debug2: Optional[Dict[str, Any]] = None
 
-        for meta in official_metas:
+        for meta in filtered_metas:
             s, dbg = combined_match_score(fb_clean_ocr, fb_full_ocr, meta)
             if s > best_score2:
                 best_score2 = s
@@ -759,7 +797,10 @@ def match_fb_to_official(fb_post: Dict[str, Any], official_metas: List[Dict[str,
             best_debug2["ocr_excerpt"] = ocr_text[:250]
             return best_meta2, best_score2, best_debug2
 
-    # Debug output for tuning
+    # ------------------------------------------------------------
+    # Debug output
+    # ------------------------------------------------------------
+
     if DEBUG_MATCH_TOP_N > 0:
         debug_print_top_matches(fb_post, official_metas, top_n=DEBUG_MATCH_TOP_N)
 
