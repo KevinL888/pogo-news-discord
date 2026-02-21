@@ -353,6 +353,9 @@ PHRASE_BONUS = [
     "raid day",
     "go pass",
     "spotlight hour",
+    "mega evolution",
+    "mega raid",
+    "super mega",
 ]
 
 
@@ -504,6 +507,18 @@ def combined_match_score(fb_clean: str, fb_full: str, off_meta: Dict[str, Any]) 
     off_set = set(off_toks)
 
     # ------------------------------------------------------------
+    # Strong context boosts (Mega specific)
+    # ------------------------------------------------------------
+    if "mega" in fb_set and "mega" in off_set:
+        score += 0.12
+
+    if "raid" in fb_set and "raid" in off_set:
+        score += 0.08
+
+    if "evolution" in fb_set and "evolution" in off_set:
+        score += 0.08
+
+    # ------------------------------------------------------------
     # Keyword overlap bonus
     # ------------------------------------------------------------
     for kw in KEYWORD_BONUS:
@@ -553,6 +568,18 @@ def combined_match_score(fb_clean: str, fb_full: str, off_meta: Dict[str, Any]) 
     for phrase in PHRASE_BONUS:
         if phrase in fb_norm_full and phrase in off_norm_full:
             score += 0.08
+
+    # ------------------------------------------------------------
+    # Recency boost (favor newest articles)
+    # ------------------------------------------------------------
+    if off_meta.get("published"):
+        try:
+            off_date = datetime.strptime(off_meta["published"], "%Y-%m-%d")
+            days_old = (datetime.utcnow() - off_date).days
+            if days_old <= 2:
+                score += 0.05
+        except Exception:
+            pass
 
     score = max(0.0, min(score, 1.0))
 
@@ -661,6 +688,16 @@ def match_fb_to_official(fb_post: Dict[str, Any], official_metas: List[Dict[str,
 
     for meta in official_metas:
         s, dbg = combined_match_score(fb_clean, fb_full, meta)
+
+        # Prefer newer articles when scores are very close
+        if best_meta and abs(s - best_score) < 0.03:
+            if meta.get("published") and best_meta.get("published"):
+                if meta["published"] > best_meta["published"]:
+                    best_score = s
+                    best_meta = meta
+                    best_debug = dbg
+                    continue
+
         if s > best_score:
             best_score = s
             best_meta = meta
