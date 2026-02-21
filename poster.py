@@ -161,9 +161,19 @@ def parse_article_metadata(article_url: str) -> Dict[str, Any]:
         except Exception:
             published_text = published
 
+    # Extract body text (important!)
+    body_text = ""
+
+    article_div = soup.find("article")
+    if article_div:
+        body_text = article_div.get_text(separator=" ", strip=True)
+
+    body_text = re.sub(r"\s+", " ", body_text)
+
     return {
         "title": title,
         "description": description[:250],
+        "body": body_text[:4000],  # clamp to safe size
         "image": image,
         "published": published_text,
         "url": article_url,
@@ -492,7 +502,8 @@ def combined_match_score(fb_clean: str, fb_full: str, off_meta: Dict[str, Any]) 
     off_url = off_meta.get("url", "")
 
     fb_toks = tokens(fb_clean)
-    off_toks = tokens(off_title + " " + off_desc)
+    off_body = off_meta.get("body", "")
+    off_toks = tokens(off_title + " " + off_desc + " " + off_body)
 
     tok_score = jaccard(fb_toks, off_toks)
     sim = SequenceMatcher(None, normalize_text(fb_clean), normalize_text(off_title)).ratio()
