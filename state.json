@@ -91,6 +91,18 @@
           "infographic_posted": true
         }
       }
+    },
+    "https://pokemongo.com/news/gotour-road-to-kalos-live": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1475303265833848842",
+          "infographic_posted": false
+        },
+        "1472476091108163888": {
+          "thread_id": "1475303271911653396",
+          "infographic_posted": false
+        }
+      }
     }
   },
   "seen_urls": [
@@ -160,7 +172,8 @@
     "https://pokemongo.com/news/euic-2026",
     "https://pokemongo.com/news/pvp-updates2026",
     "https://pokemongo.com/news/get-ready-for-gotour-kalos",
-    "https://pokemongo.com/news/mega-evolution-2026-update"
+    "https://pokemongo.com/news/mega-evolution-2026-update",
+    "https://pokemongo.com/news/gotour-road-to-kalos-live"
   ],
   "seen_fb_posts": [
     "https://www.facebook.com/g47ix/posts/pfbid0oCrVQn1Chb7nKKK9p2fvcQS2jYGXDtPoY5pfJVjbY4RYGV9rv7MNShj6Wja2y5Ybl",
