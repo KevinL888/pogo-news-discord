@@ -103,6 +103,18 @@
           "infographic_posted": false
         }
       }
+    },
+    "https://pokemongo.com/news/go-battle-league-memories-in-motion": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1475856756931559507",
+          "infographic_posted": false
+        },
+        "1472476091108163888": {
+          "thread_id": "1475856763038208212",
+          "infographic_posted": false
+        }
+      }
     }
   },
   "seen_urls": [
@@ -173,7 +185,8 @@
     "https://pokemongo.com/news/pvp-updates2026",
     "https://pokemongo.com/news/get-ready-for-gotour-kalos",
     "https://pokemongo.com/news/mega-evolution-2026-update",
-    "https://pokemongo.com/news/gotour-road-to-kalos-live"
+    "https://pokemongo.com/news/gotour-road-to-kalos-live",
+    "https://pokemongo.com/news/go-battle-league-memories-in-motion"
   ],
   "seen_fb_posts": [
     "https://www.facebook.com/g47ix/posts/pfbid0oCrVQn1Chb7nKKK9p2fvcQS2jYGXDtPoY5pfJVjbY4RYGV9rv7MNShj6Wja2y5Ybl",
@@ -228,7 +241,8 @@
     "https://www.facebook.com/g47ix/posts/pfbid0eZ9op8Tt5c6jNbGULDYoXnh3jqUJ8boYY296yQiXocBkQ3QC27t8qKfkRHpMjKPal",
     "https://www.facebook.com/story.php?id=100070881932602&story_fbid=pfbid02r1uxunGyUM6p8mK58JLa3nmeQEYVttaLh8WjoLxqsMJpDmLk4EZJHm3zckiq6cTUl",
     "https://www.facebook.com/g47ix/posts/pfbid0Fb7ncfExS7HwJkXgSAFRvbfLTLSVKXCY1CwEeRjVVSdPz183o7gSA2oMEqUbcoaKl",
-    "https://www.facebook.com/g47ix/posts/pfbid0XVQ1qRcnMf6zGfsrtgWgUGUWFa9U3HakTiyi8FFLtUKPMqkxpM2Cs2asmpDdNsaGl"
+    "https://www.facebook.com/g47ix/posts/pfbid0XVQ1qRcnMf6zGfsrtgWgUGUWFa9U3HakTiyi8FFLtUKPMqkxpM2Cs2asmpDdNsaGl",
+    "https://www.facebook.com/g47ix/posts/pfbid02LQFxTviwbXn9Ak8MRg1cxcaVDwM5tES5AnjWCx4Bq8XYZrMFEyZbcymLooqHT9ZSl"
   ],
   "posted_infographics": [],
   "bootstrapped": true
