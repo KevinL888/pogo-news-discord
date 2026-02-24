@@ -115,6 +115,30 @@
           "infographic_posted": true
         }
       }
+    },
+    "https://pokemongo.com/news/welcome-to-memories-in-motion": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1475928786422993038",
+          "infographic_posted": false
+        },
+        "1472476091108163888": {
+          "thread_id": "1475928792554934424",
+          "infographic_posted": false
+        }
+      }
+    },
+    "https://pokemongo.com/news/communityday-march-2026-scorbunny": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1475928799047847956",
+          "infographic_posted": false
+        },
+        "1472476091108163888": {
+          "thread_id": "1475928805045698643",
+          "infographic_posted": false
+        }
+      }
     }
   },
   "seen_urls": [
@@ -186,7 +210,9 @@
     "https://pokemongo.com/news/get-ready-for-gotour-kalos",
     "https://pokemongo.com/news/mega-evolution-2026-update",
     "https://pokemongo.com/news/gotour-road-to-kalos-live",
-    "https://pokemongo.com/news/go-battle-league-memories-in-motion"
+    "https://pokemongo.com/news/go-battle-league-memories-in-motion",
+    "https://pokemongo.com/news/welcome-to-memories-in-motion",
+    "https://pokemongo.com/news/communityday-march-2026-scorbunny"
   ],
   "seen_fb_posts": [
     "https://www.facebook.com/g47ix/posts/pfbid0oCrVQn1Chb7nKKK9p2fvcQS2jYGXDtPoY5pfJVjbY4RYGV9rv7MNShj6Wja2y5Ybl",
@@ -243,7 +269,8 @@
     "https://www.facebook.com/g47ix/posts/pfbid0Fb7ncfExS7HwJkXgSAFRvbfLTLSVKXCY1CwEeRjVVSdPz183o7gSA2oMEqUbcoaKl",
     "https://www.facebook.com/g47ix/posts/pfbid0XVQ1qRcnMf6zGfsrtgWgUGUWFa9U3HakTiyi8FFLtUKPMqkxpM2Cs2asmpDdNsaGl",
     "https://www.facebook.com/g47ix/posts/pfbid02LQFxTviwbXn9Ak8MRg1cxcaVDwM5tES5AnjWCx4Bq8XYZrMFEyZbcymLooqHT9ZSl",
-    "https://www.facebook.com/g47ix/posts/pfbid0E3ZoawdxrMUdxhwjoL2124bkAxJjKB1zhw8d7pQVxJX2u2kamebVApLpMoDJE3bZl"
+    "https://www.facebook.com/g47ix/posts/pfbid0E3ZoawdxrMUdxhwjoL2124bkAxJjKB1zhw8d7pQVxJX2u2kamebVApLpMoDJE3bZl",
+    "https://www.facebook.com/g47ix/posts/pfbid0jpBGHtMiXyxm5UtXfqfhGHhhF1LzX3wqttnaboETutDu2cQTU2cxwJANzXirCjhcl"
   ],
   "posted_infographics": [],
   "bootstrapped": true
