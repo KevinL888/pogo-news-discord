@@ -187,6 +187,18 @@
           "infographic_posted": false
         }
       }
+    },
+    "https://pokemongo.com/news/pokemon-30th-anniversary": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1476951238498189394",
+          "infographic_posted": false
+        },
+        "1472476091108163888": {
+          "thread_id": "1476951244651237654",
+          "infographic_posted": false
+        }
+      }
     }
   },
   "seen_urls": [
@@ -264,7 +276,8 @@
     "https://pokemongo.com/news/bug-out-2026",
     "https://pokemongo.com/news/go-pass-march-2026",
     "https://pokemongo.com/news/pokemon-pokopia-celebration-event-2026",
-    "https://pokemongo.com/news/festival-of-colors-2026"
+    "https://pokemongo.com/news/festival-of-colors-2026",
+    "https://pokemongo.com/news/pokemon-30th-anniversary"
   ],
   "seen_fb_posts": [
     "https://www.facebook.com/g47ix/posts/pfbid0oCrVQn1Chb7nKKK9p2fvcQS2jYGXDtPoY5pfJVjbY4RYGV9rv7MNShj6Wja2y5Ybl",
