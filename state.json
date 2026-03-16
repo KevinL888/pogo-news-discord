@@ -295,6 +295,18 @@
           "infographic_posted": false
         }
       }
+    },
+    "https://pokemongo.com/news/communityday-april-2026-tinkatink": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1483162007674032289",
+          "infographic_posted": false
+        },
+        "1472476091108163888": {
+          "thread_id": "1483162014783246519",
+          "infographic_posted": false
+        }
+      }
     }
   },
   "seen_urls": [
@@ -381,7 +393,8 @@
     "https://pokemongo.com/news/a-shockingly-good-time",
     "https://pokemongo.com/news/go-memories",
     "https://pokemongo.com/news/fashion-raid-day-2026",
-    "https://pokemongo.com/news/night-treats-2026"
+    "https://pokemongo.com/news/night-treats-2026",
+    "https://pokemongo.com/news/communityday-april-2026-tinkatink"
   ],
   "seen_fb_posts": [
     "https://www.facebook.com/g47ix/posts/pfbid0oCrVQn1Chb7nKKK9p2fvcQS2jYGXDtPoY5pfJVjbY4RYGV9rv7MNShj6Wja2y5Ybl",
