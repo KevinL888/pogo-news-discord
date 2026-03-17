@@ -544,6 +544,18 @@ def combined_match_score(fb_clean: str, fb_full: str, off_meta: Dict[str, Any]) 
 
     if "evolution" in fb_set and "evolution" in off_set:
         score += 0.08
+        
+    # ------------------------------------------------------------
+    # Community Day strong alignment boost
+    # ------------------------------------------------------------
+
+    community_cluster = {"community", "day"}
+
+    fb_comm_hits = sum(1 for t in community_cluster if t in fb_set)
+    off_comm_hits = sum(1 for t in community_cluster if t in off_set)
+
+    if fb_comm_hits >= 2 and off_comm_hits >= 2:
+        score += 0.20
 
     # ------------------------------------------------------------
     # Keyword overlap bonus
@@ -562,7 +574,7 @@ def combined_match_score(fb_clean: str, fb_full: str, off_meta: Dict[str, Any]) 
 
     if fb_pokemon and off_pokemon:
         if matched_pokemon:
-            score += min(0.25, 0.10 * len(matched_pokemon))
+            core += min(0.30, 0.15 * len(matched_pokemon))
         else:
             score -= 0.20  # strong negative if Pokémon differ
 
