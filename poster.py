@@ -574,7 +574,7 @@ def combined_match_score(fb_clean: str, fb_full: str, off_meta: Dict[str, Any]) 
 
     if fb_pokemon and off_pokemon:
         if matched_pokemon:
-            core += min(0.30, 0.15 * len(matched_pokemon))
+            score += min(0.30, 0.15 * len(matched_pokemon))
         else:
             score -= 0.20  # strong negative if Pokémon differ
 
