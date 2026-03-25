@@ -336,11 +336,11 @@
       "channels": {
         "1086323326999343297": {
           "thread_id": "1486408522747871393",
-          "infographic_posted": false
+          "infographic_posted": true
         },
         "1472476091108163888": {
           "thread_id": "1486408528896720926",
-          "infographic_posted": false
+          "infographic_posted": true
         }
       }
     },
@@ -547,7 +547,8 @@
     "https://www.facebook.com/g47ix/posts/pfbid0qP24PufLhTryHRccavBoULewRhWk9N2hAsuMuuz8EgXgsjYFb14mdKxGsAc5EMNCl",
     "https://www.facebook.com/g47ix/posts/pfbid0fxkTcAUezZDS23h53Gy13QEbSjeabwNzSSHaZpNXvMjHPt1e3ky2nQPK6Ea3uB8Ql",
     "https://www.facebook.com/g47ix/posts/pfbid02LKgqV7h8fgVXfgfLnDNA8RRZr2vtfxMz82nMvjTH2oC5eTEkzuxxfzwsZQ464AWLl",
-    "https://www.facebook.com/g47ix/posts/pfbid02QdtUvfRuQHeNbSqHfAo2fd15GHD5MquXqLpqBJiHcsbVjhfygmfnXpGMdo79XVo6l"
+    "https://www.facebook.com/g47ix/posts/pfbid02QdtUvfRuQHeNbSqHfAo2fd15GHD5MquXqLpqBJiHcsbVjhfygmfnXpGMdo79XVo6l",
+    "https://www.facebook.com/g47ix/posts/pfbid06VsKqay5rHihYkaz3pHUHtic4W8t74v4TnQrJqaHySquEa6SdxPXXQFLwvvvADVal"
   ],
   "posted_infographics": [],
   "bootstrapped": true
