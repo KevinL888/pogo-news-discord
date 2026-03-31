@@ -355,6 +355,18 @@
           "infographic_posted": true
         }
       }
+    },
+    "https://pokemongo.com/news/go-pass-april-2026": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1488638239425302849",
+          "infographic_posted": false
+        },
+        "1472476091108163888": {
+          "thread_id": "1488638245959893084",
+          "infographic_posted": false
+        }
+      }
     }
   },
   "seen_urls": [
@@ -446,7 +458,8 @@
     "https://pokemongo.com/news/gofest-chicago-community-engagement-meeting",
     "https://pokemongo.com/news/sustainability-week-2026",
     "https://pokemongo.com/news/an-egg-cellent-adventure-2026",
-    "https://pokemongo.com/news/replay-riolu-hatch-day-2026"
+    "https://pokemongo.com/news/replay-riolu-hatch-day-2026",
+    "https://pokemongo.com/news/go-pass-april-2026"
   ],
   "seen_fb_posts": [
     "https://www.facebook.com/g47ix/posts/pfbid0oCrVQn1Chb7nKKK9p2fvcQS2jYGXDtPoY5pfJVjbY4RYGV9rv7MNShj6Wja2y5Ybl",
@@ -557,7 +570,8 @@
     "https://www.facebook.com/g47ix/posts/pfbid07yPC4A3RUnZNS7VgVeBpxY5RYcu3ZYCbgyihF8h8FkgXhYVerHPd4xpnn3xLGF78l",
     "https://www.facebook.com/g47ix/posts/pfbid037uEM8mvZVpaoS5r4uJPT71jdxxcGJTWCkdHGpCzU4Lp6F2gkx5kfEmVeLEKPCKtGl",
     "https://www.facebook.com/g47ix/posts/pfbid037uEM8mvZVpaoS5r4uJPT71jdxxcGJTWCkdHGpCzU4Lp6F2gkx5kfEmVeLEKPCKtGl",
-    "https://www.facebook.com/reel/818456447733255/"
+    "https://www.facebook.com/reel/818456447733255/",
+    "https://www.facebook.com/reel/1245522884316670/"
   ],
   "posted_infographics": [],
   "bootstrapped": true
