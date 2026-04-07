@@ -391,6 +391,18 @@
           "infographic_posted": true
         }
       }
+    },
+    "https://pokemongo.com/news/steeled-resolve-taken-over-2026": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1491175775326703696",
+          "infographic_posted": true
+        },
+        "1472476091108163888": {
+          "thread_id": "1491175780875636947",
+          "infographic_posted": true
+        }
+      }
     }
   },
   "seen_urls": [
@@ -485,7 +497,8 @@
     "https://pokemongo.com/news/replay-riolu-hatch-day-2026",
     "https://pokemongo.com/news/go-pass-april-2026",
     "https://pokemongo.com/news/replay-go-bigger-2026",
-    "https://pokemongo.com/news/steeled-resolve-2026"
+    "https://pokemongo.com/news/steeled-resolve-2026",
+    "https://pokemongo.com/news/steeled-resolve-taken-over-2026"
   ],
   "seen_fb_posts": [
     "https://www.facebook.com/g47ix/posts/pfbid0oCrVQn1Chb7nKKK9p2fvcQS2jYGXDtPoY5pfJVjbY4RYGV9rv7MNShj6Wja2y5Ybl",
@@ -604,7 +617,8 @@
     "https://www.facebook.com/g47ix/posts/pfbid02gHYJNoGSWnHTXxZ1KP71i4WLJ1weuWKqKVez8ieSrJevqvm9EPajWY3CzfRDGtFhl",
     "https://www.facebook.com/g47ix/posts/pfbid0Axp6s7KSHbs6dj1VXnWiSDi8pEnpjZ2ePpDpehAKP2iiJmPgt9MCewEyUXbVvvSPl",
     "https://www.facebook.com/g47ix/posts/pfbid02CC1vz2WL9ns76eagsUyk5oZBWcBPci9LhKF9TMi8QPaRQW3xT9ssrB5Apf4QHDqCl",
-    "https://www.facebook.com/g47ix/posts/pfbid0vypNgsktnQQ6zsPRSWT1AfhdJVQpKfZkiaYmJhNJASiAjkVdkLwPT27FeRwv1rkSl"
+    "https://www.facebook.com/g47ix/posts/pfbid0vypNgsktnQQ6zsPRSWT1AfhdJVQpKfZkiaYmJhNJASiAjkVdkLwPT27FeRwv1rkSl",
+    "https://www.facebook.com/g47ix/posts/pfbid02kWVuScn2gienNTk8YA2fbZyDycQBsbtPZFwJrSsJ5A6vR8afTCdgrs8GF2wDVc1zl"
   ],
   "posted_infographics": [],
   "bootstrapped": true
