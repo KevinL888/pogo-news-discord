@@ -451,6 +451,18 @@
           "infographic_posted": true
         }
       }
+    },
+    "https://pokemongo.com/news/spring-marathon-2026": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1496202130497732799",
+          "infographic_posted": true
+        },
+        "1472476091108163888": {
+          "thread_id": "1496202137183715451",
+          "infographic_posted": true
+        }
+      }
     }
   },
   "seen_urls": [
@@ -550,7 +562,8 @@
     "https://pokemongo.com/news/gofest-2026-chicago-copenhagen-proposals",
     "https://pokemongo.com/news/mlb-2026",
     "https://pokemongo.com/news/shadow-entei-raid-day-2026",
-    "https://pokemongo.com/news/communityday-may-2026-lechonk"
+    "https://pokemongo.com/news/communityday-may-2026-lechonk",
+    "https://pokemongo.com/news/spring-marathon-2026"
   ],
   "seen_fb_posts": [
     "https://www.facebook.com/g47ix/posts/pfbid0oCrVQn1Chb7nKKK9p2fvcQS2jYGXDtPoY5pfJVjbY4RYGV9rv7MNShj6Wja2y5Ybl",
@@ -686,7 +699,8 @@
     "https://www.facebook.com/g47ix/posts/pfbid04SBu5TXWu9npoWuM2BB8WitcYvzNNovYmNNjJQo6Yqz2CpaVipqTqoh4B5SAm1JTl",
     "https://www.facebook.com/g47ix/posts/pfbid0382n5J7GjDyRCjvKY4S7whWUs1Hto1aYqg4tbWbu7ubstXp4UfJLnwzF5zcAdYP7zl",
     "https://www.facebook.com/g47ix/posts/pfbid026BCxhhktDEt27Fo2wZUC9MAtRTTsRyBdzkyPGNSDKnbRDzKPxVevzcakUVa13J7zl",
-    "https://www.facebook.com/g47ix/posts/pfbid02A7g6xvJWCUjfY8WvFTn8tPqqkWTuNkcy79gCPMzXjxrKKZc6Jaw3WFdkCgjv7rDhl"
+    "https://www.facebook.com/g47ix/posts/pfbid02A7g6xvJWCUjfY8WvFTn8tPqqkWTuNkcy79gCPMzXjxrKKZc6Jaw3WFdkCgjv7rDhl",
+    "https://www.facebook.com/g47ix/posts/pfbid0257BAhphzjiLfEZCUeFaHWBTB6qtFpb4x8YAGNpgWp5VGB7XoyPNCyNAKmzKRMLTwl"
   ],
   "posted_infographics": [],
   "bootstrapped": true
