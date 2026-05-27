@@ -631,6 +631,18 @@
           "infographic_posted": true
         }
       }
+    },
+    "https://pokemongo.com/news/go-pass-june-2026": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1509249838728876072",
+          "infographic_posted": false
+        },
+        "1472476091108163888": {
+          "thread_id": "1509249845268058353",
+          "infographic_posted": false
+        }
+      }
     }
   },
   "seen_urls": [
@@ -745,7 +757,8 @@
     "https://pokemongo.com/news/100-thieves-mega-mewtwo-go-fest-2026",
     "https://pokemongo.com/news/pgo-pokemon-fossil-musuem-chicago-2026",
     "https://pokemongo.com/news/go-battle-league-forever-forward",
-    "https://pokemongo.com/news/communityday-june-2026-frigibax"
+    "https://pokemongo.com/news/communityday-june-2026-frigibax",
+    "https://pokemongo.com/news/go-pass-june-2026"
   ],
   "seen_fb_posts": [
     "https://www.facebook.com/g47ix/posts/pfbid0oCrVQn1Chb7nKKK9p2fvcQS2jYGXDtPoY5pfJVjbY4RYGV9rv7MNShj6Wja2y5Ybl",
