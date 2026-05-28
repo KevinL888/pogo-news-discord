@@ -643,6 +643,30 @@
           "infographic_posted": false
         }
       }
+    },
+    "https://pokemongo.com/news/know-before-you-go-gofest-2026-in-person-events": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1509448174006309026",
+          "infographic_posted": false
+        },
+        "1472476091108163888": {
+          "thread_id": "1509448180662796298",
+          "infographic_posted": false
+        }
+      }
+    },
+    "https://pokemongo.com/news/go-fest-chicago-2026-community": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1509448186723569726",
+          "infographic_posted": false
+        },
+        "1472476091108163888": {
+          "thread_id": "1509448192876609566",
+          "infographic_posted": false
+        }
+      }
     }
   },
   "seen_urls": [
@@ -758,7 +782,9 @@
     "https://pokemongo.com/news/pgo-pokemon-fossil-musuem-chicago-2026",
     "https://pokemongo.com/news/go-battle-league-forever-forward",
     "https://pokemongo.com/news/communityday-june-2026-frigibax",
-    "https://pokemongo.com/news/go-pass-june-2026"
+    "https://pokemongo.com/news/go-pass-june-2026",
+    "https://pokemongo.com/news/know-before-you-go-gofest-2026-in-person-events",
+    "https://pokemongo.com/news/go-fest-chicago-2026-community"
   ],
   "seen_fb_posts": [
     "https://www.facebook.com/g47ix/posts/pfbid0oCrVQn1Chb7nKKK9p2fvcQS2jYGXDtPoY5pfJVjbY4RYGV9rv7MNShj6Wja2y5Ybl",
