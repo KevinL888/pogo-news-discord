@@ -667,6 +667,42 @@
           "infographic_posted": false
         }
       }
+    },
+    "https://pokemongo.com/news/pokemon-run-30-2026": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1512245883998306356",
+          "infographic_posted": false
+        },
+        "1472476091108163888": {
+          "thread_id": "1512245890545619014",
+          "infographic_posted": false
+        }
+      }
+    },
+    "https://pokemongo.com/news/gofest-chicago-super-mega-raid": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1512245896346210455",
+          "infographic_posted": true
+        },
+        "1472476091108163888": {
+          "thread_id": "1512245902348390481",
+          "infographic_posted": true
+        }
+      }
+    },
+    "https://pokemongo.com/news/skarmory-super-mega-raid-day-2026": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1512245908786515998",
+          "infographic_posted": false
+        },
+        "1472476091108163888": {
+          "thread_id": "1512245914855673940",
+          "infographic_posted": false
+        }
+      }
     }
   },
   "seen_urls": [
@@ -784,7 +820,10 @@
     "https://pokemongo.com/news/communityday-june-2026-frigibax",
     "https://pokemongo.com/news/go-pass-june-2026",
     "https://pokemongo.com/news/know-before-you-go-gofest-2026-in-person-events",
-    "https://pokemongo.com/news/go-fest-chicago-2026-community"
+    "https://pokemongo.com/news/go-fest-chicago-2026-community",
+    "https://pokemongo.com/news/pokemon-run-30-2026",
+    "https://pokemongo.com/news/gofest-chicago-super-mega-raid",
+    "https://pokemongo.com/news/skarmory-super-mega-raid-day-2026"
   ],
   "seen_fb_posts": [
     "https://www.facebook.com/g47ix/posts/pfbid0oCrVQn1Chb7nKKK9p2fvcQS2jYGXDtPoY5pfJVjbY4RYGV9rv7MNShj6Wja2y5Ybl",
@@ -978,7 +1017,12 @@
     "https://www.facebook.com/g47ix/posts/pfbid0383zxqBmwn4TbFFpnMjvwzfdxNanFcHQQqn8RcwFd4yyd6exNeuetMntaAK5SZn32l",
     "https://www.facebook.com/g47ix/posts/pfbid0HhA6J4BG49cL8G78daAzNaewg87aMDdporVRZM2JRFzsFqcm5mDQLzG3RvhyCKxgl",
     "https://www.facebook.com/g47ix/posts/pfbid02jTNPnyCeR3SHMFLvPjFqaSKLbc7mFaYTWRPx1NwQTdY46EEA72GrqjTpxuwPfAXSl",
-    "https://m.facebook.com/g47ix/posts/pfbid0pRaVfD3Z1WKDenDf8gEkAMrUTbqaUFSB2fbj177hTNEJmn5a3Zer9LfDC5ox5mtwl"
+    "https://m.facebook.com/g47ix/posts/pfbid0pRaVfD3Z1WKDenDf8gEkAMrUTbqaUFSB2fbj177hTNEJmn5a3Zer9LfDC5ox5mtwl",
+    "https://m.facebook.com/g47ix/posts/pfbid034KL4XGab65iCCEDU8zhZf4446FnY1AnmCpCdJq5gmREeuKZomiFoq8pZskLFtPcRl",
+    "https://m.facebook.com/g47ix/posts/pfbid0EK8XP671hreikeotnBfUoSzrMJpatorwREiukaG5de5K5ySEcgq5WJTAoaK3gRz6l",
+    "https://m.facebook.com/g47ix/posts/pfbid02aiChqNFPJSAbFGxEALnL8khwTG1KaWAiuGHBCVy2xHYM8gKV3q5AzE7fQXJgijLyl",
+    "https://m.facebook.com/g47ix/posts/pfbid0gxLuFQD7NAWeBSTTnZcX5MJGqL2UEWDNdT4xH9ajtRosUtbdBb5CsSdKRs3WZ7dSl",
+    "https://m.facebook.com/g47ix/posts/pfbid02QwBcK7fXCy95xLK3S9jaJ8LgFHxViTx9tB4juTq11YBzDoPycxYWZDJYQXsJgcJml"
   ],
   "posted_infographics": [],
   "bootstrapped": true
