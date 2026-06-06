@@ -703,6 +703,18 @@
           "infographic_posted": false
         }
       }
+    },
+    "https://pokemongo.com/news/gofest-chicago-saturday-update": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1512932986276937801",
+          "infographic_posted": false
+        },
+        "1472476091108163888": {
+          "thread_id": "1512932992799080620",
+          "infographic_posted": false
+        }
+      }
     }
   },
   "seen_urls": [
@@ -823,7 +835,8 @@
     "https://pokemongo.com/news/go-fest-chicago-2026-community",
     "https://pokemongo.com/news/pokemon-run-30-2026",
     "https://pokemongo.com/news/gofest-chicago-super-mega-raid",
-    "https://pokemongo.com/news/skarmory-super-mega-raid-day-2026"
+    "https://pokemongo.com/news/skarmory-super-mega-raid-day-2026",
+    "https://pokemongo.com/news/gofest-chicago-saturday-update"
   ],
   "seen_fb_posts": [
     "https://www.facebook.com/g47ix/posts/pfbid0oCrVQn1Chb7nKKK9p2fvcQS2jYGXDtPoY5pfJVjbY4RYGV9rv7MNShj6Wja2y5Ybl",
