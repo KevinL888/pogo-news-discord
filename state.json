@@ -727,6 +727,18 @@
           "infographic_posted": false
         }
       }
+    },
+    "https://pokemongo.com/news/flying-taxi-taken-over-2026": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1514003144546451519",
+          "infographic_posted": true
+        },
+        "1472476091108163888": {
+          "thread_id": "1514003150674071722",
+          "infographic_posted": true
+        }
+      }
     }
   },
   "seen_urls": [
@@ -849,7 +861,8 @@
     "https://pokemongo.com/news/gofest-chicago-super-mega-raid",
     "https://pokemongo.com/news/skarmory-super-mega-raid-day-2026",
     "https://pokemongo.com/news/gofest-chicago-saturday-update",
-    "https://pokemongo.com/news/flying-taxi-2026"
+    "https://pokemongo.com/news/flying-taxi-2026",
+    "https://pokemongo.com/news/flying-taxi-taken-over-2026"
   ],
   "seen_fb_posts": [
     "https://www.facebook.com/g47ix/posts/pfbid0oCrVQn1Chb7nKKK9p2fvcQS2jYGXDtPoY5pfJVjbY4RYGV9rv7MNShj6Wja2y5Ybl",
@@ -1050,7 +1063,8 @@
     "https://m.facebook.com/g47ix/posts/pfbid0gxLuFQD7NAWeBSTTnZcX5MJGqL2UEWDNdT4xH9ajtRosUtbdBb5CsSdKRs3WZ7dSl",
     "https://m.facebook.com/g47ix/posts/pfbid02QwBcK7fXCy95xLK3S9jaJ8LgFHxViTx9tB4juTq11YBzDoPycxYWZDJYQXsJgcJml",
     "https://m.facebook.com/g47ix/posts/pfbid02Y13oyjBhNnGbaDbvE6JyRUp2pYyyZ2hSumUJr3pA95EFfdPR46eUN244BKWqxRV3l",
-    "https://m.facebook.com/g47ix/posts/pfbid0s9q18Th6TDXgYSF5wgYF9EMSKuqe74MQNAizECRzC4vLUthDvFPewPfSvReKu8NWl"
+    "https://m.facebook.com/g47ix/posts/pfbid0s9q18Th6TDXgYSF5wgYF9EMSKuqe74MQNAizECRzC4vLUthDvFPewPfSvReKu8NWl",
+    "https://m.facebook.com/g47ix/posts/pfbid05uwtjdi78CW1eSz8sCu3bbzXEuYvBztjgH5AotWiU4b6cbNF9dW8b7eb3BouoCd6l"
   ],
   "posted_infographics": [],
   "bootstrapped": true
