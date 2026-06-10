@@ -739,6 +739,18 @@
           "infographic_posted": true
         }
       }
+    },
+    "https://pokemongo.com/news/gofest-copenhagen-super-mega-raid": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1514224329188179978",
+          "infographic_posted": false
+        },
+        "1472476091108163888": {
+          "thread_id": "1514224336104329346",
+          "infographic_posted": false
+        }
+      }
     }
   },
   "seen_urls": [
@@ -862,7 +874,8 @@
     "https://pokemongo.com/news/skarmory-super-mega-raid-day-2026",
     "https://pokemongo.com/news/gofest-chicago-saturday-update",
     "https://pokemongo.com/news/flying-taxi-2026",
-    "https://pokemongo.com/news/flying-taxi-taken-over-2026"
+    "https://pokemongo.com/news/flying-taxi-taken-over-2026",
+    "https://pokemongo.com/news/gofest-copenhagen-super-mega-raid"
   ],
   "seen_fb_posts": [
     "https://www.facebook.com/g47ix/posts/pfbid0oCrVQn1Chb7nKKK9p2fvcQS2jYGXDtPoY5pfJVjbY4RYGV9rv7MNShj6Wja2y5Ybl",
