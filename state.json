@@ -835,6 +835,18 @@
           "infographic_posted": false
         }
       }
+    },
+    "https://pokemongo.com/news/community-celebrations-go-fest-2026-details-asia-pacific": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1517034403002581175",
+          "infographic_posted": false
+        },
+        "1472476091108163888": {
+          "thread_id": "1517034408929136700",
+          "infographic_posted": false
+        }
+      }
     }
   },
   "seen_urls": [
@@ -966,7 +978,8 @@
     "https://pokemongo.com/news/raichu-super-mega-raid-day-2026",
     "https://pokemongo.com/news/save-the-date-apac-30th-anniversary-2026",
     "https://pokemongo.com/news/communityday-july-2026-sobble",
-    "https://pokemongo.com/news/community-celebrations-go-fest-2026-details-en"
+    "https://pokemongo.com/news/community-celebrations-go-fest-2026-details-en",
+    "https://pokemongo.com/news/community-celebrations-go-fest-2026-details-asia-pacific"
   ],
   "seen_fb_posts": [
     "https://www.facebook.com/g47ix/posts/pfbid0oCrVQn1Chb7nKKK9p2fvcQS2jYGXDtPoY5pfJVjbY4RYGV9rv7MNShj6Wja2y5Ybl",
@@ -1183,7 +1196,8 @@
     "https://m.facebook.com/g47ix/posts/pfbid0o6p77uYCqUY3zhZ65x2YpNMReXzjYeHZiYFn1B1fyRwnJPaqc5hC7yjRqpy5Gw6Pl",
     "https://m.facebook.com/g47ix/posts/pfbid0cxwBUwoPRZDz3CwdR7DGNGLGMjmz3HCk6JvnnaRfsRonyP7ut1YtfNfnD4fmcBJAl",
     "https://m.facebook.com/g47ix/posts/pfbid09t4FDmh9ksu4JK7C9uGPc3rVKhNrvn4ASv1nGBid4Fo4FAWWg9PT2AcobqncFhJGl",
-    "https://m.facebook.com/g47ix/posts/pfbid0y91erL2jyd2Edbxjn5SnjNaoZmveHM2sBBdRdqWt4EugoY32e4qDbP3snfLtfDwUl"
+    "https://m.facebook.com/g47ix/posts/pfbid0y91erL2jyd2Edbxjn5SnjNaoZmveHM2sBBdRdqWt4EugoY32e4qDbP3snfLtfDwUl",
+    "https://m.facebook.com/g47ix/posts/pfbid02BqdjsKibq4EZM5csmUceCTR8rjQdF4puew7R91ESsatrkG9Q8H9b1GyuHY9MWBw9l"
   ],
   "posted_infographics": [],
   "bootstrapped": true
