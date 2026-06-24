@@ -859,6 +859,18 @@
           "infographic_posted": true
         }
       }
+    },
+    "https://pokemongo.com/news/pvp-updates-competitors-cup-2026": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1519368183289479400",
+          "infographic_posted": false
+        },
+        "1472476091108163888": {
+          "thread_id": "1519368190201696298",
+          "infographic_posted": false
+        }
+      }
     }
   },
   "seen_urls": [
@@ -992,7 +1004,8 @@
     "https://pokemongo.com/news/communityday-july-2026-sobble",
     "https://pokemongo.com/news/community-celebrations-go-fest-2026-details-en",
     "https://pokemongo.com/news/community-celebrations-go-fest-2026-details-asia-pacific",
-    "https://pokemongo.com/news/road-of-legends-2026"
+    "https://pokemongo.com/news/road-of-legends-2026",
+    "https://pokemongo.com/news/pvp-updates-competitors-cup-2026"
   ],
   "seen_fb_posts": [
     "https://www.facebook.com/g47ix/posts/pfbid0oCrVQn1Chb7nKKK9p2fvcQS2jYGXDtPoY5pfJVjbY4RYGV9rv7MNShj6Wja2y5Ybl",
@@ -1212,7 +1225,12 @@
     "https://m.facebook.com/g47ix/posts/pfbid0y91erL2jyd2Edbxjn5SnjNaoZmveHM2sBBdRdqWt4EugoY32e4qDbP3snfLtfDwUl",
     "https://m.facebook.com/g47ix/posts/pfbid02BqdjsKibq4EZM5csmUceCTR8rjQdF4puew7R91ESsatrkG9Q8H9b1GyuHY9MWBw9l",
     "https://m.facebook.com/g47ix/posts/pfbid02bxj3rAuYrG9JFq8qoqCRN9vHNunsAN3956oVhGs4oET3k7w5ADnF3JZEsSXdB2WQl",
-    "https://m.facebook.com/g47ix/posts/pfbid02ASP9w1UUoTEQnweaXWFN1B2hn6cABNrs9ZfWMqieD9YQyJ7jbWDaMu1rnBZynBuMl"
+    "https://m.facebook.com/g47ix/posts/pfbid02ASP9w1UUoTEQnweaXWFN1B2hn6cABNrs9ZfWMqieD9YQyJ7jbWDaMu1rnBZynBuMl",
+    "https://m.facebook.com/g47ix/posts/pfbid02vxfBpyJLpLpqBjkD13Q7ne3hW1JLHNK3wVsKnKFWHWXZV6Wc5vDhUYysZN9tAA9tl",
+    "https://m.facebook.com/g47ix/posts/pfbid02kfPXGaeuZemYZCTuNgoUvwRNjpsNp7rATYHeNS3932Q7wutW7DjmY1CfUmUsEx54l",
+    "https://m.facebook.com/g47ix/posts/pfbid02CHJVk4qYYqu4qzocYZQSLsNs1ibSbHuLAaCqNFdpfUJiWQRVAhUqAbSMxzHACSiql",
+    "https://m.facebook.com/g47ix/posts/pfbid0dKabBbqoHNdCVjYRfiVYwg5vLXu5TbKiuHQBkbzo89L694ThbzDZ59avzm5Xqh5Ql",
+    "https://m.facebook.com/g47ix/posts/pfbid0PRcJ5uu3v2BZDY13smkCjFhq1PbE8GoqYhXfqm8Wk17NDABh6121EYwDomZ97wGul"
   ],
   "posted_infographics": [],
   "bootstrapped": true
