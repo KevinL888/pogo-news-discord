@@ -967,6 +967,30 @@
           "infographic_posted": true
         }
       }
+    },
+    "https://pokemongo.com/news/pokemongo-10th-anniversary-art": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1524478514567446612",
+          "infographic_posted": false
+        },
+        "1472476091108163888": {
+          "thread_id": "1524478520581947633",
+          "infographic_posted": false
+        }
+      }
+    },
+    "https://pokemongo.com/news/2026_ana_red": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1524478526894641273",
+          "infographic_posted": false
+        },
+        "1472476091108163888": {
+          "thread_id": "1524478533680758805",
+          "infographic_posted": false
+        }
+      }
     }
   },
   "seen_urls": [
@@ -1109,7 +1133,9 @@
     "https://pokemongo.com/news/event-calendar-2026",
     "https://pokemongo.com/news/scopely-explore-2026",
     "https://pokemongo.com/news/go-fest-2026-global-final-details",
-    "https://pokemongo.com/news/communityday-august-2026-nickit"
+    "https://pokemongo.com/news/communityday-august-2026-nickit",
+    "https://pokemongo.com/news/pokemongo-10th-anniversary-art",
+    "https://pokemongo.com/news/2026_ana_red"
   ],
   "seen_fb_posts": [
     "https://www.facebook.com/g47ix/posts/pfbid0oCrVQn1Chb7nKKK9p2fvcQS2jYGXDtPoY5pfJVjbY4RYGV9rv7MNShj6Wja2y5Ybl",
