@@ -919,6 +919,54 @@
           "infographic_posted": true
         }
       }
+    },
+    "https://pokemongo.com/news/event-calendar-2026": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1524477971300356101",
+          "infographic_posted": false
+        },
+        "1472476091108163888": {
+          "thread_id": "1524477978401312951",
+          "infographic_posted": false
+        }
+      }
+    },
+    "https://pokemongo.com/news/scopely-explore-2026": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1524477985179172958",
+          "infographic_posted": false
+        },
+        "1472476091108163888": {
+          "thread_id": "1524477991902773319",
+          "infographic_posted": false
+        }
+      }
+    },
+    "https://pokemongo.com/news/go-fest-2026-global-final-details": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1524477998475116775",
+          "infographic_posted": false
+        },
+        "1472476091108163888": {
+          "thread_id": "1524478004493947081",
+          "infographic_posted": false
+        }
+      }
+    },
+    "https://pokemongo.com/news/communityday-august-2026-nickit": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1524478011905413131",
+          "infographic_posted": true
+        },
+        "1472476091108163888": {
+          "thread_id": "1524478018549186674",
+          "infographic_posted": true
+        }
+      }
     }
   },
   "seen_urls": [
@@ -1057,7 +1105,11 @@
     "https://pokemongo.com/news/special-anniversary-pikachu-celebration",
     "https://pokemongo.com/news/happy-birthday-professor-willow-2026",
     "https://pokemongo.com/news/ozone-ascent-2026",
-    "https://pokemongo.com/news/go-pass-july-2026"
+    "https://pokemongo.com/news/go-pass-july-2026",
+    "https://pokemongo.com/news/event-calendar-2026",
+    "https://pokemongo.com/news/scopely-explore-2026",
+    "https://pokemongo.com/news/go-fest-2026-global-final-details",
+    "https://pokemongo.com/news/communityday-august-2026-nickit"
   ],
   "seen_fb_posts": [
     "https://www.facebook.com/g47ix/posts/pfbid0oCrVQn1Chb7nKKK9p2fvcQS2jYGXDtPoY5pfJVjbY4RYGV9rv7MNShj6Wja2y5Ybl",
@@ -1295,7 +1347,12 @@
     "https://m.facebook.com/g47ix/posts/pfbid0FRFWSpF3MvVgJU1BEPW2upyxJAXVwa45AAg46geignEYbNeEawcBDYDWpY9B3zVFl",
     "https://m.facebook.com/g47ix/posts/pfbid02t7KRk1kMypQ8zVWNvNN76G4R9yJYySfEEj33JUnYGHVatqzSaLBMS9yiTgn2ngHVl",
     "https://m.facebook.com/g47ix/posts/pfbid02zc6NRDapraLkJEbZ7hAAbQQmdpcqwB3gt4pMLwdvpXhmb36oo6GpVjM3Tsku5LoHl",
-    "https://m.facebook.com/g47ix/posts/pfbid02pTLmidop1jhXSjHok8JjWjg7DbEttG5oC5UcgSkF12Gphbxx25X9XKRjTp18Zkfyl"
+    "https://m.facebook.com/g47ix/posts/pfbid02pTLmidop1jhXSjHok8JjWjg7DbEttG5oC5UcgSkF12Gphbxx25X9XKRjTp18Zkfyl",
+    "https://m.facebook.com/g47ix/posts/pfbid033gmNUNNDuLwhgGHdWHuo31URTRxP6J2PXwQGJ7i88TtQUWn4qadfw3qyu9BKiSwfl",
+    "https://m.facebook.com/g47ix/posts/pfbid02LjzTx81rff4QMWkmCg6hALsTuFS8Eiha2PtqnAtVv6Z2fYfjcxT3Apjd4ZS3vPKTl",
+    "https://m.facebook.com/g47ix/posts/pfbid029mJACZunGtK6wZ8hYcWTn1rq4Vxr58o4csdZRibF5jq7ugR1PTDyMuamzAsqKXkUl",
+    "https://m.facebook.com/g47ix/posts/pfbid0A74hxUR9jrotV7d3PpBajwdB56z27zaRjyMHiZvMusjKzRgNu8dLoTTUk6JPsh4nl",
+    "https://m.facebook.com/g47ix/posts/pfbid022dVvkfDigTb6Cy2NAF5jzHuW2tTJvzhYsFKFS3SKfHGvVhLRUrDE7tCQuJj689EWl"
   ],
   "posted_infographics": [],
   "bootstrapped": true
