@@ -1027,6 +1027,18 @@
           "infographic_posted": false
         }
       }
+    },
+    "https://pokemongo.com/news/water-festival-2026": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1526345002152759487",
+          "infographic_posted": false
+        },
+        "1472476091108163888": {
+          "thread_id": "1526345008502931457",
+          "infographic_posted": false
+        }
+      }
     }
   },
   "seen_urls": [
@@ -1174,7 +1186,8 @@
     "https://pokemongo.com/news/2026_ana_red",
     "https://pokemongo.com/news/nationaltrust-2026",
     "https://pokemongo.com/news/summer-quest",
-    "https://pokemongo.com/news/ultraunlock-10th-anniversary-edition"
+    "https://pokemongo.com/news/ultraunlock-10th-anniversary-edition",
+    "https://pokemongo.com/news/water-festival-2026"
   ],
   "seen_fb_posts": [
     "https://www.facebook.com/g47ix/posts/pfbid0oCrVQn1Chb7nKKK9p2fvcQS2jYGXDtPoY5pfJVjbY4RYGV9rv7MNShj6Wja2y5Ybl",
