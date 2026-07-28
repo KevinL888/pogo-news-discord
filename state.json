@@ -1123,6 +1123,18 @@
           "infographic_posted": false
         }
       }
+    },
+    "https://pokemongo.com/news/gofest2026-finale-save-the-date": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1531681185141362911",
+          "infographic_posted": true
+        },
+        "1472476091108163888": {
+          "thread_id": "1531681191034355757",
+          "infographic_posted": true
+        }
+      }
     }
   },
   "seen_urls": [
@@ -1278,7 +1290,8 @@
     "https://pokemongo.com/news/summer-marathon-2026",
     "https://pokemongo.com/news/save-the-date-go-wild-area-2026",
     "https://pokemongo.com/news/fire-and-ice-hatch-day-2026",
-    "https://pokemongo.com/news/go-pass-august-2026"
+    "https://pokemongo.com/news/go-pass-august-2026",
+    "https://pokemongo.com/news/gofest2026-finale-save-the-date"
   ],
   "seen_fb_posts": [
     "https://www.facebook.com/g47ix/posts/pfbid0oCrVQn1Chb7nKKK9p2fvcQS2jYGXDtPoY5pfJVjbY4RYGV9rv7MNShj6Wja2y5Ybl",
@@ -1541,7 +1554,8 @@
     "https://m.facebook.com/g47ix/posts/pfbid02ia5JgXedFDx4rNZgj5TAoZF81XoZ3DjY9iaUv5aXdTE87Wn2jDYb8kdNE3VU3Fxxl",
     "https://m.facebook.com/g47ix/posts/pfbid02pNDvxLivmQuAZDmqKquxx9WodfuiV3wuCozFE4wY1zwktsCQXmfdjFhrVQnCUwfol",
     "https://m.facebook.com/g47ix/posts/pfbid0mJkwNEBKbXoiycSKMaLKk1TvQLykHmErnJde7WZWjtXH6NQheuefi1zHMJdoZEtYl",
-    "https://m.facebook.com/g47ix/posts/pfbid0oSiHij5iyYz5CFRiwrLoJS9dHGtvZHSLsCP5kheTRUSEcVvNPgXSW2hZQANpVZHKl"
+    "https://m.facebook.com/g47ix/posts/pfbid0oSiHij5iyYz5CFRiwrLoJS9dHGtvZHSLsCP5kheTRUSEcVvNPgXSW2hZQANpVZHKl",
+    "https://m.facebook.com/g47ix/posts/pfbid0pVS58B5KK4abXcVW6hGsUPuSVLeJ2C6MFLtHs4DuraAgrCnH8EaUKFas9yhTFV78l"
   ],
   "posted_infographics": [],
   "bootstrapped": true
