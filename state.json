@@ -60,11 +60,11 @@
       "channels": {
         "1086323326999343297": {
           "thread_id": "1473654665957871823",
-          "infographic_posted": false
+          "infographic_posted": true
         },
         "1472476091108163888": {
           "thread_id": "1473654672760897717",
-          "infographic_posted": false
+          "infographic_posted": true
         }
       }
     },
@@ -300,11 +300,839 @@
       "channels": {
         "1086323326999343297": {
           "thread_id": "1483162007674032289",
-          "infographic_posted": false
+          "infographic_posted": true
         },
         "1472476091108163888": {
           "thread_id": "1483162014783246519",
+          "infographic_posted": true
+        }
+      }
+    },
+    "https://pokemongo.com/news/gofest-chicago-community-engagement-meeting": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1484362485774418002",
           "infographic_posted": false
+        },
+        "1472476091108163888": {
+          "thread_id": "1484362492460404877",
+          "infographic_posted": false
+        }
+      }
+    },
+    "https://pokemongo.com/news/sustainability-week-2026": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1486059845273653258",
+          "infographic_posted": true
+        },
+        "1472476091108163888": {
+          "thread_id": "1486059851837735013",
+          "infographic_posted": true
+        }
+      }
+    },
+    "https://pokemongo.com/news/an-egg-cellent-adventure-2026": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1486408522747871393",
+          "infographic_posted": true
+        },
+        "1472476091108163888": {
+          "thread_id": "1486408528896720926",
+          "infographic_posted": true
+        }
+      }
+    },
+    "https://pokemongo.com/news/replay-riolu-hatch-day-2026": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1486423519515512942",
+          "infographic_posted": true
+        },
+        "1472476091108163888": {
+          "thread_id": "1486423527308394750",
+          "infographic_posted": true
+        }
+      }
+    },
+    "https://pokemongo.com/news/go-pass-april-2026": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1488638239425302849",
+          "infographic_posted": false
+        },
+        "1472476091108163888": {
+          "thread_id": "1488638245959893084",
+          "infographic_posted": false
+        }
+      }
+    },
+    "https://pokemongo.com/news/replay-go-bigger-2026": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1490761192149614765",
+          "infographic_posted": true
+        },
+        "1472476091108163888": {
+          "thread_id": "1490761198248132839",
+          "infographic_posted": true
+        }
+      }
+    },
+    "https://pokemongo.com/news/steeled-resolve-2026": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1491133891216539851",
+          "infographic_posted": true
+        },
+        "1472476091108163888": {
+          "thread_id": "1491133897562656969",
+          "infographic_posted": true
+        }
+      }
+    },
+    "https://pokemongo.com/news/steeled-resolve-taken-over-2026": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1491175775326703696",
+          "infographic_posted": true
+        },
+        "1472476091108163888": {
+          "thread_id": "1491175780875636947",
+          "infographic_posted": true
+        }
+      }
+    },
+    "https://pokemongo.com/news/gofest-2026-chicago-copenhagen-proposals": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1491219026418860193",
+          "infographic_posted": true
+        },
+        "1472476091108163888": {
+          "thread_id": "1491219032685154315",
+          "infographic_posted": true
+        }
+      }
+    },
+    "https://pokemongo.com/news/mlb-2026": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1491529812920111144",
+          "infographic_posted": false
+        },
+        "1472476091108163888": {
+          "thread_id": "1491529819903623239",
+          "infographic_posted": false
+        }
+      }
+    },
+    "https://pokemongo.com/news/shadow-entei-raid-day-2026": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1491857077973286992",
+          "infographic_posted": true
+        },
+        "1472476091108163888": {
+          "thread_id": "1491857084017541120",
+          "infographic_posted": true
+        }
+      }
+    },
+    "https://pokemongo.com/news/communityday-may-2026-lechonk": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1493303966602236044",
+          "infographic_posted": true
+        },
+        "1472476091108163888": {
+          "thread_id": "1493303972847681686",
+          "infographic_posted": true
+        }
+      }
+    },
+    "https://pokemongo.com/news/spring-marathon-2026": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1496202130497732799",
+          "infographic_posted": true
+        },
+        "1472476091108163888": {
+          "thread_id": "1496202137183715451",
+          "infographic_posted": true
+        }
+      }
+    },
+    "https://pokemongo.com/news/save-the-date-s23": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1496563998366372112",
+          "infographic_posted": true
+        },
+        "1472476091108163888": {
+          "thread_id": "1496564004804366607",
+          "infographic_posted": true
+        }
+      }
+    },
+    "https://pokemongo.com/news/communitydayclassic-deino-may-2026": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1496935143263178906",
+          "infographic_posted": true
+        },
+        "1472476091108163888": {
+          "thread_id": "1496935149445578792",
+          "infographic_posted": true
+        }
+      }
+    },
+    "https://pokemongo.com/news/go-pass-may-2026": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1497765471246749759",
+          "infographic_posted": true
+        },
+        "1472476091108163888": {
+          "thread_id": "1497765477462835240",
+          "infographic_posted": true
+        }
+      }
+    },
+    "https://pokemongo.com/news/falinks-super-mega-raid-day-2026": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1498380096833327205",
+          "infographic_posted": true
+        },
+        "1472476091108163888": {
+          "thread_id": "1498380103602929837",
+          "infographic_posted": true
+        }
+      }
+    },
+    "https://pokemongo.com/news/mega-mewtwo-gofest-2026": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1498732964551594135",
+          "infographic_posted": true
+        },
+        "1472476091108163888": {
+          "thread_id": "1498732971505619024",
+          "infographic_posted": true
+        }
+      }
+    },
+    "https://pokemongo.com/news/gofest-2026-copenhagen-lego": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1498958347250958356",
+          "infographic_posted": true
+        },
+        "1472476091108163888": {
+          "thread_id": "1498958353462984816",
+          "infographic_posted": true
+        }
+      }
+    },
+    "https://pokemongo.com/news/pokemon-x-target-2026": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1500183148837994638",
+          "infographic_posted": false
+        },
+        "1472476091108163888": {
+          "thread_id": "1500183155401822420",
+          "infographic_posted": false
+        }
+      }
+    },
+    "https://pokemongo.com/news/community-celebrations-go-fest-2026": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1504547589649862787",
+          "infographic_posted": true
+        },
+        "1472476091108163888": {
+          "thread_id": "1504547595677204502",
+          "infographic_posted": true
+        }
+      }
+    },
+    "https://pokemongo.com/news/global-events-gofest2026-overlays": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1506026541140676790",
+          "infographic_posted": true
+        },
+        "1472476091108163888": {
+          "thread_id": "1506026548363530260",
+          "infographic_posted": true
+        }
+      }
+    },
+    "https://pokemongo.com/news/gofest-tokyo-super-mega-raid": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1506293840737337565",
+          "infographic_posted": true
+        },
+        "1472476091108163888": {
+          "thread_id": "1506293848656056340",
+          "infographic_posted": true
+        }
+      }
+    },
+    "https://pokemongo.com/news/100-thieves-mega-mewtwo-go-fest-2026": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1507937373588164610",
+          "infographic_posted": true
+        },
+        "1472476091108163888": {
+          "thread_id": "1507937380005449768",
+          "infographic_posted": true
+        }
+      }
+    },
+    "https://pokemongo.com/news/pgo-pokemon-fossil-musuem-chicago-2026": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1507937386007625768",
+          "infographic_posted": true
+        },
+        "1472476091108163888": {
+          "thread_id": "1507937392072593529",
+          "infographic_posted": true
+        }
+      }
+    },
+    "https://pokemongo.com/news/go-battle-league-forever-forward": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1508835292923170847",
+          "infographic_posted": true
+        },
+        "1472476091108163888": {
+          "thread_id": "1508835299118153932",
+          "infographic_posted": true
+        }
+      }
+    },
+    "https://pokemongo.com/news/communityday-june-2026-frigibax": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1508887827700777002",
+          "infographic_posted": true
+        },
+        "1472476091108163888": {
+          "thread_id": "1508887833912541325",
+          "infographic_posted": true
+        }
+      }
+    },
+    "https://pokemongo.com/news/go-pass-june-2026": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1509249838728876072",
+          "infographic_posted": false
+        },
+        "1472476091108163888": {
+          "thread_id": "1509249845268058353",
+          "infographic_posted": false
+        }
+      }
+    },
+    "https://pokemongo.com/news/know-before-you-go-gofest-2026-in-person-events": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1509448174006309026",
+          "infographic_posted": false
+        },
+        "1472476091108163888": {
+          "thread_id": "1509448180662796298",
+          "infographic_posted": false
+        }
+      }
+    },
+    "https://pokemongo.com/news/go-fest-chicago-2026-community": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1509448186723569726",
+          "infographic_posted": false
+        },
+        "1472476091108163888": {
+          "thread_id": "1509448192876609566",
+          "infographic_posted": false
+        }
+      }
+    },
+    "https://pokemongo.com/news/pokemon-run-30-2026": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1512245883998306356",
+          "infographic_posted": false
+        },
+        "1472476091108163888": {
+          "thread_id": "1512245890545619014",
+          "infographic_posted": false
+        }
+      }
+    },
+    "https://pokemongo.com/news/gofest-chicago-super-mega-raid": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1512245896346210455",
+          "infographic_posted": true
+        },
+        "1472476091108163888": {
+          "thread_id": "1512245902348390481",
+          "infographic_posted": true
+        }
+      }
+    },
+    "https://pokemongo.com/news/skarmory-super-mega-raid-day-2026": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1512245908786515998",
+          "infographic_posted": false
+        },
+        "1472476091108163888": {
+          "thread_id": "1512245914855673940",
+          "infographic_posted": false
+        }
+      }
+    },
+    "https://pokemongo.com/news/gofest-chicago-saturday-update": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1512932986276937801",
+          "infographic_posted": false
+        },
+        "1472476091108163888": {
+          "thread_id": "1512932992799080620",
+          "infographic_posted": false
+        }
+      }
+    },
+    "https://pokemongo.com/news/flying-taxi-2026": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1513973166697877545",
+          "infographic_posted": true
+        },
+        "1472476091108163888": {
+          "thread_id": "1513973174662992043",
+          "infographic_posted": true
+        }
+      }
+    },
+    "https://pokemongo.com/news/flying-taxi-taken-over-2026": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1514003144546451519",
+          "infographic_posted": true
+        },
+        "1472476091108163888": {
+          "thread_id": "1514003150674071722",
+          "infographic_posted": true
+        }
+      }
+    },
+    "https://pokemongo.com/news/gofest-copenhagen-super-mega-raid": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1514224329188179978",
+          "infographic_posted": true
+        },
+        "1472476091108163888": {
+          "thread_id": "1514224336104329346",
+          "infographic_posted": true
+        }
+      }
+    },
+    "https://pokemongo.com/news/choose-your-path-forever-forward-2026": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1514326543860498536",
+          "infographic_posted": false
+        },
+        "1472476091108163888": {
+          "thread_id": "1514326550177386657",
+          "infographic_posted": false
+        }
+      }
+    },
+    "https://pokemongo.com/news/10th-anniversary-party": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1514701348996907183",
+          "infographic_posted": true
+        },
+        "1472476091108163888": {
+          "thread_id": "1514701356248731690",
+          "infographic_posted": true
+        }
+      }
+    },
+    "https://pokemongo.com/news/lego-pokemon-go-2026": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1516015354739163237",
+          "infographic_posted": false
+        },
+        "1472476091108163888": {
+          "thread_id": "1516015361009651822",
+          "infographic_posted": false
+        }
+      }
+    },
+    "https://pokemongo.com/news/raichu-super-mega-raid-day-2026": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1516165315057422529",
+          "infographic_posted": true
+        },
+        "1472476091108163888": {
+          "thread_id": "1516165322867081419",
+          "infographic_posted": true
+        }
+      }
+    },
+    "https://pokemongo.com/news/save-the-date-apac-30th-anniversary-2026": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1516396557472104538",
+          "infographic_posted": false
+        },
+        "1472476091108163888": {
+          "thread_id": "1516396563600113696",
+          "infographic_posted": false
+        }
+      }
+    },
+    "https://pokemongo.com/news/communityday-july-2026-sobble": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1516525248328106147",
+          "infographic_posted": true
+        },
+        "1472476091108163888": {
+          "thread_id": "1516525256284700713",
+          "infographic_posted": true
+        }
+      }
+    },
+    "https://pokemongo.com/news/community-celebrations-go-fest-2026-details-en": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1516885131837702205",
+          "infographic_posted": false
+        },
+        "1472476091108163888": {
+          "thread_id": "1516885138183553054",
+          "infographic_posted": false
+        }
+      }
+    },
+    "https://pokemongo.com/news/community-celebrations-go-fest-2026-details-asia-pacific": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1517034403002581175",
+          "infographic_posted": false
+        },
+        "1472476091108163888": {
+          "thread_id": "1517034408929136700",
+          "infographic_posted": false
+        }
+      }
+    },
+    "https://pokemongo.com/news/road-of-legends-2026": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1517277333239894051",
+          "infographic_posted": true
+        },
+        "1472476091108163888": {
+          "thread_id": "1517277339933737141",
+          "infographic_posted": true
+        }
+      }
+    },
+    "https://pokemongo.com/news/pvp-updates-competitors-cup-2026": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1519368183289479400",
+          "infographic_posted": false
+        },
+        "1472476091108163888": {
+          "thread_id": "1519368190201696298",
+          "infographic_posted": false
+        }
+      }
+    },
+    "https://pokemongo.com/news/special-anniversary-pikachu-celebration": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1519771636776177666",
+          "infographic_posted": true
+        },
+        "1472476091108163888": {
+          "thread_id": "1519771642954514463",
+          "infographic_posted": true
+        }
+      }
+    },
+    "https://pokemongo.com/news/happy-birthday-professor-willow-2026": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1519957366571794447",
+          "infographic_posted": true
+        },
+        "1472476091108163888": {
+          "thread_id": "1519957373504983192",
+          "infographic_posted": true
+        }
+      }
+    },
+    "https://pokemongo.com/news/ozone-ascent-2026": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1519957379687518270",
+          "infographic_posted": true
+        },
+        "1472476091108163888": {
+          "thread_id": "1519957385794289755",
+          "infographic_posted": true
+        }
+      }
+    },
+    "https://pokemongo.com/news/go-pass-july-2026": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1521576460408717326",
+          "infographic_posted": true
+        },
+        "1472476091108163888": {
+          "thread_id": "1521576468138819585",
+          "infographic_posted": true
+        }
+      }
+    },
+    "https://pokemongo.com/news/event-calendar-2026": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1524477971300356101",
+          "infographic_posted": false
+        },
+        "1472476091108163888": {
+          "thread_id": "1524477978401312951",
+          "infographic_posted": false
+        }
+      }
+    },
+    "https://pokemongo.com/news/scopely-explore-2026": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1524477985179172958",
+          "infographic_posted": false
+        },
+        "1472476091108163888": {
+          "thread_id": "1524477991902773319",
+          "infographic_posted": false
+        }
+      }
+    },
+    "https://pokemongo.com/news/go-fest-2026-global-final-details": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1524477998475116775",
+          "infographic_posted": false
+        },
+        "1472476091108163888": {
+          "thread_id": "1524478004493947081",
+          "infographic_posted": false
+        }
+      }
+    },
+    "https://pokemongo.com/news/communityday-august-2026-nickit": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1524478011905413131",
+          "infographic_posted": true
+        },
+        "1472476091108163888": {
+          "thread_id": "1524478018549186674",
+          "infographic_posted": true
+        }
+      }
+    },
+    "https://pokemongo.com/news/pokemongo-10th-anniversary-art": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1524478514567446612",
+          "infographic_posted": false
+        },
+        "1472476091108163888": {
+          "thread_id": "1524478520581947633",
+          "infographic_posted": false
+        }
+      }
+    },
+    "https://pokemongo.com/news/2026_ana_red": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1524478526894641273",
+          "infographic_posted": false
+        },
+        "1472476091108163888": {
+          "thread_id": "1524478533680758805",
+          "infographic_posted": false
+        }
+      }
+    },
+    "https://pokemongo.com/news/nationaltrust-2026": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1526138924022501438",
+          "infographic_posted": true
+        },
+        "1472476091108163888": {
+          "thread_id": "1526138930565484645",
+          "infographic_posted": true
+        }
+      }
+    },
+    "https://pokemongo.com/news/summer-quest": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1526138937981014047",
+          "infographic_posted": false
+        },
+        "1472476091108163888": {
+          "thread_id": "1526138944004296808",
+          "infographic_posted": false
+        }
+      }
+    },
+    "https://pokemongo.com/news/ultraunlock-10th-anniversary-edition": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1526294068777320449",
+          "infographic_posted": true
+        },
+        "1472476091108163888": {
+          "thread_id": "1526294076583051387",
+          "infographic_posted": true
+        }
+      }
+    },
+    "https://pokemongo.com/news/water-festival-2026": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1526345002152759487",
+          "infographic_posted": false
+        },
+        "1472476091108163888": {
+          "thread_id": "1526345008502931457",
+          "infographic_posted": false
+        }
+      }
+    },
+    "https://pokemongo.com/news/starmie-super-mega-raid-day-2026": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1526644148927729685",
+          "infographic_posted": true
+        },
+        "1472476091108163888": {
+          "thread_id": "1526644155076579429",
+          "infographic_posted": true
+        }
+      }
+    },
+    "https://pokemongo.com/news/gigantamax-rillaboom-max-battle-day-2026": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1526688549976674335",
+          "infographic_posted": true
+        },
+        "1472476091108163888": {
+          "thread_id": "1526688555970330747",
+          "infographic_posted": true
+        }
+      }
+    },
+    "https://pokemongo.com/news/gofest2026-global-update": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1526882677985120307",
+          "infographic_posted": true
+        },
+        "1472476091108163888": {
+          "thread_id": "1526882683920056406",
+          "infographic_posted": true
+        }
+      }
+    },
+    "https://pokemongo.com/news/summer-marathon-2026": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1527007905772212316",
+          "infographic_posted": false
+        },
+        "1472476091108163888": {
+          "thread_id": "1527007912331841607",
+          "infographic_posted": false
+        }
+      }
+    },
+    "https://pokemongo.com/news/save-the-date-go-wild-area-2026": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1529742440821555302",
+          "infographic_posted": false
+        },
+        "1472476091108163888": {
+          "thread_id": "1529742446928330855",
+          "infographic_posted": false
+        }
+      }
+    },
+    "https://pokemongo.com/news/fire-and-ice-hatch-day-2026": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1529742453555466261",
+          "infographic_posted": false
+        },
+        "1472476091108163888": {
+          "thread_id": "1529742461206007839",
+          "infographic_posted": false
+        }
+      }
+    },
+    "https://pokemongo.com/news/go-pass-august-2026": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1529742467715563541",
+          "infographic_posted": false
+        },
+        "1472476091108163888": {
+          "thread_id": "1529742473851572296",
+          "infographic_posted": false
+        }
+      }
+    },
+    "https://pokemongo.com/news/gofest2026-finale-save-the-date": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1531681185141362911",
+          "infographic_posted": true
+        },
+        "1472476091108163888": {
+          "thread_id": "1531681191034355757",
+          "infographic_posted": true
         }
       }
     }
@@ -394,7 +1222,76 @@
     "https://pokemongo.com/news/go-memories",
     "https://pokemongo.com/news/fashion-raid-day-2026",
     "https://pokemongo.com/news/night-treats-2026",
-    "https://pokemongo.com/news/communityday-april-2026-tinkatink"
+    "https://pokemongo.com/news/communityday-april-2026-tinkatink",
+    "https://pokemongo.com/news/gofest-chicago-community-engagement-meeting",
+    "https://pokemongo.com/news/sustainability-week-2026",
+    "https://pokemongo.com/news/an-egg-cellent-adventure-2026",
+    "https://pokemongo.com/news/replay-riolu-hatch-day-2026",
+    "https://pokemongo.com/news/go-pass-april-2026",
+    "https://pokemongo.com/news/replay-go-bigger-2026",
+    "https://pokemongo.com/news/steeled-resolve-2026",
+    "https://pokemongo.com/news/steeled-resolve-taken-over-2026",
+    "https://pokemongo.com/news/gofest-2026-chicago-copenhagen-proposals",
+    "https://pokemongo.com/news/mlb-2026",
+    "https://pokemongo.com/news/shadow-entei-raid-day-2026",
+    "https://pokemongo.com/news/communityday-may-2026-lechonk",
+    "https://pokemongo.com/news/spring-marathon-2026",
+    "https://pokemongo.com/news/save-the-date-s23",
+    "https://pokemongo.com/news/communitydayclassic-deino-may-2026",
+    "https://pokemongo.com/news/go-pass-may-2026",
+    "https://pokemongo.com/news/falinks-super-mega-raid-day-2026",
+    "https://pokemongo.com/news/mega-mewtwo-gofest-2026",
+    "https://pokemongo.com/news/gofest-2026-copenhagen-lego",
+    "https://pokemongo.com/news/pokemon-x-target-2026",
+    "https://pokemongo.com/news/community-celebrations-go-fest-2026",
+    "https://pokemongo.com/news/global-events-gofest2026-overlays",
+    "https://pokemongo.com/news/gofest-tokyo-super-mega-raid",
+    "https://pokemongo.com/news/100-thieves-mega-mewtwo-go-fest-2026",
+    "https://pokemongo.com/news/pgo-pokemon-fossil-musuem-chicago-2026",
+    "https://pokemongo.com/news/go-battle-league-forever-forward",
+    "https://pokemongo.com/news/communityday-june-2026-frigibax",
+    "https://pokemongo.com/news/go-pass-june-2026",
+    "https://pokemongo.com/news/know-before-you-go-gofest-2026-in-person-events",
+    "https://pokemongo.com/news/go-fest-chicago-2026-community",
+    "https://pokemongo.com/news/pokemon-run-30-2026",
+    "https://pokemongo.com/news/gofest-chicago-super-mega-raid",
+    "https://pokemongo.com/news/skarmory-super-mega-raid-day-2026",
+    "https://pokemongo.com/news/gofest-chicago-saturday-update",
+    "https://pokemongo.com/news/flying-taxi-2026",
+    "https://pokemongo.com/news/flying-taxi-taken-over-2026",
+    "https://pokemongo.com/news/gofest-copenhagen-super-mega-raid",
+    "https://pokemongo.com/news/choose-your-path-forever-forward-2026",
+    "https://pokemongo.com/news/10th-anniversary-party",
+    "https://pokemongo.com/news/lego-pokemon-go-2026",
+    "https://pokemongo.com/news/raichu-super-mega-raid-day-2026",
+    "https://pokemongo.com/news/save-the-date-apac-30th-anniversary-2026",
+    "https://pokemongo.com/news/communityday-july-2026-sobble",
+    "https://pokemongo.com/news/community-celebrations-go-fest-2026-details-en",
+    "https://pokemongo.com/news/community-celebrations-go-fest-2026-details-asia-pacific",
+    "https://pokemongo.com/news/road-of-legends-2026",
+    "https://pokemongo.com/news/pvp-updates-competitors-cup-2026",
+    "https://pokemongo.com/news/special-anniversary-pikachu-celebration",
+    "https://pokemongo.com/news/happy-birthday-professor-willow-2026",
+    "https://pokemongo.com/news/ozone-ascent-2026",
+    "https://pokemongo.com/news/go-pass-july-2026",
+    "https://pokemongo.com/news/event-calendar-2026",
+    "https://pokemongo.com/news/scopely-explore-2026",
+    "https://pokemongo.com/news/go-fest-2026-global-final-details",
+    "https://pokemongo.com/news/communityday-august-2026-nickit",
+    "https://pokemongo.com/news/pokemongo-10th-anniversary-art",
+    "https://pokemongo.com/news/2026_ana_red",
+    "https://pokemongo.com/news/nationaltrust-2026",
+    "https://pokemongo.com/news/summer-quest",
+    "https://pokemongo.com/news/ultraunlock-10th-anniversary-edition",
+    "https://pokemongo.com/news/water-festival-2026",
+    "https://pokemongo.com/news/starmie-super-mega-raid-day-2026",
+    "https://pokemongo.com/news/gigantamax-rillaboom-max-battle-day-2026",
+    "https://pokemongo.com/news/gofest2026-global-update",
+    "https://pokemongo.com/news/summer-marathon-2026",
+    "https://pokemongo.com/news/save-the-date-go-wild-area-2026",
+    "https://pokemongo.com/news/fire-and-ice-hatch-day-2026",
+    "https://pokemongo.com/news/go-pass-august-2026",
+    "https://pokemongo.com/news/gofest2026-finale-save-the-date"
   ],
   "seen_fb_posts": [
     "https://www.facebook.com/g47ix/posts/pfbid0oCrVQn1Chb7nKKK9p2fvcQS2jYGXDtPoY5pfJVjbY4RYGV9rv7MNShj6Wja2y5Ybl",
@@ -484,7 +1381,182 @@
     "https://www.facebook.com/g47ix/posts/pfbid021hheXwF8kHtiJCB1Ab9uvRhwwine6WfGdTK32rrxk2joL5KWNf3hZR78xb7Bki6Sl",
     "https://www.facebook.com/g47ix/posts/pfbid0JJpwpxRw9bkeizVC4Ae81igGELZoaGxByrXD1KA1MsV3Ya7yXBnXP8HKYHx6BYGel",
     "https://www.facebook.com/g47ix/posts/pfbid06cXPXth2ZjNxosZJ2TeWGEeXZ9r3gTUkwiSBE8JtTxqJXorHFLcQMvj6Pz6AHDYbl",
-    "https://www.facebook.com/g47ix/posts/pfbid022QDnAY68DD9FSdwCo4YgWTxxomg2Q3spc1zaMHNdHs6Y4oEm5Ajqv2mJ4ao7MfFgl"
+    "https://www.facebook.com/g47ix/posts/pfbid022QDnAY68DD9FSdwCo4YgWTxxomg2Q3spc1zaMHNdHs6Y4oEm5Ajqv2mJ4ao7MfFgl",
+    "https://www.facebook.com/g47ix/posts/pfbid05SVEv6mdsTsoKRKkf1NT9yKH1XZeMGyoykQiSRuy2zZ9wRpoS36wNS4kBYvQtCk2l",
+    "https://www.facebook.com/g47ix/posts/pfbid02CXSkNkaVjYEJedveun6HnhDpGTrqc8gN5mE4k2QtcCoZ8CwMBJ2L7KhHXicS8U6yl",
+    "https://www.facebook.com/g47ix/posts/pfbid02MkTvjd2PpB6T3G3MoMyqoTJVQqVXtQdaTJTPKNJFsgD5hSGTP6ERZ6neEVymJ5Q7l",
+    "https://www.facebook.com/g47ix/posts/pfbid0oJtJhZceTEHgJ2xeXuH8rG76C6Lgp7nWNdw46HMi1bY1XN3B5TJ8J6zzD2HNsMXvl",
+    "https://www.facebook.com/g47ix/posts/pfbid02hGyVHkuUgotbdP4NPxHbSpuYVuLgbXpq6nnnZsAt96LQ6h8vWcKraH2sFxPzXT4cl",
+    "https://www.facebook.com/g47ix/posts/pfbid0fkWxRm2bVkKsQQAWu1Nuyx9rakEDahak1oSvB82c1AeduzseUtpKvhhemCMJ7tFml",
+    "https://www.facebook.com/g47ix/posts/pfbid0yB3CxHEKYRGs13yKL7PFbY5wwaQaiZdSJ8qM58M6DQ9LZr5uoxuWE9yrtmwHbrfMl",
+    "https://www.facebook.com/g47ix/posts/pfbid0qP24PufLhTryHRccavBoULewRhWk9N2hAsuMuuz8EgXgsjYFb14mdKxGsAc5EMNCl",
+    "https://www.facebook.com/g47ix/posts/pfbid0fxkTcAUezZDS23h53Gy13QEbSjeabwNzSSHaZpNXvMjHPt1e3ky2nQPK6Ea3uB8Ql",
+    "https://www.facebook.com/g47ix/posts/pfbid02LKgqV7h8fgVXfgfLnDNA8RRZr2vtfxMz82nMvjTH2oC5eTEkzuxxfzwsZQ464AWLl",
+    "https://www.facebook.com/g47ix/posts/pfbid02QdtUvfRuQHeNbSqHfAo2fd15GHD5MquXqLpqBJiHcsbVjhfygmfnXpGMdo79XVo6l",
+    "https://www.facebook.com/g47ix/posts/pfbid06VsKqay5rHihYkaz3pHUHtic4W8t74v4TnQrJqaHySquEa6SdxPXXQFLwvvvADVal",
+    "https://www.facebook.com/g47ix/posts/pfbid02JS3PTLri71Assda8auMtQF3tNpF1Wbgk1Yi52FSSVm5n2amb3SR6E6psYTDhREEVl",
+    "https://www.facebook.com/g47ix/posts/pfbid02anKE63nCVicVozPNfr9iLutG8JGx4myU7vEs48UDoBy63XCHpeKxEX5gfmrDhynfl",
+    "https://www.facebook.com/g47ix/posts/pfbid02h2ZirJEdtybM2MpUhTAVjkk1mKWaWUYxsen9TfLzXNScX7i2mZdQqSyLtaMHrKFUl",
+    "https://www.facebook.com/g47ix/posts/pfbid02fQyNf5hyxqphd9NDLSXJt8CiLkdB39ipgGz7V3t6mrRovutJXaKwmDMxpFppDp3sl",
+    "https://www.facebook.com/g47ix/posts/pfbid04h91msevRJejbLCQRDsBtApcv5qCwqXuHKRjBxWK9Uvv4ZheFNWDFreQ9oGHQpnCl",
+    "https://www.facebook.com/g47ix/posts/pfbid07yPC4A3RUnZNS7VgVeBpxY5RYcu3ZYCbgyihF8h8FkgXhYVerHPd4xpnn3xLGF78l",
+    "https://www.facebook.com/g47ix/posts/pfbid037uEM8mvZVpaoS5r4uJPT71jdxxcGJTWCkdHGpCzU4Lp6F2gkx5kfEmVeLEKPCKtGl",
+    "https://www.facebook.com/g47ix/posts/pfbid037uEM8mvZVpaoS5r4uJPT71jdxxcGJTWCkdHGpCzU4Lp6F2gkx5kfEmVeLEKPCKtGl",
+    "https://www.facebook.com/reel/818456447733255/",
+    "https://www.facebook.com/reel/1245522884316670/",
+    "https://www.facebook.com/g47ix/posts/pfbid038DuX2fd867ryqbgQXqVGeZUbKAaBTwPCddjGi4sY3GNHhUaHoBY8cZVKcB8kVUp4l",
+    "https://www.facebook.com/g47ix/posts/pfbid02Lpxfs1zqhsHMntVyeEDth1rn6uLJ3JVQFiqKuLpV8QeJACBfbyjyzHPLCRJk1QmHl",
+    "https://www.facebook.com/g47ix/posts/pfbid02myTpxb3PSUm9g3y1mJwKfHRBm5sUCfFynrUDrShENTyTLVtfhB7HB1FujdH8Zu14l",
+    "https://www.facebook.com/g47ix/posts/pfbid02gHYJNoGSWnHTXxZ1KP71i4WLJ1weuWKqKVez8ieSrJevqvm9EPajWY3CzfRDGtFhl",
+    "https://www.facebook.com/g47ix/posts/pfbid0Axp6s7KSHbs6dj1VXnWiSDi8pEnpjZ2ePpDpehAKP2iiJmPgt9MCewEyUXbVvvSPl",
+    "https://www.facebook.com/g47ix/posts/pfbid02CC1vz2WL9ns76eagsUyk5oZBWcBPci9LhKF9TMi8QPaRQW3xT9ssrB5Apf4QHDqCl",
+    "https://www.facebook.com/g47ix/posts/pfbid0vypNgsktnQQ6zsPRSWT1AfhdJVQpKfZkiaYmJhNJASiAjkVdkLwPT27FeRwv1rkSl",
+    "https://www.facebook.com/g47ix/posts/pfbid02kWVuScn2gienNTk8YA2fbZyDycQBsbtPZFwJrSsJ5A6vR8afTCdgrs8GF2wDVc1zl",
+    "https://www.facebook.com/g47ix/posts/pfbid0g29KB9fgZnwjaXeCvBEGKXwiPAUQvoF2tcUUYr6AQ7dN4nAD951eLVLt5rXnPc5nl",
+    "https://www.facebook.com/g47ix/posts/pfbid0wLtyJvyoKKodmyrCGBzv917mXugBevyeL1Zqf4KeZqg4DW42np8CTAWKbPWHDHrml",
+    "https://www.facebook.com/g47ix/posts/pfbid0mnz2bUF6JXYaNeaFsXpeDDjnuYdMyZ3X5mHcT7YwcaCi8EkV2QjDLom9YUedDihxl",
+    "https://www.facebook.com/g47ix/posts/pfbid029aeyLFCbzH1cCkiAD256ovDWawp9UgkTL1qMzN7vS1qK1SGryj6GcZ9mtjEz582ol",
+    "https://www.facebook.com/reel/1332791195576874/",
+    "https://www.facebook.com/reel/1667195804706220/",
+    "https://www.facebook.com/g47ix/posts/pfbid0VXxQP92VMLJXNGFNpMZ1uE7P3mktguCEiPEwFdeRiD2K4fjCU76g5LkGppjUxu2Vl",
+    "https://www.facebook.com/g47ix/posts/pfbid0eGUPGM8Jy7QMU8vVzJWDpas9dafrrpQF4PqxGgurUuGwYQHfDtFV19ZM6BpfZTuUl",
+    "https://www.facebook.com/g47ix/posts/pfbid02pwuq4f5qFPXMihr8LmZZaErQRxniDpRKQ9VMMiUceCDCV15rWeu5KdrfHrjJ4Nzfl",
+    "https://www.facebook.com/g47ix/posts/pfbid0HDBEEPCrh6zsMx3dh8Y2sb66SC5RePjvn3shTkMKzXCprtC8y3ozUPdLbtPYdnaGl",
+    "https://www.facebook.com/g47ix/posts/pfbid0kvXqDig27bs6V6B9VprDUP4mRTdoqHj5wx4gkAxPJrFnmpyXH9S8wyfUSY9w7bc9l",
+    "https://www.facebook.com/g47ix/posts/pfbid0ygYJYEPzaw2vy6ybwcWBngcXETP8cE7iqokbmoWQ4xA5bvJV5BH9H64RE51JWvCRl",
+    "https://www.facebook.com/g47ix/posts/pfbid04SBu5TXWu9npoWuM2BB8WitcYvzNNovYmNNjJQo6Yqz2CpaVipqTqoh4B5SAm1JTl",
+    "https://www.facebook.com/g47ix/posts/pfbid0382n5J7GjDyRCjvKY4S7whWUs1Hto1aYqg4tbWbu7ubstXp4UfJLnwzF5zcAdYP7zl",
+    "https://www.facebook.com/g47ix/posts/pfbid026BCxhhktDEt27Fo2wZUC9MAtRTTsRyBdzkyPGNSDKnbRDzKPxVevzcakUVa13J7zl",
+    "https://www.facebook.com/g47ix/posts/pfbid02A7g6xvJWCUjfY8WvFTn8tPqqkWTuNkcy79gCPMzXjxrKKZc6Jaw3WFdkCgjv7rDhl",
+    "https://www.facebook.com/g47ix/posts/pfbid0257BAhphzjiLfEZCUeFaHWBTB6qtFpb4x8YAGNpgWp5VGB7XoyPNCyNAKmzKRMLTwl",
+    "https://www.facebook.com/g47ix/posts/pfbid0ephC7FXjPkjMWzornZgxbMBjymNqNGEk2ud1EiW2orEbETw6G4kVwPJCCxZBC1C9l",
+    "https://www.facebook.com/g47ix/posts/pfbid026A1MoBNfWvGMWeo6XEqyodn6Ee1rWhA6cXycG1mPcfd3XaxMSdJmAQQkE2iQcNyEl",
+    "https://www.facebook.com/g47ix/posts/pfbid035SHfXmohHnDHmd5KCi7euvpj2WSsmdm56RWKjE4GigVHfcKkpd8R5jFEw4iDu35sl",
+    "https://www.facebook.com/g47ix/posts/pfbid0JxCbgCjPq25SscnnPUKYD5APatpTqEjFDNMFnqLU2piMsaQfnJp8zR8JXrXiS8Xal",
+    "https://www.facebook.com/g47ix/posts/pfbid0hFo5sGr43aeSoBQCM33bYNyGVJDrLnDZhT3HxmQbc3P5JDf3STy55L63EZwwR35jl",
+    "https://www.facebook.com/g47ix/posts/pfbid02ZBq4WrYiPfbR8gAupa15vEcQc6UsS1zvrb8do4Gw65Ch3Vnm1WkMRtXsGbQneEHfl",
+    "https://www.facebook.com/g47ix/posts/pfbid023JEDJwXPHuRsFW2epRXd4ZKL87ueCJDYovXLuJLTZEQAWWGFZZnLMmudehYSdffBl",
+    "https://www.facebook.com/g47ix/posts/pfbid0qS6XhAaZUN96iknomj1bfTEGSPCzcxwPB7mDSvyLcURjoGTxMW7AMzzRJBsFJgRJl",
+    "https://www.facebook.com/g47ix/posts/pfbid027GzNcQvGmr3ycUJ76UN5PQAmW25vUyYkmDujmDAnDktAGc4gaeSEZppadqHVTsRPl",
+    "https://www.facebook.com/g47ix/posts/pfbid02FgPr4vJS64KoGmKzrApzwfqvw8Y5yKETHGQyvEA7Jovb9PkuD8XrPwjXcYRjdpyul",
+    "https://www.facebook.com/g47ix/posts/pfbid033RmG8AysbQfJSvY6N82XyYdKp6g4qKRvnzDboP2abWo4pTmzmUc2yjAVjctWjeFWl",
+    "https://www.facebook.com/g47ix/posts/pfbid0fCRwdw7tXxxLqSSqHF2M6aAfrPdGLmiC9vwG2YkyR4XWJrKZwumfh2mbKBXs6SfRl",
+    "https://www.facebook.com/g47ix/posts/pfbid0SksySuavoD9v2mK5VxGcNrrbzrYTSK6yNmTBbeZue3HUz8zE25oa9x7ZS2xNFP51l",
+    "https://www.facebook.com/g47ix/posts/pfbid02FrSeA31uBBaJtD4dhBJmkngmGAHdHsYKu9CAsY4cxGTV6oNpLRFszYYZjXpeV7D5l",
+    "https://www.facebook.com/g47ix/posts/pfbid02NESuy9LYB4oA6GJtd2gTBf7QEEorefzfi64xapWLVN2F8YPFXs9njup41vpqd3JHl",
+    "https://www.facebook.com/g47ix/posts/pfbid033ZQn6Y1bn3qT8K3hAj7QQVMHTJKKk2foixTz6eSYADRRLPghYrtYHqLj3yfu4Kafl",
+    "https://www.facebook.com/g47ix/posts/pfbid0fL5TcJ9cifXdZsjkRDy7P6JoGPMPFAVEH3CmkthwtayGHEKE4JeDg3WGdGFB94tPl",
+    "https://www.facebook.com/g47ix/posts/pfbid0StXVRGceytNNnrqZE7Fqi22GAo39d4yhyngqBeDn5rxQJWAU78SY8YqsMfzjQ7syl",
+    "https://www.facebook.com/g47ix/posts/pfbid02Fz6A8Q3dMpDdR1kmkMzww9DANAoFCeLzUEhQJJRQt2vsAFGhhK9SDiU1YjrMFj79l",
+    "https://www.facebook.com/g47ix/posts/pfbid02N4Hug14oMWA2DHhmLyPUPDKoVn1g7hQLCxmDm8r14wKpLGjmxn9WJw18fdyfrerZl",
+    "https://www.facebook.com/g47ix/posts/pfbid02GbanyVyUvHmxdBhBnibeRT6eWYXhffxqSWfCezMkV64W8YBxXoioEo8UuE3KUHbbl",
+    "https://www.facebook.com/reel/1283386850032063/",
+    "https://www.facebook.com/g47ix/posts/pfbid0JLVfbDtW1Di6WboQEdABtAd9FAAuj3Zjwi5Yv67nkPjbtczdV8xdh2wukS9aQaZLl",
+    "https://www.facebook.com/g47ix/posts/pfbid02TdZB5bzzqzo87yv32CR6EKTbJCWK8MGg2ookhg1wcaTfpDKu8ksFjv1vhs7iNhXfl",
+    "https://www.facebook.com/g47ix/posts/pfbid0yjPY4g6MC7bF3P8ZHiasMmTFES9sLZhVRMsw22YV1xkenv2AM987b1khnpzsAcdFl",
+    "https://www.facebook.com/g47ix/posts/pfbid02FxZaWW3BipYDjLWZFbcx4WnJ6mG1aCRfRLScsHp1xPTD1eP7feoudiYwfsAhGMVUl",
+    "https://www.facebook.com/g47ix/posts/pfbid069gtPGAR7pZJUriNnjQ1EWMCYjYrigUJuu4Ux9RzGZyxoqy4KKFFK2rFymBY1BCJl",
+    "https://www.facebook.com/g47ix/posts/pfbid02Zk4C298Cw4dE3zugzh6E7FZh7wPUxy5QzuspvpGfxk2ULBd9GcQUdFUEiyHVLPQTl",
+    "https://www.facebook.com/g47ix/posts/pfbid02VctKgJFmoU2obFqFLyTP1zvaiW64ZbRBoMXsX4PhS3eShxycxGprp4LkzCdiwfwyl",
+    "https://www.facebook.com/g47ix/posts/pfbid02ZxwbkpYWdy5wwDiYRQTEw3DVx4ySKD4pMQ18YTjEXJNNYNpmLUfbuHuP7zc9NBkBl",
+    "https://www.facebook.com/g47ix/posts/pfbid0QaK5BLacHyvnxVfKZCFnpE7KHoqpbDZ9wNf7wVrr58eKavnNEgEy8knyGyePsxjCl",
+    "https://www.facebook.com/g47ix/posts/pfbid0284ycMEbNHrGQVjjK2AmnFWZVo8yVXuds8incPqRCCWHjXRYUNjMN2crFrnKZ9RTnl",
+    "https://www.facebook.com/g47ix/posts/pfbid02WoadCiYR75HXARq1L2xsZxH3syxDrp6H317p42gv8emsW9d7ULBT3NC5F2UvgKvQl",
+    "https://www.facebook.com/g47ix/posts/pfbid02vtGcCLmRYWFPsMWCLjhqjALQFk3Dzw7AFrFuz7b4s5MXgKYYrZWw6DMvy59dzfvtl",
+    "https://www.facebook.com/g47ix/posts/pfbid032etaYYuyuSB4SNk4UgBzKZRpRWTJAqB6waM3GqNjpFA2uLbEAwEH4YHe1iErvd1el",
+    "https://www.facebook.com/g47ix/posts/pfbid09SV77Qn4ccaVgiG89HhcmSy5arrCuU53h8j8GG35vH47Lk6jxq8yCPT5hbWnTnV1l",
+    "https://www.facebook.com/g47ix/posts/pfbid03SekK9aybaayfLGcMFZpuWLRiHXzRU3sHdRK6hfDwthdv1rqz2qkRNtnHETBMMhrl",
+    "https://www.facebook.com/g47ix/posts/pfbid0AqC6SRAcX7UPpxH3jXkPjHCGx8QqF9Zf3Fz42pcYHB2VD1WaeE8Cgj9mSYkNzNjWl",
+    "https://www.facebook.com/g47ix/posts/pfbid0fTWrPkbmihPx2gxbypUEgaMa4BPa2dRcvyuwXeZJSB2mfDm4Vg2ymR8c6uV6ag5dl",
+    "https://www.facebook.com/g47ix/posts/pfbid027CJsPFiFSe82R98H6s9WKBV9iqrLCaAFssqMYcfru55AbxmS15xhV9gfU1cMPz28l",
+    "https://www.facebook.com/g47ix/posts/pfbid0X1P3oQzM35rWs7qjNhZZ745frXfEL8joTSuURhdYQQN8zfEgaLH7oFtMs4rP44Erl",
+    "https://www.facebook.com/g47ix/posts/pfbid0jE3ZPHpoPPtJzUaaVDeX7QP76MRwqu7LCN9rKjNitC2phuS3AhMhFQVvWFU9y15Yl",
+    "https://www.facebook.com/g47ix/posts/pfbid0pSLazGvy7YJMcDDmHPDF9q8aSi6MmseHzj8e5munteZHCWMG3b423VTQfVQtNw1ql",
+    "https://www.facebook.com/g47ix/posts/pfbid03ur8gFzZdqm3UQQAN9DyPqPMgFZBXTkDLZtNXcsQ1YhtdZ2xTtzgdxNaqkTH7qqSl",
+    "https://www.facebook.com/g47ix/posts/pfbid0GcoCQdJeSJ21Hho1WoU7s8ViYPRRz8sHJuKiJY7HNMysXZkHXZzTUpSRkPNTVNbol",
+    "https://www.facebook.com/reel/952274014289797/",
+    "https://www.facebook.com/g47ix/posts/pfbid0QnsyU7Xc1Fh8J7wbH7a4niw8GkSKN8mCpSSJ6vp51uJBiPoqco7rRAu8Dr5yVeu3l",
+    "https://www.facebook.com/g47ix/posts/pfbid02hoGG49kmmdQj2APjqpyGzy4gwN44b4YnarCpB86exd8yQZZkvzXkZCXVqcAADm1Wl",
+    "https://www.facebook.com/g47ix/posts/pfbid02F8XBPmSjGc6Nxm3z3JfbPCcU7BrPH5RcQn4e1iRVmdXmEXsPoyhCDtseY5FWB2TJl",
+    "https://www.facebook.com/g47ix/posts/pfbid0KRJYKuGbNQ3jLU6Hiea5c8GofKNdjhxG5bwsNipPmU8AiisMRTYbdwCbpkt8Y915l",
+    "https://www.facebook.com/g47ix/posts/pfbid036pgiRcJ1iLZNZ9Hs4RapCzE2DG2ycnNqb6G8YXXg7ZFgFMAxZi68Xssxsp5rzn6fl",
+    "https://www.facebook.com/g47ix/posts/pfbid02ZtoNUb1zKBuVLKZprZGaKVyM8Vo5dbP7jfQYvbEAUjGuNbCLVWD2pgdzMPuszBr6l",
+    "https://www.facebook.com/g47ix/posts/pfbid02ZtoNUb1zKBuVLKZprZGaKVyM8Vo5dbP7jfQYvbEAUjGuNbCLVWD2pgdzMPuszBr6l",
+    "https://www.facebook.com/g47ix/posts/pfbid0383zxqBmwn4TbFFpnMjvwzfdxNanFcHQQqn8RcwFd4yyd6exNeuetMntaAK5SZn32l",
+    "https://www.facebook.com/g47ix/posts/pfbid0HhA6J4BG49cL8G78daAzNaewg87aMDdporVRZM2JRFzsFqcm5mDQLzG3RvhyCKxgl",
+    "https://www.facebook.com/g47ix/posts/pfbid02jTNPnyCeR3SHMFLvPjFqaSKLbc7mFaYTWRPx1NwQTdY46EEA72GrqjTpxuwPfAXSl",
+    "https://m.facebook.com/g47ix/posts/pfbid0pRaVfD3Z1WKDenDf8gEkAMrUTbqaUFSB2fbj177hTNEJmn5a3Zer9LfDC5ox5mtwl",
+    "https://m.facebook.com/g47ix/posts/pfbid034KL4XGab65iCCEDU8zhZf4446FnY1AnmCpCdJq5gmREeuKZomiFoq8pZskLFtPcRl",
+    "https://m.facebook.com/g47ix/posts/pfbid0EK8XP671hreikeotnBfUoSzrMJpatorwREiukaG5de5K5ySEcgq5WJTAoaK3gRz6l",
+    "https://m.facebook.com/g47ix/posts/pfbid02aiChqNFPJSAbFGxEALnL8khwTG1KaWAiuGHBCVy2xHYM8gKV3q5AzE7fQXJgijLyl",
+    "https://m.facebook.com/g47ix/posts/pfbid0gxLuFQD7NAWeBSTTnZcX5MJGqL2UEWDNdT4xH9ajtRosUtbdBb5CsSdKRs3WZ7dSl",
+    "https://m.facebook.com/g47ix/posts/pfbid02QwBcK7fXCy95xLK3S9jaJ8LgFHxViTx9tB4juTq11YBzDoPycxYWZDJYQXsJgcJml",
+    "https://m.facebook.com/g47ix/posts/pfbid02Y13oyjBhNnGbaDbvE6JyRUp2pYyyZ2hSumUJr3pA95EFfdPR46eUN244BKWqxRV3l",
+    "https://m.facebook.com/g47ix/posts/pfbid0s9q18Th6TDXgYSF5wgYF9EMSKuqe74MQNAizECRzC4vLUthDvFPewPfSvReKu8NWl",
+    "https://m.facebook.com/g47ix/posts/pfbid05uwtjdi78CW1eSz8sCu3bbzXEuYvBztjgH5AotWiU4b6cbNF9dW8b7eb3BouoCd6l",
+    "https://m.facebook.com/g47ix/posts/pfbid0MeBKsHNTxRjfvDk2rPr7Ack1NnTHGec9sXCxBoPzoWtxSL82BbwcjmYoKtckqCWsl",
+    "https://m.facebook.com/g47ix/posts/pfbid02XEiJc6EuLUSfBtV9nBZNtFHoFi3cLn9LmNLSaqZjskZCYDBVqVBK3BMfq1tq1HC8l",
+    "https://m.facebook.com/g47ix/posts/pfbid0pY2XuDtZhaAt8p1R7gyQKAcBTtFkKWK9ktSXyNRn6wfrVWnVECa91h9wEvBRCrLol",
+    "https://m.facebook.com/g47ix/posts/pfbid037JsQTNAnBWnUCw2yJfJq6CHPQdng9vPazDSnS8v58ahoz8L2nWZzjjy9tBz9xDp8l",
+    "https://m.facebook.com/g47ix/posts/pfbid02ButYt7PuUkc2Nb784ZDGrUYwJCF93iyqMBwAcZ3K1cqcdT8s2bVdqTDiacnwXpNTl",
+    "https://m.facebook.com/g47ix/posts/pfbid0DFDEp4Hc36yijw7YipYuge6pE7aDhYxQ7ZM7ASxZYNXWibPYB5W6zHmYFERp2cvNl",
+    "https://m.facebook.com/g47ix/posts/pfbid0vCy8LtnqnXVrpQqW3t4Fbc5bHZvZBFnT3pe4UN9VnQK9a2mWvoPB52z9nzUx47TFl",
+    "https://m.facebook.com/g47ix/posts/pfbid0AfvZ8RQHzVWXCpPpzT9pUFVV6KF2Ty6qN8Ea5dAd7BDQYrRrqMavVRqmPHdc4nGzl",
+    "https://m.facebook.com/g47ix/posts/pfbid02KLWRKsnxv47o4Hoao8mTx9HUGxWu2jtJR7XQ5EGTg44TvEDQcRnTwk9KCihQNZ6Al",
+    "https://m.facebook.com/g47ix/posts/pfbid0JzrKtcqhEtuktU7o2PjuyeVwsaPPKYk8bVGv9zWXyqqLwv1aHwau5GVVSsEnEFeyl",
+    "https://m.facebook.com/g47ix/posts/pfbid02TajsVq4Fvn5531x4XzTK1srVDuFfbdXdH3SLJJh8KHu9FxE2qFvacXFg3PrjrwLEl",
+    "https://m.facebook.com/g47ix/posts/pfbid0o6p77uYCqUY3zhZ65x2YpNMReXzjYeHZiYFn1B1fyRwnJPaqc5hC7yjRqpy5Gw6Pl",
+    "https://m.facebook.com/g47ix/posts/pfbid0cxwBUwoPRZDz3CwdR7DGNGLGMjmz3HCk6JvnnaRfsRonyP7ut1YtfNfnD4fmcBJAl",
+    "https://m.facebook.com/g47ix/posts/pfbid09t4FDmh9ksu4JK7C9uGPc3rVKhNrvn4ASv1nGBid4Fo4FAWWg9PT2AcobqncFhJGl",
+    "https://m.facebook.com/g47ix/posts/pfbid0y91erL2jyd2Edbxjn5SnjNaoZmveHM2sBBdRdqWt4EugoY32e4qDbP3snfLtfDwUl",
+    "https://m.facebook.com/g47ix/posts/pfbid02BqdjsKibq4EZM5csmUceCTR8rjQdF4puew7R91ESsatrkG9Q8H9b1GyuHY9MWBw9l",
+    "https://m.facebook.com/g47ix/posts/pfbid02bxj3rAuYrG9JFq8qoqCRN9vHNunsAN3956oVhGs4oET3k7w5ADnF3JZEsSXdB2WQl",
+    "https://m.facebook.com/g47ix/posts/pfbid02ASP9w1UUoTEQnweaXWFN1B2hn6cABNrs9ZfWMqieD9YQyJ7jbWDaMu1rnBZynBuMl",
+    "https://m.facebook.com/g47ix/posts/pfbid02vxfBpyJLpLpqBjkD13Q7ne3hW1JLHNK3wVsKnKFWHWXZV6Wc5vDhUYysZN9tAA9tl",
+    "https://m.facebook.com/g47ix/posts/pfbid02kfPXGaeuZemYZCTuNgoUvwRNjpsNp7rATYHeNS3932Q7wutW7DjmY1CfUmUsEx54l",
+    "https://m.facebook.com/g47ix/posts/pfbid02CHJVk4qYYqu4qzocYZQSLsNs1ibSbHuLAaCqNFdpfUJiWQRVAhUqAbSMxzHACSiql",
+    "https://m.facebook.com/g47ix/posts/pfbid0dKabBbqoHNdCVjYRfiVYwg5vLXu5TbKiuHQBkbzo89L694ThbzDZ59avzm5Xqh5Ql",
+    "https://m.facebook.com/g47ix/posts/pfbid0PRcJ5uu3v2BZDY13smkCjFhq1PbE8GoqYhXfqm8Wk17NDABh6121EYwDomZ97wGul",
+    "https://m.facebook.com/g47ix/posts/pfbid0aWxzBq3NwP68NcSA3AZ14pFE7AM1uaV3kLdhpSTvV37Q2sJ1ropuaMXECve6ZVPyl",
+    "https://m.facebook.com/g47ix/posts/pfbid02zNz7sVBGQwN6LdGpCsGxn2n6eBTYbAjXLtYBubJhYJ5LpX9dhHjPv7yrUdbX6NVdl",
+    "https://m.facebook.com/g47ix/posts/pfbid0yVz91JFn8vLG6pEW3vXHp5kSLQUt1L45QxVeDkwCHWXrEKdrcDoHLby5gJMTb7Qkl",
+    "https://m.facebook.com/g47ix/posts/pfbid0bZ2tUEhpuCTtWKv6M7LcKMNjVeZoBsMY6B2YVHmLA8tX2ZfveeQH1PwqTZrXrRhvl",
+    "https://m.facebook.com/g47ix/posts/pfbid02KtqnU6i4pvLPHZdfjydR27YDw2R1QPJVZkMx9zRucQYziQPNxY6CwvrN6CujQnT5l",
+    "https://m.facebook.com/g47ix/posts/pfbid032URqHo147owEJ7F8hdGEQ4exVZZUEpL7Dma1dLaApd9rPM9zk8UjkjTmo3BB5rCSl",
+    "https://m.facebook.com/g47ix/posts/pfbid0qAjSQCUMcw6XzyZHfifjTb2XX332D35onxV5dPV9Dc6cLZKrnz1pg434kC7k2YPJl",
+    "https://m.facebook.com/g47ix/posts/pfbid0UVw6nkPNkLCULgW6VKCXBTbyUa4UjP4915FwXReQ2kfNpw9HH7h1WWqxsPs8LrvKl",
+    "https://www.facebook.com/reel/1918446525503728/",
+    "https://m.facebook.com/g47ix/posts/pfbid0FRFWSpF3MvVgJU1BEPW2upyxJAXVwa45AAg46geignEYbNeEawcBDYDWpY9B3zVFl",
+    "https://m.facebook.com/g47ix/posts/pfbid02t7KRk1kMypQ8zVWNvNN76G4R9yJYySfEEj33JUnYGHVatqzSaLBMS9yiTgn2ngHVl",
+    "https://m.facebook.com/g47ix/posts/pfbid02zc6NRDapraLkJEbZ7hAAbQQmdpcqwB3gt4pMLwdvpXhmb36oo6GpVjM3Tsku5LoHl",
+    "https://m.facebook.com/g47ix/posts/pfbid02pTLmidop1jhXSjHok8JjWjg7DbEttG5oC5UcgSkF12Gphbxx25X9XKRjTp18Zkfyl",
+    "https://m.facebook.com/g47ix/posts/pfbid033gmNUNNDuLwhgGHdWHuo31URTRxP6J2PXwQGJ7i88TtQUWn4qadfw3qyu9BKiSwfl",
+    "https://m.facebook.com/g47ix/posts/pfbid02LjzTx81rff4QMWkmCg6hALsTuFS8Eiha2PtqnAtVv6Z2fYfjcxT3Apjd4ZS3vPKTl",
+    "https://m.facebook.com/g47ix/posts/pfbid029mJACZunGtK6wZ8hYcWTn1rq4Vxr58o4csdZRibF5jq7ugR1PTDyMuamzAsqKXkUl",
+    "https://m.facebook.com/g47ix/posts/pfbid0A74hxUR9jrotV7d3PpBajwdB56z27zaRjyMHiZvMusjKzRgNu8dLoTTUk6JPsh4nl",
+    "https://m.facebook.com/g47ix/posts/pfbid022dVvkfDigTb6Cy2NAF5jzHuW2tTJvzhYsFKFS3SKfHGvVhLRUrDE7tCQuJj689EWl",
+    "https://m.facebook.com/g47ix/posts/pfbid02xt4aRdZaPJj8A9iwox16YwTQtmnqRkRkNpar5ftScGXhsMdy127Z1oFkmHAYmadcl",
+    "https://m.facebook.com/g47ix/posts/pfbid0TC3BqBoRHU7tNNJgdCVTwTrsoYmfq9Zq8sxf7MEMBPD3u8GBVLqHsHbanPB6ExMjl",
+    "https://m.facebook.com/g47ix/posts/pfbid02YvUR47xKeWuebFQF557UXCCXQrDQYQVk7PyLunViPTr7KnUwfFFkdhJb311cwbpJl",
+    "https://m.facebook.com/g47ix/posts/pfbid028kKvQF7PWQ9VrUzpQWG7HSgznTSXZTXfhEr8xmFd7fMR8f55u3jfm3mowHRgPHrSl",
+    "https://m.facebook.com/g47ix/posts/pfbid028McPLrVAZrXjdEHTMZArqWrFRfCxFPqUDsTpHw6LHDksXpWYx4beDbEwwBbRhqnql",
+    "https://m.facebook.com/g47ix/posts/pfbid0TrhdxLpExpfxdDMN6qdGergWMifSDudriKENWLKtMSa8pDNGeJi9TvLWkA14mZnkl",
+    "https://m.facebook.com/g47ix/posts/pfbid028MikAHt3LToteGqFG76MrgiGcBfazUbPZkRvMzhWA3czUgA4ZoXZ8CzxtLu9hwJXl",
+    "https://m.facebook.com/g47ix/posts/pfbid04nE6eoBRG3tpvUxnKYQKAEigiG3Ew4Be1M5J6tduPwoBEinhJDxWZsBaEy1tudWvl",
+    "https://m.facebook.com/g47ix/posts/pfbid0PZVGkCuYpTgpSoLTTdx4HaTF9frASvmTAwWKeaK7969fC6LpCNqruFDQ12BkVucLl",
+    "https://m.facebook.com/g47ix/posts/pfbid02GedNe7qkJCrHpYadR12QLXQbi2SCLRadm82c1Mur6MwibMcS2dAVwbJZchMEayvl",
+    "https://m.facebook.com/g47ix/posts/pfbid0shCNfW3MRmo1NfcnyAySx2WuXsrmjtqfh7ND9FJzwLD7gwpAMBDW4r8WWRZqJLzDl",
+    "https://m.facebook.com/g47ix/posts/pfbid0LZjc8zmDd9F9pYZKw1o1qZS9xheAvYa2Snv2DHVChVSQ47L79gFmYxLugneSFPWsl",
+    "https://m.facebook.com/g47ix/posts/pfbid02HSLWhcXbr89JbXUMmGWNk4vwXjzBxZqHUGUcNYTWPegT79YX8gSMEi2P33QSkEjHl",
+    "https://m.facebook.com/g47ix/posts/pfbid0C9nWdwtPMALKX37eoycg6iVb9REBD5dTTEeHdNobpGnHLp9YW5MzDV6ptUmDsymCl",
+    "https://m.facebook.com/g47ix/posts/pfbid02cSGUdmSgwNZcQpcfKSEchcEmKWriwgXrE7fkKaHqshp2WSjjHk3SEgAQuRY2MyCil",
+    "https://m.facebook.com/g47ix/posts/pfbid02MjmpTjyx5sdj73En5N1yfCWNCNzmgYa19yZyFmEYk9wkSMLatVnUnvV9cHUaCfedl",
+    "https://m.facebook.com/g47ix/posts/pfbid02ia5JgXedFDx4rNZgj5TAoZF81XoZ3DjY9iaUv5aXdTE87Wn2jDYb8kdNE3VU3Fxxl",
+    "https://m.facebook.com/g47ix/posts/pfbid02pNDvxLivmQuAZDmqKquxx9WodfuiV3wuCozFE4wY1zwktsCQXmfdjFhrVQnCUwfol",
+    "https://m.facebook.com/g47ix/posts/pfbid0mJkwNEBKbXoiycSKMaLKk1TvQLykHmErnJde7WZWjtXH6NQheuefi1zHMJdoZEtYl",
+    "https://m.facebook.com/g47ix/posts/pfbid0oSiHij5iyYz5CFRiwrLoJS9dHGtvZHSLsCP5kheTRUSEcVvNPgXSW2hZQANpVZHKl",
+    "https://m.facebook.com/g47ix/posts/pfbid0pVS58B5KK4abXcVW6hGsUPuSVLeJ2C6MFLtHs4DuraAgrCnH8EaUKFas9yhTFV78l",
+    "https://m.facebook.com/g47ix/posts/pfbid02tL7U4fMpW5qrGi7J1fzksTVKaUvdzrM1cFtPqmM27yeEYohtFw44jE69XYpWzDbMl"
   ],
   "posted_infographics": [],
   "bootstrapped": true
