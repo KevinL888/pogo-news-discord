@@ -55,6 +55,13 @@ OCR_TITLE_OVERLAP = float(os.environ.get("OCR_TITLE_OVERLAP", "0.5"))
 # Words too common in Pokémon GO news titles to count as evidence that an
 # infographic belongs to a specific article (they gamed the overlap rule:
 # "research/encounter/complete" matched a how-to graphic to a Rayquaza article).
+# Abbreviations G47IX uses in graphics vs. the full phrases in official titles
+OCR_TOKEN_ALIASES = {
+    "wcs": {"world", "championships"},
+    "gbl": {"battle", "league"},
+    "cd": {"community", "day"},
+}
+
 GENERIC_TITLE_TOKENS = {
     "research", "timed", "complete", "encounter", "encounters", "catch",
     "raid", "raids", "day", "days", "weekend", "hour", "spotlight",
@@ -1003,6 +1010,9 @@ def match_fb_to_official(fb_post: Dict[str, Any],official_metas: List[Dict[str, 
         fb_full_ocr = f"{fb_full} {ocr_text}".strip()
         fb_clean_ocr = clean_fb_phrase({"title": fb_clean, "description": ocr_text})
         ocr_token_set = set(tokens(fb_full_ocr))
+        for alias, expansion in OCR_TOKEN_ALIASES.items():
+            if alias in ocr_token_set:
+                ocr_token_set |= expansion
 
         # Accept an OCR match on a high score alone, OR a normal score backed by
         # the official title's distinctive words appearing in the image text.
