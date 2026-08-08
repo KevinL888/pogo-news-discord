@@ -52,13 +52,56 @@ def _launch_browser(p):
             kwargs: Dict[str, Any] = {"headless": True}
             if ch:
                 kwargs["channel"] = ch
-            return p.chromium.launch(**kwargs)
+            browser = p.chromium.launch(**kwargs)
+            print(f"[FB-SCRAPE] Launched browser channel={ch or 'bundled chromium'}")
+            return browser
         except Exception as ex:
             last_err = ex
     raise RuntimeError(
         "No usable browser found for Playwright. Install Chrome/Edge or run "
         f"`playwright install chromium`. Last error: {last_err}"
     )
+
+
+CONSENT_BUTTON_SELECTORS = [
+    'button[title="Allow all cookies"]',
+    '[aria-label="Allow all cookies"]',
+    'button:has-text("Allow all cookies")',
+    'button:has-text("Accept all")',
+    'button[title="Only allow essential cookies"]',
+    'button:has-text("Only allow essential cookies")',
+]
+
+
+def _dismiss_consent(page) -> None:
+    """Facebook shows a cookie-consent dialog to some IPs/regions before any
+    content renders. Click through it if present."""
+    for sel in CONSENT_BUTTON_SELECTORS:
+        try:
+            btn = page.locator(sel).first
+            if btn.is_visible(timeout=1000):
+                print(f"[FB-SCRAPE] Consent dialog detected, clicking: {sel}")
+                btn.click()
+                page.wait_for_timeout(2000)
+                return
+        except Exception:
+            continue
+
+
+def _print_diagnostics(page, html: str) -> None:
+    """When the timeline is missing, log what Facebook served instead."""
+    print("[FB-SCRAPE] No posts found in rendered page. Diagnostics:")
+    try:
+        print(f"[FB-SCRAPE]   title: {page.title()!r}")
+    except Exception:
+        pass
+    text = re.sub(r"\s+", " ", BeautifulSoup(html, "html.parser").get_text(" ", strip=True))
+    print(f"[FB-SCRAPE]   visible text ({len(text)} chars): {text[:600]!r}")
+    lowered = html.lower()
+    for marker in ("log in", "login", "cookie", "consent", "not available",
+                   "unavailable", "something went wrong", "captcha", "checkpoint"):
+        if marker in lowered:
+            print(f"[FB-SCRAPE]   marker present in HTML: {marker!r}")
 
 
 def _clean_post_link(href: str) -> Optional[str]:
@@ -119,21 +162,42 @@ def parse_embed_html(html: str) -> List[Dict[str, Any]]:
 def get_page_posts(page_url: str, timeout_ms: int = 60000) -> List[Dict[str, Any]]:
     from playwright.sync_api import sync_playwright
 
+    debug_dir = os.environ.get("FB_DEBUG_DUMP")
+
     with sync_playwright() as p:
         browser = _launch_browser(p)
         try:
             page = browser.new_page(
                 viewport={"width": 520, "height": 2100},
                 user_agent=EMBED_UA,
+                locale="en-US",
             )
             page.goto(_plugin_url(page_url), wait_until="networkidle", timeout=timeout_ms)
+            _dismiss_consent(page)
+
+            try:
+                page.wait_for_selector("div.userContentWrapper", timeout=15000)
+            except Exception:
+                pass  # diagnosed below
+
             # give late-loading images a moment
             page.wait_for_timeout(2500)
             html = page.content()
+
+            items = parse_embed_html(html)
+            if not items:
+                _print_diagnostics(page, html)
+
+            if debug_dir:
+                os.makedirs(debug_dir, exist_ok=True)
+                with open(os.path.join(debug_dir, "rendered.html"), "w", encoding="utf-8") as f:
+                    f.write(html)
+                page.screenshot(path=os.path.join(debug_dir, "rendered.png"), full_page=True)
+                print(f"[FB-SCRAPE] Debug dump written to {debug_dir}")
         finally:
             browser.close()
 
-    return parse_embed_html(html)
+    return items
 
 
 if __name__ == "__main__":

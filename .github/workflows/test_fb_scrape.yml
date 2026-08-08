@@ -20,5 +20,15 @@ jobs:
           pip install -r requirements.txt
 
       - name: Scrape g47ix via embed plugin
+        env:
+          FB_DEBUG_DUMP: fb_debug
         run: |
           python fb_scraper.py https://www.facebook.com/g47ix
+
+      - name: Upload debug artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: fb-debug
+          path: fb_debug/
+          if-no-files-found: ignore
