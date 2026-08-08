@@ -22,7 +22,7 @@ jobs:
       - name: Read g47ix mirror channel
         env:
           DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
-          G47IX_MIRROR_CHANNEL_ID: "1535567925434646620"
+          G47IX_MIRROR_CHANNEL_ID: "1442860329146257478"
         run: |
           python - <<'EOF'
           import json
