@@ -47,6 +47,14 @@ OFFICIAL_CANDIDATES_LIMIT = int(os.environ.get("OFFICIAL_CANDIDATES_LIMIT", "60"
 MAX_OFFICIAL_POSTS_PER_RUN = int(os.environ.get("MAX_OFFICIAL_POSTS_PER_RUN", "3"))
 MAX_FB_POSTS_PER_RUN = int(os.environ.get("MAX_FB_POSTS_PER_RUN", "5"))
 MATCH_THRESHOLD = float(os.environ.get("MATCH_THRESHOLD", "0.38"))
+# OCR text is long and noisy, which inflates similarity scores — require more
+OCR_MATCH_THRESHOLD = float(os.environ.get("OCR_MATCH_THRESHOLD", "0.60"))
+# Recurring series graphics that never map to a single official article ("|"-separated)
+FB_SKIP_PATTERNS = [
+    p.strip().lower()
+    for p in os.environ.get("FB_SKIP_PATTERNS", "go weekly update").split("|")
+    if p.strip()
+]
 SLEEP_BETWEEN_POSTS_SEC = float(os.environ.get("SLEEP_BETWEEN_POSTS_SEC", "1.2"))
 
 # If true, we do NOT mark unmatched FB posts as seen (useful while tuning matching)
@@ -961,11 +969,16 @@ def match_fb_to_official(fb_post: Dict[str, Any],official_metas: List[Dict[str, 
                 best_meta2 = meta
                 best_debug2 = dbg
 
-        if best_meta2 and best_score2 >= MATCH_THRESHOLD:
+        if best_meta2 and best_score2 >= OCR_MATCH_THRESHOLD:
             best_debug2 = best_debug2 or {}
             best_debug2["reason"] = "ocr_scored"
             best_debug2["ocr_excerpt"] = ocr_text[:250]
             return best_meta2, best_score2, best_debug2
+        elif best_meta2:
+            print(
+                f"[FB] OCR best candidate below OCR threshold "
+                f"({best_score2:.2f} < {OCR_MATCH_THRESHOLD:.2f}): '{best_meta2.get('title','')}'"
+            )
 
     # ------------------------------------------------------------
     # Debug output
@@ -1050,6 +1063,13 @@ def main() -> None:
         fb_link = fb_post.get("link")
         fb_title = fb_post.get("title", "")
         print(f"[FB] Candidate: {fb_title} -> {fb_link}")
+
+        fb_probe = f"{fb_title} {fb_post.get('description','')}".lower()
+        skip_pat = next((p for p in FB_SKIP_PATTERNS if p in fb_probe), None)
+        if skip_pat:
+            print(f"[FB] Skipping series graphic (matches skip pattern '{skip_pat}').")
+            state["seen_fb_posts"] = (state["seen_fb_posts"] + [fb_link])[-800:]
+            continue
 
         match = match_fb_to_official(fb_post, official_metas)
         if not match:
