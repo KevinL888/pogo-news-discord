@@ -49,6 +49,8 @@ MAX_FB_POSTS_PER_RUN = int(os.environ.get("MAX_FB_POSTS_PER_RUN", "5"))
 MATCH_THRESHOLD = float(os.environ.get("MATCH_THRESHOLD", "0.38"))
 # OCR text is long and noisy, which inflates similarity scores — require more
 OCR_MATCH_THRESHOLD = float(os.environ.get("OCR_MATCH_THRESHOLD", "0.60"))
+# ...unless the official title's distinctive words appear in the image text itself
+OCR_TITLE_OVERLAP = float(os.environ.get("OCR_TITLE_OVERLAP", "0.5"))
 # Recurring series graphics that never map to a single official article ("|"-separated)
 FB_SKIP_PATTERNS = [
     p.strip().lower()
@@ -957,27 +959,44 @@ def match_fb_to_official(fb_post: Dict[str, Any],official_metas: List[Dict[str, 
     if ocr_text:
         fb_full_ocr = f"{fb_full} {ocr_text}".strip()
         fb_clean_ocr = clean_fb_phrase({"title": fb_clean, "description": ocr_text})
+        ocr_token_set = set(tokens(fb_full_ocr))
 
-        best_meta2 = None
-        best_score2 = 0.0
-        best_debug2: Optional[Dict[str, Any]] = None
+        # Accept an OCR match on a high score alone, OR a normal score backed by
+        # the official title's distinctive words appearing in the image text.
+        # (Plain thresholds can't separate these: diffuse body-text overlap can
+        # outscore a genuine title match.)
+        best_acc: Optional[Tuple[float, Dict[str, Any], Dict[str, Any], float]] = None
+        best_rej: Optional[Tuple[float, Dict[str, Any], float]] = None
 
         for meta in filtered_metas:
             s, dbg = combined_match_score(fb_clean_ocr, fb_full_ocr, meta)
-            if s > best_score2:
-                best_score2 = s
-                best_meta2 = meta
-                best_debug2 = dbg
 
-        if best_meta2 and best_score2 >= OCR_MATCH_THRESHOLD:
-            best_debug2 = best_debug2 or {}
-            best_debug2["reason"] = "ocr_scored"
-            best_debug2["ocr_excerpt"] = ocr_text[:250]
-            return best_meta2, best_score2, best_debug2
-        elif best_meta2:
+            title_toks = set(tokens(meta.get("title", "")))
+            overlap = (len(title_toks & ocr_token_set) / len(title_toks)) if title_toks else 0.0
+
+            acceptable = s >= OCR_MATCH_THRESHOLD or (
+                s >= MATCH_THRESHOLD and overlap >= OCR_TITLE_OVERLAP
+            )
+            if acceptable:
+                if best_acc is None or s > best_acc[0]:
+                    best_acc = (s, meta, dbg, overlap)
+            else:
+                if best_rej is None or s > best_rej[0]:
+                    best_rej = (s, meta, overlap)
+
+        if best_acc:
+            s, meta, dbg, overlap = best_acc
+            dbg = dbg or {}
+            dbg["reason"] = "ocr_scored"
+            dbg["title_overlap"] = round(overlap, 2)
+            dbg["ocr_excerpt"] = ocr_text[:250]
+            return meta, s, dbg
+
+        if best_rej:
+            s, meta, overlap = best_rej
             print(
-                f"[FB] OCR best candidate below OCR threshold "
-                f"({best_score2:.2f} < {OCR_MATCH_THRESHOLD:.2f}): '{best_meta2.get('title','')}'"
+                f"[FB] OCR best candidate rejected (score={s:.2f}, "
+                f"title_overlap={overlap:.2f}): '{meta.get('title','')}'"
             )
 
     # ------------------------------------------------------------
