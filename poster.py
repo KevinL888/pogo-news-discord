@@ -51,6 +51,21 @@ MATCH_THRESHOLD = float(os.environ.get("MATCH_THRESHOLD", "0.38"))
 OCR_MATCH_THRESHOLD = float(os.environ.get("OCR_MATCH_THRESHOLD", "0.60"))
 # ...unless the official title's distinctive words appear in the image text itself
 OCR_TITLE_OVERLAP = float(os.environ.get("OCR_TITLE_OVERLAP", "0.5"))
+
+# Words too common in Pokémon GO news titles to count as evidence that an
+# infographic belongs to a specific article (they gamed the overlap rule:
+# "research/encounter/complete" matched a how-to graphic to a Rayquaza article).
+GENERIC_TITLE_TOKENS = {
+    "research", "timed", "complete", "encounter", "encounters", "catch",
+    "raid", "raids", "day", "days", "weekend", "hour", "spotlight",
+    "community", "update", "updates", "battle", "battles", "league",
+    "max", "mega", "pass", "more", "await", "awaits", "arrives", "returns",
+    "return", "ready", "new", "celebrate", "celebration", "season", "global",
+    "live", "final", "details", "begins", "soars", "splash",
+    "january", "february", "march", "april", "may", "june", "july",
+    "august", "september", "october", "november", "december",
+    "monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday",
+}
 # Recurring series graphics that never map to a single official article ("|"-separated)
 FB_SKIP_PATTERNS = [
     p.strip().lower()
@@ -596,6 +611,7 @@ def normalize_text(s: str) -> str:
     s = re.sub(r"https?://\S+", " ", s)
     s = s.replace("#", " ")
     s = s.replace("’", "'")
+    s = s.replace("é", "e").replace("É", "E")  # Pokémon → pokemon, not "pok mon"
     s = re.sub(r"[^a-zA-Z0-9\s]", " ", s)
     s = re.sub(r"\s+", " ", s).strip().lower()
     return s
@@ -971,11 +987,16 @@ def match_fb_to_official(fb_post: Dict[str, Any],official_metas: List[Dict[str, 
         for meta in filtered_metas:
             s, dbg = combined_match_score(fb_clean_ocr, fb_full_ocr, meta)
 
-            title_toks = set(tokens(meta.get("title", "")))
-            overlap = (len(title_toks & ocr_token_set) / len(title_toks)) if title_toks else 0.0
+            # Only distinctive title words count as evidence, and we need at
+            # least two of them in the image text.
+            distinct_toks = set(tokens(meta.get("title", ""))) - GENERIC_TITLE_TOKENS
+            matched_toks = distinct_toks & ocr_token_set
+            overlap = (len(matched_toks) / len(distinct_toks)) if distinct_toks else 0.0
 
             acceptable = s >= OCR_MATCH_THRESHOLD or (
-                s >= MATCH_THRESHOLD and overlap >= OCR_TITLE_OVERLAP
+                s >= MATCH_THRESHOLD
+                and len(matched_toks) >= 2
+                and overlap >= OCR_TITLE_OVERLAP
             )
             if acceptable:
                 if best_acc is None or s > best_acc[0]:
