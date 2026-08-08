@@ -1032,11 +1032,11 @@
       "channels": {
         "1086323326999343297": {
           "thread_id": "1526345002152759487",
-          "infographic_posted": false
+          "infographic_posted": true
         },
         "1472476091108163888": {
           "thread_id": "1526345008502931457",
-          "infographic_posted": false
+          "infographic_posted": true
         }
       }
     },
@@ -1104,11 +1104,11 @@
       "channels": {
         "1086323326999343297": {
           "thread_id": "1529742453555466261",
-          "infographic_posted": false
+          "infographic_posted": true
         },
         "1472476091108163888": {
           "thread_id": "1529742461206007839",
-          "infographic_posted": false
+          "infographic_posted": true
         }
       }
     },
@@ -1569,7 +1569,12 @@
     "https://m.facebook.com/g47ix/posts/pfbid0mJkwNEBKbXoiycSKMaLKk1TvQLykHmErnJde7WZWjtXH6NQheuefi1zHMJdoZEtYl",
     "https://m.facebook.com/g47ix/posts/pfbid0oSiHij5iyYz5CFRiwrLoJS9dHGtvZHSLsCP5kheTRUSEcVvNPgXSW2hZQANpVZHKl",
     "https://m.facebook.com/g47ix/posts/pfbid0pVS58B5KK4abXcVW6hGsUPuSVLeJ2C6MFLtHs4DuraAgrCnH8EaUKFas9yhTFV78l",
-    "https://m.facebook.com/g47ix/posts/pfbid02tL7U4fMpW5qrGi7J1fzksTVKaUvdzrM1cFtPqmM27yeEYohtFw44jE69XYpWzDbMl"
+    "https://m.facebook.com/g47ix/posts/pfbid02tL7U4fMpW5qrGi7J1fzksTVKaUvdzrM1cFtPqmM27yeEYohtFw44jE69XYpWzDbMl",
+    "https://discord.com/channels/1399362487333290004/1442860329146257478/1527370565357146196",
+    "https://discord.com/channels/1399362487333290004/1442860329146257478/1527801333816623165",
+    "https://discord.com/channels/1399362487333290004/1442860329146257478/1528521414091604019",
+    "https://discord.com/channels/1399362487333290004/1442860329146257478/1528579918366117889",
+    "https://discord.com/channels/1399362487333290004/1442860329146257478/1528935919803957308"
   ],
   "posted_infographics": [],
   "bootstrapped": true
