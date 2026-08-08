@@ -973,6 +973,20 @@ def match_fb_to_official(fb_post: Dict[str, Any],official_metas: List[Dict[str, 
     ocr_text = ocr_extract_text_from_image_url(fb_post.get("image_url", ""))
 
     if ocr_text:
+        # G47IX prints the source article URL in the infographic footer
+        # (e.g. "pokemongo.com/news/nationaltrust-2026") — a guaranteed match.
+        # Only trust it if the slug matches a known candidate (OCR can garble).
+        m = re.search(r"pokemongo(?:live)?\.com/news/([A-Za-z0-9_-]{4,})", ocr_text, re.I)
+        if m:
+            slug = m.group(1).lower().rstrip("-_")
+            for meta in official_metas:
+                if meta.get("url", "").rstrip("/").lower().endswith("/" + slug):
+                    return meta, 1.0, {
+                        "reason": "ocr_direct_url",
+                        "ocr_slug": slug,
+                        "fb_clean": fb_clean,
+                    }
+
         fb_full_ocr = f"{fb_full} {ocr_text}".strip()
         fb_clean_ocr = clean_fb_phrase({"title": fb_clean, "description": ocr_text})
         ocr_token_set = set(tokens(fb_full_ocr))
