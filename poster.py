@@ -39,6 +39,7 @@ DISCORD_FORUM_CHANNEL_IDS = [
 
 DISCORD_API_BASE = "https://discord.com/api/v10"
 FB_RSS_URL = clean_env_url(os.environ.get("G47IX_FB_RSS_URL"))
+FB_PAGE_URL = clean_env_url(os.environ.get("FB_PAGE_URL")) or "https://www.facebook.com/g47ix"
 
 OFFICIAL_CANDIDATES_LIMIT = int(os.environ.get("OFFICIAL_CANDIDATES_LIMIT", "60"))
 MAX_OFFICIAL_POSTS_PER_RUN = int(os.environ.get("MAX_OFFICIAL_POSTS_PER_RUN", "3"))
@@ -296,10 +297,32 @@ def discord_api(method: str, path: str, payload: Optional[Dict[str, Any]] = None
 
 
 # ============================================================
-# Facebook RSS parsing
+# Facebook posts (embed scraper primary, RSS fallback)
 # ============================================================
 
 def get_facebook_posts() -> List[Dict[str, Any]]:
+    """Scrape the page's public timeline via the FB embed plugin (free).
+    Falls back to the RSS feed if a G47IX_FB_RSS_URL is still configured."""
+    try:
+        from fb_scraper import get_page_posts
+        posts = get_page_posts(FB_PAGE_URL)
+        if posts:
+            return posts[:30]
+        print("[FB] Embed scrape returned 0 posts.")
+    except Exception as ex:
+        print(f"[FB] Embed scrape failed: {ex}")
+
+    if FB_RSS_URL:
+        print("[FB] Falling back to RSS feed.")
+        try:
+            return get_facebook_posts_rss()
+        except Exception as ex:
+            print(f"[FB] RSS fallback failed: {ex}")
+
+    return []
+
+
+def get_facebook_posts_rss() -> List[Dict[str, Any]]:
     if not FB_RSS_URL:
         return []
 
@@ -836,7 +859,7 @@ def main() -> None:
         except Exception as ex:
             print(f"[WARN] Failed to parse official meta for {u}: {ex}")
 
-    fb_posts = get_facebook_posts() if FB_RSS_URL else []
+    fb_posts = get_facebook_posts()
 
     # Bootstrap: first run should not spam the channel
     if not state.get("bootstrapped", False):
@@ -870,11 +893,6 @@ def main() -> None:
     # -----------------------------
     # Part B: FB infographics -> only post if matched (bounded)
     # -----------------------------
-    if not FB_RSS_URL:
-        print("[FB] No G47IX_FB_RSS_URL set; skipping Facebook feed.")
-        save_state(state)
-        return
-
     if not fb_posts:
         print("[FB] No items found in feed.")
         save_state(state)

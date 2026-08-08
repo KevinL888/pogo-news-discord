@@ -1,0 +1,24 @@
+name: Test FB scrape (no Discord posting)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install deps
+        run: |
+          pip install -r requirements.txt
+
+      - name: Scrape g47ix via embed plugin
+        run: |
+          python fb_scraper.py https://www.facebook.com/g47ix
