@@ -246,6 +246,10 @@ def post_infographic(official_meta: Dict[str, Any], fb_post: Dict[str, Any], sta
         print("[WARN] No threads found for this official post.")
         return
 
+    # Re-upload the image as our own attachment: source URLs (Discord CDN /
+    # Facebook CDN) are signed and expire, which blanks the embed later.
+    img = download_image(fb_post["image_url"]) if fb_post.get("image_url") else None
+
     for forum_id, data in thread_info["channels"].items():
 
         if data.get("infographic_posted"):
@@ -260,20 +264,86 @@ def post_infographic(official_meta: Dict[str, Any], fb_post: Dict[str, Any], sta
             "url": official_meta.get("url"),
         }
 
-        if fb_post.get("image_url"):
-            embed["image"] = {"url": fb_post["image_url"]}
-
-        discord_api(
-            "POST",
-            f"/channels/{data['thread_id']}/messages",
-            {"embeds": [embed]},
-        )
+        if img:
+            file_bytes, filename, content_type = img
+            embed["image"] = {"url": f"attachment://{filename}"}
+            discord_api_multipart(
+                f"/channels/{data['thread_id']}/messages",
+                {
+                    "embeds": [embed],
+                    "attachments": [{"id": 0, "filename": filename}],
+                },
+                filename,
+                file_bytes,
+                content_type,
+            )
+        else:
+            # fallback: link the image directly (may expire, better than nothing)
+            if fb_post.get("image_url"):
+                embed["image"] = {"url": fb_post["image_url"]}
+            discord_api(
+                "POST",
+                f"/channels/{data['thread_id']}/messages",
+                {"embeds": [embed]},
+            )
 
         data["infographic_posted"] = True
 
         time.sleep(SLEEP_BETWEEN_POSTS_SEC)
 
 
+
+
+def download_image(url: str) -> Optional[Tuple[bytes, str, str]]:
+    """Download an image so it can be re-uploaded as a Discord attachment.
+    Returns (bytes, filename, content_type) or None on any failure."""
+    try:
+        headers = {
+            "User-Agent": "Mozilla/5.0 (DiscordWebhookBot; +https://github.com)",
+        }
+        r = requests.get(url, headers=headers, timeout=30)
+        r.raise_for_status()
+
+        content_type = (r.headers.get("Content-Type") or "image/png").split(";")[0].strip()
+        if not content_type.startswith("image/"):
+            return None
+        if len(r.content) > 9_500_000:  # stay under Discord's 10MB bot upload limit
+            return None
+
+        name = re.sub(r"[^\w.-]", "_", os.path.basename(url.split("?")[0])) or "infographic"
+        if "." not in name:
+            name += "." + content_type.split("/")[-1]
+        return r.content, name, content_type
+    except Exception as ex:
+        print(f"[WARN] Failed to download infographic image: {ex}")
+        return None
+
+
+def discord_api_multipart(path: str, payload: Dict[str, Any], filename: str,
+                          file_bytes: bytes, content_type: str,
+                          max_retries: int = 5) -> Dict[str, Any]:
+    """POST a message with a file attachment (multipart), 429-safe."""
+    url = f"{DISCORD_API_BASE}{path}"
+    headers = {"Authorization": f"Bot {DISCORD_BOT_TOKEN}"}
+
+    for _ in range(max_retries):
+        r = requests.post(
+            url,
+            headers=headers,
+            data={"payload_json": json.dumps(payload)},
+            files={"files[0]": (filename, file_bytes, content_type)},
+            timeout=60,
+        )
+
+        if r.status_code == 429:
+            retry_after = float(r.json().get("retry_after", 2.0))
+            time.sleep(max(retry_after, 1.0))
+            continue
+
+        r.raise_for_status()
+        return r.json() if r.text else {}
+
+    raise RuntimeError("Discord API failed after retries")
 
 
 def discord_api(method: str, path: str, payload: Optional[Dict[str, Any]] = None, max_retries: int = 5) -> Dict[str, Any]:
