@@ -367,8 +367,10 @@ def get_facebook_posts_discord() -> List[Dict[str, Any]]:
                     break
 
         text = (m.get("content") or "").strip()
-        # drop role/user/channel mentions like <@&123456>
+        # drop Discord markup: mentions <@&123>, timestamps <t:123:d>, custom emoji <:name:123>
         text = re.sub(r"<[@#][!&]?\d+>", " ", text)
+        text = re.sub(r"<t:\d+(?::[a-zA-Z])?>", " ", text)
+        text = re.sub(r"<a?:\w+:\d+>", " ", text)
         text = re.sub(r"\s+", " ", text).strip()
 
         link = f"https://discord.com/channels/{guild_id}/{G47IX_MIRROR_CHANNEL_ID}/{m['id']}"
