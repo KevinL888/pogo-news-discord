@@ -1,0 +1,34 @@
+name: Test mirror channel read (no posting)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  read:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install deps
+        run: |
+          pip install -r requirements.txt
+
+      - name: Read g47ix mirror channel
+        env:
+          DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
+          G47IX_MIRROR_CHANNEL_ID: "1535567925434646620"
+        run: |
+          python - <<'EOF'
+          import json
+          from poster import get_facebook_posts_discord
+
+          items = get_facebook_posts_discord()
+          print(json.dumps(items, indent=2, ensure_ascii=False))
+          print(f"{len(items)} message(s) read from mirror channel")
+          EOF

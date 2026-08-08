@@ -17,7 +17,7 @@ jobs:
 
       - name: Install deps
         run: |
-          pip install -r requirements.txt
+          pip install -r requirements.txt playwright
 
       - name: Scrape g47ix via embed plugin
         env:

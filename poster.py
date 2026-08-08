@@ -40,6 +40,8 @@ DISCORD_FORUM_CHANNEL_IDS = [
 DISCORD_API_BASE = "https://discord.com/api/v10"
 FB_RSS_URL = clean_env_url(os.environ.get("G47IX_FB_RSS_URL"))
 FB_PAGE_URL = clean_env_url(os.environ.get("FB_PAGE_URL")) or "https://www.facebook.com/g47ix"
+# Channel in OUR server that follows G47IX's announcement channel (crossposts land here)
+G47IX_MIRROR_CHANNEL_ID = clean_env_url(os.environ.get("G47IX_MIRROR_CHANNEL_ID"))
 
 OFFICIAL_CANDIDATES_LIMIT = int(os.environ.get("OFFICIAL_CANDIDATES_LIMIT", "60"))
 MAX_OFFICIAL_POSTS_PER_RUN = int(os.environ.get("MAX_OFFICIAL_POSTS_PER_RUN", "3"))
@@ -297,12 +299,24 @@ def discord_api(method: str, path: str, payload: Optional[Dict[str, Any]] = None
 
 
 # ============================================================
-# Facebook posts (embed scraper primary, RSS fallback)
+# G47IX posts (Discord mirror primary, FB embed / RSS fallbacks)
 # ============================================================
 
 def get_facebook_posts() -> List[Dict[str, Any]]:
-    """Scrape the page's public timeline via the FB embed plugin (free).
-    Falls back to the RSS feed if a G47IX_FB_RSS_URL is still configured."""
+    """Fetch recent G47IX posts, trying sources in order:
+    1. Discord mirror channel (our channel following G47IX's #us-news) — works
+       from GitHub Actions since it's just the Discord API.
+    2. FB page-plugin embed scrape — works from residential IPs only
+       (Facebook login-walls datacenter IPs).
+    3. Legacy RSS.app feed, if still configured."""
+    if G47IX_MIRROR_CHANNEL_ID:
+        try:
+            items = get_facebook_posts_discord()
+            print(f"[FB] Discord mirror returned {len(items)} message(s).")
+            return items
+        except Exception as ex:
+            print(f"[FB] Discord mirror read failed: {ex}")
+
     try:
         from fb_scraper import get_page_posts
         posts = get_page_posts(FB_PAGE_URL)
@@ -320,6 +334,55 @@ def get_facebook_posts() -> List[Dict[str, Any]]:
             print(f"[FB] RSS fallback failed: {ex}")
 
     return []
+
+
+def get_facebook_posts_discord() -> List[Dict[str, Any]]:
+    """Read the mirror channel that follows G47IX's announcement channel.
+    Crossposted messages carry the infographic as an image attachment and
+    sometimes caption text. Requires the bot to have View Channel + Read
+    Message History there, and the Message Content intent enabled (without it
+    Discord blanks content/attachments on other users' messages)."""
+    if not G47IX_MIRROR_CHANNEL_ID:
+        return []
+
+    channel = discord_api("GET", f"/channels/{G47IX_MIRROR_CHANNEL_ID}")
+    guild_id = channel.get("guild_id", "@me")
+
+    msgs = discord_api("GET", f"/channels/{G47IX_MIRROR_CHANNEL_ID}/messages?limit=30")
+
+    items: List[Dict[str, Any]] = []
+    for m in msgs:  # newest first, same ordering the RSS feed had
+        image_url = None
+        for att in m.get("attachments", []):
+            if (att.get("content_type") or "").startswith("image/"):
+                image_url = att.get("url")
+                break
+        if not image_url:
+            for emb in m.get("embeds", []):
+                image_url = (
+                    (emb.get("image") or {}).get("url")
+                    or (emb.get("thumbnail") or {}).get("url")
+                )
+                if image_url:
+                    break
+
+        text = (m.get("content") or "").strip()
+        # drop role/user/channel mentions like <@&123456>
+        text = re.sub(r"<[@#][!&]?\d+>", " ", text)
+        text = re.sub(r"\s+", " ", text).strip()
+
+        link = f"https://discord.com/channels/{guild_id}/{G47IX_MIRROR_CHANNEL_ID}/{m['id']}"
+
+        items.append(
+            {
+                "title": text,
+                "link": link,
+                "description": "",
+                "image_url": image_url,
+            }
+        )
+
+    return items
 
 
 def get_facebook_posts_rss() -> List[Dict[str, Any]]:
