@@ -886,6 +886,19 @@ def ocr_extract_text_from_image_url(image_url: str) -> Optional[str]:
         return None
 
 
+def article_fully_claimed(url: Optional[str], state: Dict[str, Any]) -> bool:
+    """True if this article already has its infographic in every configured
+    forum — matching a graphic to it is a dead end (post would be skipped),
+    so such articles shouldn't compete for new graphics."""
+    if not url or not DISCORD_FORUM_CHANNEL_IDS:
+        return False
+    channels = state.get("threads", {}).get(url, {}).get("channels", {})
+    return all(
+        fid in channels and channels[fid].get("infographic_posted")
+        for fid in DISCORD_FORUM_CHANNEL_IDS
+    )
+
+
 def match_fb_to_official(fb_post: Dict[str, Any],official_metas: List[Dict[str, Any]]) -> Optional[Tuple[Dict[str, Any], float, Dict[str, Any]]]:
 
     # ------------------------------------------------------------
@@ -1125,7 +1138,13 @@ def main() -> None:
             state["seen_fb_posts"] = (state["seen_fb_posts"] + [fb_link])[-800:]
             continue
 
-        match = match_fb_to_official(fb_post, official_metas)
+        # Only articles that still need an infographic somewhere may compete
+        open_metas = [
+            m for m in official_metas
+            if not article_fully_claimed(m.get("url"), state)
+        ]
+
+        match = match_fb_to_official(fb_post, open_metas)
         if not match:
             print(f"[FB] No official match found (threshold={MATCH_THRESHOLD:.2f}). Skipping.")
             if not DEBUG_KEEP_UNMATCHED_FB:
