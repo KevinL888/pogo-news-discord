@@ -662,6 +662,36 @@ def extract_official_url_from_text(text: str) -> Optional[str]:
     return None
 
 
+def find_official_slug_match(text: str, metas: List[Dict[str, Any]]) -> Optional[Tuple[Dict[str, Any], str]]:
+    """G47IX often links official pokemongo.com pages that aren't /news/ articles
+    (e.g. pokemongo.com/en/gofest/megafinale). A long path segment embedded in a
+    candidate article's slug (megafinale ⊂ gofest2026-mega-finale-incoming) is
+    near-certain evidence. Returns (meta, matched_segment) for the longest hit."""
+    if not text:
+        return None
+
+    hits: Dict[int, Tuple[int, Dict[str, Any], str]] = {}
+    for m in re.finditer(r"pokemongo(?:live)?\.com(/[A-Za-z0-9/_-]+)", text, re.I):
+        for seg in m.group(1).split("/"):
+            seg_c = re.sub(r"[-_]", "", seg.lower())
+            if len(seg_c) < 6 or seg_c == "news":
+                continue
+            for meta in metas:
+                sm = re.search(r"/news/([^/?#]+)", meta.get("url", "") or "")
+                if not sm:
+                    continue
+                slug_c = re.sub(r"[-_]", "", sm.group(1).lower())
+                if seg_c in slug_c or slug_c in seg_c:
+                    key = id(meta)
+                    if key not in hits or len(seg_c) > hits[key][0]:
+                        hits[key] = (len(seg_c), meta, seg)
+    if not hits:
+        return None
+    # longest matched segment wins (most specific evidence)
+    _, meta, seg = max(hits.values(), key=lambda h: h[0])
+    return meta, seg
+
+
 def clean_fb_phrase(post: Dict[str, Any]) -> str:
     """
     RSS.app titles often look like:
@@ -931,6 +961,18 @@ def match_fb_to_official(fb_post: Dict[str, Any],official_metas: List[Dict[str, 
     fb_full = f"{fb_post.get('title','')} {fb_post.get('description','')}".strip()
 
     # ------------------------------------------------------------
+    # 1b) Official non-/news/ link whose path segment embeds in a slug
+    #     (e.g. pokemongo.com/en/gofest/megafinale)
+    # ------------------------------------------------------------
+    slug_hit = find_official_slug_match(fb_full, official_metas)
+    if slug_hit:
+        meta, seg = slug_hit
+        s, dbg = combined_match_score(fb_clean, fb_full, meta)
+        dbg["reason"] = "official_link_slug"
+        dbg["matched_segment"] = seg
+        return meta, max(s, MATCH_THRESHOLD), dbg
+
+    # ------------------------------------------------------------
     # 2) Topic Gating (Prevents cross-topic bleed)
     # ------------------------------------------------------------
 
@@ -1006,6 +1048,15 @@ def match_fb_to_official(fb_post: Dict[str, Any],official_metas: List[Dict[str, 
                         "ocr_slug": slug,
                         "fb_clean": fb_clean,
                     }
+
+        # Non-/news/ official link in the image text (same evidence as 1b)
+        slug_hit = find_official_slug_match(ocr_text, official_metas)
+        if slug_hit:
+            meta, seg = slug_hit
+            s, dbg = combined_match_score(fb_clean, fb_full, meta)
+            dbg["reason"] = "ocr_link_slug"
+            dbg["matched_segment"] = seg
+            return meta, max(s, MATCH_THRESHOLD), dbg
 
         fb_full_ocr = f"{fb_full} {ocr_text}".strip()
         fb_clean_ocr = clean_fb_phrase({"title": fb_clean, "description": ocr_text})
