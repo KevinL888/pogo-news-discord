@@ -1195,6 +1195,18 @@
           "infographic_posted": false
         }
       }
+    },
+    "https://pokemongo.com/news/10th-anniversary-celebration": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1537242715874529311",
+          "infographic_posted": false
+        },
+        "1472476091108163888": {
+          "thread_id": "1537242732018532414",
+          "infographic_posted": false
+        }
+      }
     }
   },
   "seen_urls": [
@@ -1356,7 +1368,8 @@
     "https://pokemongo.com/news/save-the-date-s24",
     "https://pokemongo.com/news/gofest2026-mega-finale-incoming",
     "https://pokemongo.com/news/event-apac-30th-anniversary-2026",
-    "https://pokemongo.com/news/event-apac-stamp-rally-2026"
+    "https://pokemongo.com/news/event-apac-stamp-rally-2026",
+    "https://pokemongo.com/news/10th-anniversary-celebration"
   ],
   "seen_fb_posts": [
     "https://www.facebook.com/g47ix/posts/pfbid0oCrVQn1Chb7nKKK9p2fvcQS2jYGXDtPoY5pfJVjbY4RYGV9rv7MNShj6Wja2y5Ybl",
