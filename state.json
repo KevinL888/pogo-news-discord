@@ -1291,6 +1291,42 @@
           "infographic_posted": false
         }
       }
+    },
+    "https://pokemongo.com/news/megafinale-2026-armored-mewtwo": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1543910780897075234",
+          "infographic_posted": true
+        },
+        "1472476091108163888": {
+          "thread_id": "1543910787490521170",
+          "infographic_posted": true
+        }
+      }
+    },
+    "https://pokemongo.com/news/more-mega-updates-2026": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1543910793748283393",
+          "infographic_posted": true
+        },
+        "1472476091108163888": {
+          "thread_id": "1543910799972634625",
+          "infographic_posted": true
+        }
+      }
+    },
+    "https://pokemongo.com/news/go-battle-league-twilight-trails": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1543910806683521055",
+          "infographic_posted": false
+        },
+        "1472476091108163888": {
+          "thread_id": "1543910813818036296",
+          "infographic_posted": false
+        }
+      }
     }
   },
   "seen_urls": [
@@ -1460,7 +1496,10 @@
     "https://pokemongo.com/news/2026_ana_green",
     "https://pokemongo.com/news/go-pass-september-2026",
     "https://pokemongo.com/news/seasons--twilight-trails",
-    "https://pokemongo.com/news/catch-mastery-phantump-2026"
+    "https://pokemongo.com/news/catch-mastery-phantump-2026",
+    "https://pokemongo.com/news/megafinale-2026-armored-mewtwo",
+    "https://pokemongo.com/news/more-mega-updates-2026",
+    "https://pokemongo.com/news/go-battle-league-twilight-trails"
   ],
   "seen_fb_posts": [
     "https://www.facebook.com/g47ix/posts/pfbid0oCrVQn1Chb7nKKK9p2fvcQS2jYGXDtPoY5pfJVjbY4RYGV9rv7MNShj6Wja2y5Ybl",
@@ -1785,7 +1824,9 @@
     "https://discord.com/channels/1399362487333290004/1442860329146257478/1543720166376865885",
     "https://discord.com/channels/1399362487333290004/1442860329146257478/1543732625448112229",
     "https://discord.com/channels/1399362487333290004/1442860329146257478/1543748267978793072",
-    "https://discord.com/channels/1399362487333290004/1442860329146257478/1543748339210920041"
+    "https://discord.com/channels/1399362487333290004/1442860329146257478/1543748339210920041",
+    "https://discord.com/channels/1399362487333290004/1442860329146257478/1543836030740856884",
+    "https://discord.com/channels/1399362487333290004/1442860329146257478/1543838368637390941"
   ],
   "posted_infographics": [],
   "bootstrapped": true
