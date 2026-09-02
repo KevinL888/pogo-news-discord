@@ -1375,6 +1375,18 @@
           "infographic_posted": false
         }
       }
+    },
+    "https://pokemongo.com/news/pokemon-horizons-celebration-event-2026": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1544749949504200715",
+          "infographic_posted": true
+        },
+        "1472476091108163888": {
+          "thread_id": "1544749957553201244",
+          "infographic_posted": true
+        }
+      }
     }
   },
   "seen_urls": [
@@ -1551,7 +1563,8 @@
     "https://pokemongo.com/news/communitydayclassic-gible-september-2026",
     "https://pokemongo.com/news/mega-finale-2026-community",
     "https://pokemongo.com/news/mega-squads-2026",
-    "https://pokemongo.com/news/staraptor-super-mega-raid-day-2026"
+    "https://pokemongo.com/news/staraptor-super-mega-raid-day-2026",
+    "https://pokemongo.com/news/pokemon-horizons-celebration-event-2026"
   ],
   "seen_fb_posts": [
     "https://www.facebook.com/g47ix/posts/pfbid0oCrVQn1Chb7nKKK9p2fvcQS2jYGXDtPoY5pfJVjbY4RYGV9rv7MNShj6Wja2y5Ybl",
@@ -1883,7 +1896,8 @@
     "https://discord.com/channels/1399362487333290004/1442860329146257478/1544080131507626067",
     "https://discord.com/channels/1399362487333290004/1442860329146257478/1544206846599102500",
     "https://discord.com/channels/1399362487333290004/1442860329146257478/1544397744330776629",
-    "https://discord.com/channels/1399362487333290004/1442860329146257478/1544449700365598822"
+    "https://discord.com/channels/1399362487333290004/1442860329146257478/1544449700365598822",
+    "https://discord.com/channels/1399362487333290004/1442860329146257478/1544698710565584926"
   ],
   "posted_infographics": [],
   "bootstrapped": true
