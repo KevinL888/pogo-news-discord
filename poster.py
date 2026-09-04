@@ -51,6 +51,9 @@ MATCH_THRESHOLD = float(os.environ.get("MATCH_THRESHOLD", "0.38"))
 OCR_MATCH_THRESHOLD = float(os.environ.get("OCR_MATCH_THRESHOLD", "0.60"))
 # ...unless the official title's distinctive words appear in the image text itself
 OCR_TITLE_OVERLAP = float(os.environ.get("OCR_TITLE_OVERLAP", "0.5"))
+# Floor for the uniquely-identifying-word route below. A word that singles out
+# one candidate article IS the evidence there, so this only rules out noise.
+OCR_UNIQUE_TOKEN_FLOOR = float(os.environ.get("OCR_UNIQUE_TOKEN_FLOOR", "0.20"))
 
 # Words too common in Pokémon GO news titles to count as evidence that an
 # infographic belongs to a specific article (they gamed the overlap rule:
@@ -438,6 +441,42 @@ def get_facebook_posts() -> List[Dict[str, Any]]:
     return []
 
 
+def mirror_message_to_item(m: Dict[str, Any], guild_id: str) -> Dict[str, Any]:
+    """Convert one mirror-channel message into a feed item (same shape as RSS)."""
+    image_url = None
+    for att in m.get("attachments", []):
+        if (att.get("content_type") or "").startswith("image/"):
+            image_url = att.get("url")
+            break
+    if not image_url:
+        for emb in m.get("embeds", []):
+            image_url = (
+                (emb.get("image") or {}).get("url")
+                or (emb.get("thumbnail") or {}).get("url")
+            )
+            if image_url:
+                break
+
+    text = (m.get("content") or "").strip()
+    # drop Discord markup: mentions <@&123>, timestamps <t:123:d>, custom emoji <:name:123>
+    text = re.sub(r"<[@#][!&]?\d+>", " ", text)
+    text = re.sub(r"<t:\d+(?::[a-zA-Z])?>", " ", text)
+    text = re.sub(r"<a?:\w+:\d+>", " ", text)
+    text = re.sub(r"\s+", " ", text).strip()
+
+    return {
+        "title": text,
+        "link": f"https://discord.com/channels/{guild_id}/{G47IX_MIRROR_CHANNEL_ID}/{m['id']}",
+        "description": "",
+        "image_url": image_url,
+    }
+
+
+def mirror_guild_id() -> str:
+    channel = discord_api("GET", f"/channels/{G47IX_MIRROR_CHANNEL_ID}")
+    return channel.get("guild_id", "@me")
+
+
 def get_facebook_posts_discord() -> List[Dict[str, Any]]:
     """Read the mirror channel that follows G47IX's announcement channel.
     Crossposted messages carry the infographic as an image attachment and
@@ -447,46 +486,11 @@ def get_facebook_posts_discord() -> List[Dict[str, Any]]:
     if not G47IX_MIRROR_CHANNEL_ID:
         return []
 
-    channel = discord_api("GET", f"/channels/{G47IX_MIRROR_CHANNEL_ID}")
-    guild_id = channel.get("guild_id", "@me")
-
+    guild_id = mirror_guild_id()
     msgs = discord_api("GET", f"/channels/{G47IX_MIRROR_CHANNEL_ID}/messages?limit=30")
 
-    items: List[Dict[str, Any]] = []
-    for m in msgs:  # newest first, same ordering the RSS feed had
-        image_url = None
-        for att in m.get("attachments", []):
-            if (att.get("content_type") or "").startswith("image/"):
-                image_url = att.get("url")
-                break
-        if not image_url:
-            for emb in m.get("embeds", []):
-                image_url = (
-                    (emb.get("image") or {}).get("url")
-                    or (emb.get("thumbnail") or {}).get("url")
-                )
-                if image_url:
-                    break
-
-        text = (m.get("content") or "").strip()
-        # drop Discord markup: mentions <@&123>, timestamps <t:123:d>, custom emoji <:name:123>
-        text = re.sub(r"<[@#][!&]?\d+>", " ", text)
-        text = re.sub(r"<t:\d+(?::[a-zA-Z])?>", " ", text)
-        text = re.sub(r"<a?:\w+:\d+>", " ", text)
-        text = re.sub(r"\s+", " ", text).strip()
-
-        link = f"https://discord.com/channels/{guild_id}/{G47IX_MIRROR_CHANNEL_ID}/{m['id']}"
-
-        items.append(
-            {
-                "title": text,
-                "link": link,
-                "description": "",
-                "image_url": image_url,
-            }
-        )
-
-    return items
+    # newest first, same ordering the RSS feed had
+    return [mirror_message_to_item(m, guild_id) for m in msgs]
 
 
 def get_facebook_posts_rss() -> List[Dict[str, Any]]:
@@ -1069,43 +1073,74 @@ def match_fb_to_official(fb_post: Dict[str, Any],official_metas: List[Dict[str, 
         # the official title's distinctive words appearing in the image text.
         # (Plain thresholds can't separate these: diffuse body-text overlap can
         # outscore a genuine title match.)
-        best_acc: Optional[Tuple[float, Dict[str, Any], Dict[str, Any], float]] = None
-        best_rej: Optional[Tuple[float, Dict[str, Any], float]] = None
+        # A distinctive title word that identifies exactly ONE candidate
+        # ("gible") is strong evidence by itself; one shared across the news
+        # cycle ("mega") is not. Count how many candidates each word appears in
+        # so the gate below can tell those two cases apart.
+        distinct_by_meta = {
+            id(m): set(tokens(m.get("title", ""))) - GENERIC_TITLE_TOKENS
+            for m in filtered_metas
+        }
+        token_df: Dict[str, int] = {}
+        for meta_toks in distinct_by_meta.values():
+            for t in meta_toks:
+                token_df[t] = token_df.get(t, 0) + 1
+
+        best_acc: Optional[Tuple[float, Dict[str, Any], Dict[str, Any], float, set]] = None
+        best_rej: Optional[Tuple[float, Dict[str, Any], float, set]] = None
 
         for meta in filtered_metas:
             s, dbg = combined_match_score(fb_clean_ocr, fb_full_ocr, meta)
 
-            # Only distinctive title words count as evidence, and we need at
-            # least two of them in the image text.
-            distinct_toks = set(tokens(meta.get("title", ""))) - GENERIC_TITLE_TOKENS
+            # Only distinctive title words count as evidence.
+            distinct_toks = distinct_by_meta[id(meta)]
             matched_toks = distinct_toks & ocr_token_set
             overlap = (len(matched_toks) / len(distinct_toks)) if distinct_toks else 0.0
+            unique_hits = {t for t in matched_toks if token_df.get(t) == 1}
 
-            acceptable = s >= OCR_MATCH_THRESHOLD or (
-                s >= MATCH_THRESHOLD
-                and len(matched_toks) >= 2
-                and overlap >= OCR_TITLE_OVERLAP
+            acceptable = (
+                s >= OCR_MATCH_THRESHOLD
+                or (
+                    s >= MATCH_THRESHOLD
+                    and len(matched_toks) >= 2
+                    and overlap >= OCR_TITLE_OVERLAP
+                )
+                # Caption-less graphics have no text for tok/sim/slug to score
+                # against, so s stays low no matter how obvious the subject is
+                # (the Gible Community Day Classic graphic scored 0.32 while a
+                # three-word caption on the next post scored 0.69). A word that
+                # singles out one candidate has to carry the match instead.
+                # Titles with only one distinctive word are excluded: a passing
+                # mention would clear overlap on its own.
+                or (
+                    unique_hits
+                    and len(distinct_toks) >= 2
+                    and overlap >= OCR_TITLE_OVERLAP
+                    and s >= OCR_UNIQUE_TOKEN_FLOOR
+                )
             )
             if acceptable:
                 if best_acc is None or s > best_acc[0]:
-                    best_acc = (s, meta, dbg, overlap)
+                    best_acc = (s, meta, dbg, overlap, unique_hits)
             else:
                 if best_rej is None or s > best_rej[0]:
-                    best_rej = (s, meta, overlap)
+                    best_rej = (s, meta, overlap, unique_hits)
 
         if best_acc:
-            s, meta, dbg, overlap = best_acc
+            s, meta, dbg, overlap, unique_hits = best_acc
             dbg = dbg or {}
             dbg["reason"] = "ocr_scored"
             dbg["title_overlap"] = round(overlap, 2)
+            dbg["unique_hits"] = sorted(unique_hits)
             dbg["ocr_excerpt"] = ocr_text[:250]
             return meta, s, dbg
 
         if best_rej:
-            s, meta, overlap = best_rej
+            s, meta, overlap, unique_hits = best_rej
             print(
                 f"[FB] OCR best candidate rejected (score={s:.2f}, "
-                f"title_overlap={overlap:.2f}): '{meta.get('title','')}'"
+                f"title_overlap={overlap:.2f}, unique_hits={sorted(unique_hits)}): "
+                f"'{meta.get('title','')}'"
             )
 
     # ------------------------------------------------------------

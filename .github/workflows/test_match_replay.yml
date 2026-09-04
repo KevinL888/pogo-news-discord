@@ -1,0 +1,41 @@
+name: Replay FB graphic match (no posting)
+
+on:
+  workflow_dispatch:
+    inputs:
+      message_id:
+        description: "Mirror-channel message id to replay"
+        required: false
+        default: "1544034826376454177"
+      expected_slug:
+        description: "Article slug the graphic should match"
+        required: false
+        default: "communitydayclassic-gible-september-2026"
+
+jobs:
+  replay:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install deps
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq tesseract-ocr
+          pip install -r requirements.txt
+
+      # Exits non-zero if the graphic matches nothing or matches the wrong
+      # article, so a threshold change that regresses this is visible as a
+      # failed run rather than something to spot by eye in the log.
+      - name: Replay match
+        env:
+          DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
+          G47IX_MIRROR_CHANNEL_ID: "1442860329146257478"
+          ENABLE_OCR_FALLBACK: "1"
+        run: |
+          python diagnose_match.py "${{ inputs.message_id }}" "${{ inputs.expected_slug }}"
