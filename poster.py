@@ -75,6 +75,13 @@ GENERIC_TITLE_TOKENS = {
     "january", "february", "march", "april", "may", "june", "july",
     "august", "september", "october", "november", "december",
     "monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday",
+    # Filler that can never name a subject, plus vocabulary that shows up in
+    # nearly every graphic — the Gible one alone says "Special Research",
+    # "special background", "special move" and "Gible in the wild". Left in,
+    # these read as evidence for whichever article happens to be the only one
+    # using them.
+    "additional", "can", "every", "your", "take", "takes", "through",
+    "trainer", "trainers", "special", "moments", "wild",
 }
 # Recurring series graphics that never map to a single official article ("|"-separated)
 FB_SKIP_PATTERNS = [
