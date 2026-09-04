@@ -2,6 +2,13 @@ name: Test mirror channel read (no posting)
 
 on:
   workflow_dispatch:
+    inputs:
+      around:
+        description: >-
+          Message snowflake to inspect raw (default = the 2026-08-31 17:07 UTC
+          Gible graphic that get_facebook_posts_discord() saw as image-less)
+        required: false
+        default: "1544030760468480000"
 
 jobs:
   read:
@@ -31,4 +38,62 @@ jobs:
           items = get_facebook_posts_discord()
           print(json.dumps(items, indent=2, ensure_ascii=False))
           print(f"{len(items)} message(s) read from mirror channel")
+          EOF
+
+      # Why an image-less message happens can't be told from the parsed items —
+      # only the raw payload shows whether the attachment lacked content_type,
+      # arrived as a forward (message_snapshots), or wasn't an image at all.
+      - name: Dump raw payload around a message
+        env:
+          DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
+          G47IX_MIRROR_CHANNEL_ID: "1442860329146257478"
+          AROUND: ${{ inputs.around }}
+        run: |
+          python - <<'EOF'
+          import datetime, json, os
+          from poster import discord_api
+
+          EPOCH = 1420070400000
+          ch = os.environ["G47IX_MIRROR_CHANNEL_ID"]
+          around = os.environ["AROUND"]
+
+          msgs = discord_api("GET", f"/channels/{ch}/messages?around={around}&limit=5")
+          msgs.sort(key=lambda m: int(m["id"]))
+
+          def stamp(mid):
+              ms = (int(mid) >> 22) + EPOCH
+              return datetime.datetime.fromtimestamp(ms / 1000, datetime.UTC)
+
+          for m in msgs:
+              print("=" * 72)
+              print(f"id={m['id']}  {stamp(m['id']):%Y-%m-%d %H:%M:%S} UTC  "
+                    f"flags={m.get('flags')}  type={m.get('type')}")
+              print(f"  author={(m.get('author') or {}).get('username')!r}")
+              print(f"  content={(m.get('content') or '')[:120]!r}")
+
+              atts = m.get("attachments") or []
+              print(f"  attachments={len(atts)}")
+              for a in atts:
+                  print(f"    filename={a.get('filename')!r} "
+                        f"content_type={a.get('content_type')!r} "
+                        f"size={a.get('size')} "
+                        f"w={a.get('width')} h={a.get('height')}")
+
+              embs = m.get("embeds") or []
+              print(f"  embeds={len(embs)}")
+              for e in embs:
+                  print(f"    type={e.get('type')!r} url={bool(e.get('url'))} "
+                        f"image={bool(e.get('image'))} thumbnail={bool(e.get('thumbnail'))}")
+
+              snaps = m.get("message_snapshots") or []
+              print(f"  message_snapshots={len(snaps)}")
+              for s in snaps:
+                  inner = s.get("message") or {}
+                  print(f"    inner content={(inner.get('content') or '')[:80]!r}")
+                  for a in inner.get("attachments") or []:
+                      print(f"    inner attachment filename={a.get('filename')!r} "
+                            f"content_type={a.get('content_type')!r}")
+                  for e in inner.get("embeds") or []:
+                      print(f"    inner embed type={e.get('type')!r} "
+                            f"image={bool(e.get('image'))} thumbnail={bool(e.get('thumbnail'))}")
           EOF
