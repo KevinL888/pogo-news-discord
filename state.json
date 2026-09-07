@@ -1387,6 +1387,30 @@
           "infographic_posted": true
         }
       }
+    },
+    "https://pokemongo.com/news/harvest-festival-2026": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1546615845613080678",
+          "infographic_posted": false
+        },
+        "1472476091108163888": {
+          "thread_id": "1546615851715666103",
+          "infographic_posted": false
+        }
+      }
+    },
+    "https://pokemongo.com/news/harvest-festival-tgr-2026": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1546615859173265502",
+          "infographic_posted": false
+        },
+        "1472476091108163888": {
+          "thread_id": "1546615866370687019",
+          "infographic_posted": false
+        }
+      }
     }
   },
   "seen_urls": [
@@ -1564,7 +1588,9 @@
     "https://pokemongo.com/news/mega-finale-2026-community",
     "https://pokemongo.com/news/mega-squads-2026",
     "https://pokemongo.com/news/staraptor-super-mega-raid-day-2026",
-    "https://pokemongo.com/news/pokemon-horizons-celebration-event-2026"
+    "https://pokemongo.com/news/pokemon-horizons-celebration-event-2026",
+    "https://pokemongo.com/news/harvest-festival-2026",
+    "https://pokemongo.com/news/harvest-festival-tgr-2026"
   ],
   "seen_fb_posts": [
     "https://www.facebook.com/g47ix/posts/pfbid0oCrVQn1Chb7nKKK9p2fvcQS2jYGXDtPoY5pfJVjbY4RYGV9rv7MNShj6Wja2y5Ybl",
@@ -1903,7 +1929,8 @@
     "https://discord.com/channels/1399362487333290004/1442860329146257478/1544034826376454177",
     "https://discord.com/channels/1399362487333290004/1442860329146257478/1545584209731653633",
     "https://discord.com/channels/1399362487333290004/1442860329146257478/1545584209756946573",
-    "https://discord.com/channels/1399362487333290004/1442860329146257478/1546253583614476308"
+    "https://discord.com/channels/1399362487333290004/1442860329146257478/1546253583614476308",
+    "https://discord.com/channels/1399362487333290004/1442860329146257478/1546570876294529076"
   ],
   "posted_infographics": [],
   "bootstrapped": true
