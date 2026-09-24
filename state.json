@@ -1620,11 +1620,11 @@
       "channels": {
         "1086323326999343297": {
           "thread_id": "1552736659873857717",
-          "infographic_posted": false
+          "infographic_posted": true
         },
         "1472476091108163888": {
           "thread_id": "1552736666848862412",
-          "infographic_posted": false
+          "infographic_posted": true
         }
       }
     }
@@ -2194,7 +2194,8 @@
     "https://discord.com/channels/1399362487333290004/1442860329146257478/1552301984806338601",
     "https://discord.com/channels/1399362487333290004/1442860329146257478/1552416168873300113",
     "https://discord.com/channels/1399362487333290004/1442860329146257478/1552459330349965435",
-    "https://discord.com/channels/1399362487333290004/1442860329146257478/1552620110337019996"
+    "https://discord.com/channels/1399362487333290004/1442860329146257478/1552620110337019996",
+    "https://discord.com/channels/1399362487333290004/1442860329146257478/1552737809549492235"
   ],
   "posted_infographics": [],
   "bootstrapped": true
