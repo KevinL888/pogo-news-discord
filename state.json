@@ -1603,6 +1603,30 @@
           "infographic_posted": true
         }
       }
+    },
+    "https://pokemongo.com/news/city-safari-boston-update": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1552736645621743749",
+          "infographic_posted": false
+        },
+        "1472476091108163888": {
+          "thread_id": "1552736652902932554",
+          "infographic_posted": false
+        }
+      }
+    },
+    "https://pokemongo.com/news/sandile-hatch-day-2026": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1552736659873857717",
+          "infographic_posted": false
+        },
+        "1472476091108163888": {
+          "thread_id": "1552736666848862412",
+          "infographic_posted": false
+        }
+      }
     }
   },
   "seen_urls": [
@@ -1798,7 +1822,9 @@
     "https://pokemongo.com/news/apac-mall-exploration-2026",
     "https://pokemongo.com/news/fall-marathon-buddy-trek-2026",
     "https://pokemongo.com/news/save-the-date-go-tour-2027",
-    "https://pokemongo.com/news/pokemon-x-adidas-2026"
+    "https://pokemongo.com/news/pokemon-x-adidas-2026",
+    "https://pokemongo.com/news/city-safari-boston-update",
+    "https://pokemongo.com/news/sandile-hatch-day-2026"
   ],
   "seen_fb_posts": [
     "https://www.facebook.com/g47ix/posts/pfbid0oCrVQn1Chb7nKKK9p2fvcQS2jYGXDtPoY5pfJVjbY4RYGV9rv7MNShj6Wja2y5Ybl",
