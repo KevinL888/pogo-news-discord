@@ -1651,6 +1651,30 @@
           "infographic_posted": false
         }
       }
+    },
+    "https://pokemongo.com/news/minior-meteor-showers-2026": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1555319249537597441",
+          "infographic_posted": true
+        },
+        "1472476091108163888": {
+          "thread_id": "1555319255866671258",
+          "infographic_posted": true
+        }
+      }
+    },
+    "https://pokemongo.com/news/dynamax-uxie-mesprit-azelf-max-battle-day-2026": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1555319262137159711",
+          "infographic_posted": false
+        },
+        "1472476091108163888": {
+          "thread_id": "1555319268332142643",
+          "infographic_posted": false
+        }
+      }
     }
   },
   "seen_urls": [
@@ -1850,7 +1874,9 @@
     "https://pokemongo.com/news/city-safari-boston-update",
     "https://pokemongo.com/news/sandile-hatch-day-2026",
     "https://pokemongo.com/news/festival-of-lights-2026",
-    "https://pokemongo.com/news/tcg-30th-celebration-event"
+    "https://pokemongo.com/news/tcg-30th-celebration-event",
+    "https://pokemongo.com/news/minior-meteor-showers-2026",
+    "https://pokemongo.com/news/dynamax-uxie-mesprit-azelf-max-battle-day-2026"
   ],
   "seen_fb_posts": [
     "https://www.facebook.com/g47ix/posts/pfbid0oCrVQn1Chb7nKKK9p2fvcQS2jYGXDtPoY5pfJVjbY4RYGV9rv7MNShj6Wja2y5Ybl",
@@ -2227,7 +2253,9 @@
     "https://discord.com/channels/1399362487333290004/1442860329146257478/1554588712267030588",
     "https://discord.com/channels/1399362487333290004/1442860329146257478/1555001750086352926",
     "https://discord.com/channels/1399362487333290004/1442860329146257478/1555163760123969647",
-    "https://discord.com/channels/1399362487333290004/1442860329146257478/1555214176870334496"
+    "https://discord.com/channels/1399362487333290004/1442860329146257478/1555214176870334496",
+    "https://discord.com/channels/1399362487333290004/1442860329146257478/1555270610714886155",
+    "https://discord.com/channels/1399362487333290004/1442860329146257478/1555314694376529923"
   ],
   "posted_infographics": [],
   "bootstrapped": true
