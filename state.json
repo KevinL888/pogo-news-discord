@@ -1668,11 +1668,11 @@
       "channels": {
         "1086323326999343297": {
           "thread_id": "1555319262137159711",
-          "infographic_posted": false
+          "infographic_posted": true
         },
         "1472476091108163888": {
           "thread_id": "1555319268332142643",
-          "infographic_posted": false
+          "infographic_posted": true
         }
       }
     },
@@ -1757,6 +1757,18 @@
         "1472476091108163888": {
           "thread_id": "1559707629218172979",
           "infographic_posted": true
+        }
+      }
+    },
+    "https://pokemongo.com/news/into-the-wild-2026": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1559990643449659543",
+          "infographic_posted": false
+        },
+        "1472476091108163888": {
+          "thread_id": "1559990653247684770",
+          "infographic_posted": false
         }
       }
     }
@@ -1967,7 +1979,8 @@
     "https://pokemongo.com/news/event-singapore-30th-anniversary-2026",
     "https://pokemongo.com/news/halloween-part-2-2026",
     "https://pokemongo.com/news/pgo-gameplay-update-oct-2026",
-    "https://pokemongo.com/news/chandelure-super-mega-raid-day-2026"
+    "https://pokemongo.com/news/chandelure-super-mega-raid-day-2026",
+    "https://pokemongo.com/news/into-the-wild-2026"
   ],
   "seen_fb_posts": [
     "https://www.facebook.com/g47ix/posts/pfbid0oCrVQn1Chb7nKKK9p2fvcQS2jYGXDtPoY5pfJVjbY4RYGV9rv7MNShj6Wja2y5Ybl",
@@ -2364,7 +2377,8 @@
     "https://discord.com/channels/1399362487333290004/1442860329146257478/1558972206522961972",
     "https://discord.com/channels/1399362487333290004/1442860329146257478/1559619441296146503",
     "https://discord.com/channels/1399362487333290004/1442860329146257478/1559619512461033525",
-    "https://discord.com/channels/1399362487333290004/1442860329146257478/1559665916294340759"
+    "https://discord.com/channels/1399362487333290004/1442860329146257478/1559665916294340759",
+    "https://discord.com/channels/1399362487333290004/1442860329146257478/1559980051280429128"
   ],
   "posted_infographics": [],
   "bootstrapped": true
