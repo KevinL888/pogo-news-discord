@@ -1975,6 +1975,18 @@
           "infographic_posted": false
         }
       }
+    },
+    "https://pokemongo.com/news/save-the-date-s25": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1569513644696539227",
+          "infographic_posted": false
+        },
+        "1472476091108163888": {
+          "thread_id": "1569513650862039135",
+          "infographic_posted": false
+        }
+      }
     }
   },
   "seen_urls": [
@@ -2201,7 +2213,8 @@
     "https://pokemongo.com/news/clefable-super-mega-raid-day-2026",
     "https://pokemongo.com/news/gowildarea-mexicocity-friday-update",
     "https://pokemongo.com/news/gowildarea-2026-timed-research",
-    "https://pokemongo.com/news/black-friday-2026"
+    "https://pokemongo.com/news/black-friday-2026",
+    "https://pokemongo.com/news/save-the-date-s25"
   ],
   "seen_fb_posts": [
     "https://www.facebook.com/g47ix/posts/pfbid0oCrVQn1Chb7nKKK9p2fvcQS2jYGXDtPoY5pfJVjbY4RYGV9rv7MNShj6Wja2y5Ybl",
