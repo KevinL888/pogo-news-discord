@@ -1987,6 +1987,18 @@
           "infographic_posted": false
         }
       }
+    },
+    "https://pokemongo.com/news/gowildarea-global-2026-osaka-gameplay-update": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1570119580037419116",
+          "infographic_posted": false
+        },
+        "1472476091108163888": {
+          "thread_id": "1570119587192774677",
+          "infographic_posted": false
+        }
+      }
     }
   },
   "seen_urls": [
@@ -2214,7 +2226,8 @@
     "https://pokemongo.com/news/gowildarea-mexicocity-friday-update",
     "https://pokemongo.com/news/gowildarea-2026-timed-research",
     "https://pokemongo.com/news/black-friday-2026",
-    "https://pokemongo.com/news/save-the-date-s25"
+    "https://pokemongo.com/news/save-the-date-s25",
+    "https://pokemongo.com/news/gowildarea-global-2026-osaka-gameplay-update"
   ],
   "seen_fb_posts": [
     "https://www.facebook.com/g47ix/posts/pfbid0oCrVQn1Chb7nKKK9p2fvcQS2jYGXDtPoY5pfJVjbY4RYGV9rv7MNShj6Wja2y5Ybl",
@@ -2651,7 +2664,8 @@
     "https://discord.com/channels/1399362487333290004/1442860329146257478/1569119535544533097",
     "https://discord.com/channels/1399362487333290004/1442860329146257478/1569143438551814305",
     "https://discord.com/channels/1399362487333290004/1442860329146257478/1569162692764237926",
-    "https://discord.com/channels/1399362487333290004/1442860329146257478/1569809072939864156"
+    "https://discord.com/channels/1399362487333290004/1442860329146257478/1569809072939864156",
+    "https://discord.com/channels/1399362487333290004/1442860329146257478/1570079894673555468"
   ],
   "posted_infographics": [],
   "bootstrapped": true
