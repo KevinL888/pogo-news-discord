@@ -2004,10 +2004,22 @@
       "channels": {
         "1086323326999343297": {
           "thread_id": "1571929448868221092",
-          "infographic_posted": false
+          "infographic_posted": true
         },
         "1472476091108163888": {
           "thread_id": "1571929455889485980",
+          "infographic_posted": true
+        }
+      }
+    },
+    "https://pokemongo.com/news/latin-america-international-championships-2026": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1572047529934201024",
+          "infographic_posted": false
+        },
+        "1472476091108163888": {
+          "thread_id": "1572047535671869452",
           "infographic_posted": false
         }
       }
@@ -2240,7 +2252,8 @@
     "https://pokemongo.com/news/black-friday-2026",
     "https://pokemongo.com/news/save-the-date-s25",
     "https://pokemongo.com/news/gowildarea-global-2026-osaka-gameplay-update",
-    "https://pokemongo.com/news/pokemon-crocs-2026"
+    "https://pokemongo.com/news/pokemon-crocs-2026",
+    "https://pokemongo.com/news/latin-america-international-championships-2026"
   ],
   "seen_fb_posts": [
     "https://www.facebook.com/g47ix/posts/pfbid0oCrVQn1Chb7nKKK9p2fvcQS2jYGXDtPoY5pfJVjbY4RYGV9rv7MNShj6Wja2y5Ybl",
@@ -2691,7 +2704,8 @@
     "https://discord.com/channels/1399362487333290004/1442860329146257478/1571091461317853236",
     "https://discord.com/channels/1399362487333290004/1442860329146257478/1571680035897872408",
     "https://discord.com/channels/1399362487333290004/1442860329146257478/1571900061120593971",
-    "https://discord.com/channels/1399362487333290004/1442860329146257478/1571900061145891013"
+    "https://discord.com/channels/1399362487333290004/1442860329146257478/1571900061145891013",
+    "https://discord.com/channels/1399362487333290004/1442860329146257478/1571939512836427827"
   ],
   "posted_infographics": [],
   "bootstrapped": true
