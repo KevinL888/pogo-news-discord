@@ -2136,10 +2136,22 @@
       "channels": {
         "1086323326999343297": {
           "thread_id": "1575291488613695580",
-          "infographic_posted": false
+          "infographic_posted": true
         },
         "1472476091108163888": {
           "thread_id": "1575291495177658419",
+          "infographic_posted": true
+        }
+      }
+    },
+    "https://pokemongo.com/news/gigantamax-inteleon-max-battle-day-2026": {
+      "channels": {
+        "1086323326999343297": {
+          "thread_id": "1575379412503891991",
+          "infographic_posted": false
+        },
+        "1472476091108163888": {
+          "thread_id": "1575379419021705288",
           "infographic_posted": false
         }
       }
@@ -2383,7 +2395,8 @@
     "https://pokemongo.com/news/go-pass-december-2026",
     "https://pokemongo.com/news/choose-your-path-daydream-destinations-2026",
     "https://pokemongo.com/news/tropical-paradise-2026",
-    "https://pokemongo.com/news/pokemon-champions-celebration-event-2026"
+    "https://pokemongo.com/news/pokemon-champions-celebration-event-2026",
+    "https://pokemongo.com/news/gigantamax-inteleon-max-battle-day-2026"
   ],
   "seen_fb_posts": [
     "https://www.facebook.com/g47ix/posts/pfbid0oCrVQn1Chb7nKKK9p2fvcQS2jYGXDtPoY5pfJVjbY4RYGV9rv7MNShj6Wja2y5Ybl",
@@ -2846,7 +2859,10 @@
     "https://discord.com/channels/1399362487333290004/1442860329146257478/1574881799992115221",
     "https://discord.com/channels/1399362487333290004/1442860329146257478/1574891587312423078",
     "https://discord.com/channels/1399362487333290004/1442860329146257478/1574898623907495966",
-    "https://discord.com/channels/1399362487333290004/1442860329146257478/1575215679483936819"
+    "https://discord.com/channels/1399362487333290004/1442860329146257478/1575215679483936819",
+    "https://discord.com/channels/1399362487333290004/1442860329146257478/1575299441999478966",
+    "https://discord.com/channels/1399362487333290004/1442860329146257478/1575301586396127282",
+    "https://discord.com/channels/1399362487333290004/1442860329146257478/1575308044248813569"
   ],
   "posted_infographics": [],
   "bootstrapped": true
